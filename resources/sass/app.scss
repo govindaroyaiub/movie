@@ -1,8 +1,7 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-// Variables
-@import 'variables';
+$font-family-sans-serif: 'Poppins', sans-serif;
 
-// Bootstrap
+@import '_welcome';
+
 @import '~bootstrap/scss/bootstrap';

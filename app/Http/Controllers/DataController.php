@@ -18,7 +18,8 @@ class DataController extends Controller
         $poster3 = Movie::select('image3')->first();
         $showtime = Showtime::join('show_location_static', 'movie_showtimes.cinema_id', 'show_location_static.id')
                             ->get();
-        
+
+
         return view('welcome', compact(
             'movie_details',
             'youtube_url',
