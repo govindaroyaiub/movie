@@ -12,6 +12,7 @@ class DataController extends Controller
     public function index()
     {
         $movie_details = Movie::get();
+        $current_date = date('Y-m-d');
         if($movie_details->count() == 0)
         {
             return view('coming_soon');
@@ -28,8 +29,11 @@ class DataController extends Controller
             $poster1 = Movie::select('image1')->first();
             $poster2 = Movie::select('image2')->first();
             $poster3 = Movie::select('image3')->first();
-            $showtime = Showtime::join('show_location_static', 'movie_showtimes.cinema_id', 'show_location_static.id')->get();
-            
+            $showtime = Showtime::join('show_location_static', 'movie_showtimes.cinema_id', 'show_location_static.id')
+                                ->where('movie_showtimes.date', '=', $current_date)
+                                ->orderBy('show_location_static.name', 'ASC')
+                                ->get();
+                                
             return view('welcome', compact(
                 'movie_details',
                 'youtube_url',
