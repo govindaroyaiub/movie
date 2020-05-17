@@ -24,8 +24,6 @@ class DataController extends Controller
             array_pop($youtube_link);
             $youtube_first = implode("/",$youtube_link);
             $youtube_url = 'https://youtube.com/embded/'. $last_youtube_part;
-            dd($youtube_url);
-
 
             $poster1 = Movie::select('image1')->first();
             $poster2 = Movie::select('image2')->first();

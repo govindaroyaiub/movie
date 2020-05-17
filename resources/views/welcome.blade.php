@@ -19,12 +19,8 @@
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni fugiat aliquid soluta nemo a, eum hic quos! Quaerat iusto numquam soluta facilis architecto
                         </p>
                         <p>Repellendus neque quae iure sed sequi eos.</p>
-
-                        <!-- <iframe width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-
-<!-- 
                         <iframe class="w-100" height="200" src="https://youtube.com/embed/gZjQROMAh_s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div> -->
+                        </div>
                     </div>
                 <div class="col-md-4"></div>
             </div>
