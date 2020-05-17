@@ -52,6 +52,10 @@ class HomeController extends Controller
             $worksheet2 = $spreadsheet->getSheet(1);
             $worksheet3 = $spreadsheet->getSheet(2);
 
+            $localtion_list = [];
+            $showtime_list = [];
+            $full_movie_details = [];
+
             if($worksheet1)
             {
                 $highestRow = $worksheet1->getHighestDataRow(); 
@@ -73,7 +77,7 @@ class HomeController extends Controller
                         'phone' => $phone,
                         'url' => $url
                     ];
-                    Location::insert($location);
+                    array_push($localtion_list, $location);
                 }
             }
             
@@ -90,14 +94,17 @@ class HomeController extends Controller
                     $movie_id = $worksheet2->getCellByColumnAndRow(5, $row)->getValue();
                     $date = date('Y-m-d',\PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($date_sheet));
                     $time = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($time_sheet)->format('H:i');
-    
-                    $showtime = [
-                        'cinema_id' => $cinema_id,
-                        'date' => $date,
-                        'time' => $time,
-                        'movie_id' => $movie_id
-                    ];
-                    Showtime::insert($showtime);
+                    
+                    if($cinema_id != NULL)
+                    {
+                        $showtime = [
+                            'cinema_id' => $cinema_id,
+                            'date' => $date,
+                            'time' => $time,
+                            'movie_id' => $movie_id
+                        ];
+                        array_push($showtime_list, $showtime);
+                    }
                 }
             }
             
@@ -120,26 +127,31 @@ class HomeController extends Controller
                     $duration = $worksheet3->getCellByColumnAndRow(12, $row)->getValue();
                     $ratings = $worksheet3->getCellByColumnAndRow(13, $row)->getValue();
                     $cinema_date = date('Y-m-d',\PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($cinema_date_sheet));
-    
-                    $movie_details = [
-                        'movie_title' => $movie_title,
-                        'movie_description_short' => $movie_description_short,
-                        'movie_description_long' => $movie_description_long,
-                        'cinema_date' => $cinema_date,
-                        'director' => $director,
-                        'actors' => $actors,
-                        'youtube_url' => $youtube_url,
-                        'image1' => $image1,
-                        'image2' => $image2,
-                        'image3' => $image3,
-                        'duration' => $duration,
-                        'ratings' => $ratings
-                    ];
-                    Movie::insert($movie_details);
-                    return back()->with('success', 'File Uploaded!');
+                    
+                    if($movie_title != NULL)
+                    {
+                        $movie_details = [
+                            'movie_title' => $movie_title,
+                            'movie_description_short' => $movie_description_short,
+                            'movie_description_long' => $movie_description_long,
+                            'cinema_date' => $cinema_date,
+                            'director' => $director,
+                            'actors' => $actors,
+                            'youtube_url' => $youtube_url,
+                            'image1' => $image1,
+                            'image2' => $image2,
+                            'image3' => $image3,
+                            'duration' => $duration,
+                            'ratings' => $ratings
+                        ];
+                        array_push($full_movie_details, $movie_details);
+                    }
                 }
             }
-            
+            Location::insert($localtion_list);
+            Showtime::insert($showtime_list);
+            Movie::insert($full_movie_details);
+            return back()->with('success', 'File Uploaded!');
         }
     }
 }
