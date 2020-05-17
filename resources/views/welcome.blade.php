@@ -10,14 +10,10 @@
 
 <body>
     <section class="welcome-page">
+        <header class="header">
+            <h1>{{ $movie_details[0]->movie_title }}</h1>
+        </header>
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <header class="header">
-                        <h1>{{ $movie_details[0]->movie_title }}</h1>
-                    </header>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-md-4">
                     <div class="poster mt-2">

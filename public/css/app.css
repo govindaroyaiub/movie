@@ -73,12 +73,21 @@
   display: block;
 }
 
+.footer-area {
+  background-color: #000;
+  color: #fff;
+  padding: 3rem 0;
+  text-align: center;
+}
+
 .coming-soon {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  background-color: #282c34;
+  color: #fff;
 }
 
 .coming-soon h3 {
@@ -88,14 +97,7 @@
 }
 
 .coming-soon h4 {
-  font-size: 3rem;
-}
-
-.footer-area {
-  background-color: #000;
-  color: #fff;
-  padding: 3rem 0;
-  text-align: center;
+  font-size: 1.6rem;
 }
 
 /*!
