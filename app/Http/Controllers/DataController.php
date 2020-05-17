@@ -23,14 +23,13 @@ class DataController extends Controller
             $last_youtube_part = end($youtube_link);
             array_pop($youtube_link);
             $youtube_first = implode("/",$youtube_link);
-            $youtube_url = 'https://youtube.com/embded/'. $last_youtube_part;
+            $youtube_url = 'https://youtube.com/embed/'. $last_youtube_part;
 
             $poster1 = Movie::select('image1')->first();
             $poster2 = Movie::select('image2')->first();
             $poster3 = Movie::select('image3')->first();
             $showtime = Showtime::join('show_location_static', 'movie_showtimes.cinema_id', 'show_location_static.id')->get();
 
-            
             return view('welcome', compact(
                 'movie_details',
                 'youtube_url',

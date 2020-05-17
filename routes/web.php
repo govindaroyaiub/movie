@@ -20,3 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/upload', 'HomeController@upload');
+
+Route::get('/cs', function() {
+  return view('coming_soon');
+});

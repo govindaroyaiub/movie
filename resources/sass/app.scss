@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-$font-family-sans-serif: 'Poppins', sans-serif;
-
+@import '_variables';
 @import '_welcome';
+@import '_coming-soon';
 
 @import '~bootstrap/scss/bootstrap';
