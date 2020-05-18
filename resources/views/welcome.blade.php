@@ -11,13 +11,13 @@
 <body>
     <section class="welcome-page">
         <header class="header">
-            <h1>{{ $movie_details[0]->movie_title }}</h1>
+            <h1>{{ $movie_details['movie_title'] }}</h1>
         </header>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-4">
                     <div class="poster mt-2">
-                        <img class="img-fluid w-100" src="{{ $poster1->image1 }}" alt="">
+                        <img class="img-fluid w-100" src="{{ $poster->image2 }}" alt="">
                     </div>
                 </div>
                 <div class="col-md-4 text-center text-uppercase">

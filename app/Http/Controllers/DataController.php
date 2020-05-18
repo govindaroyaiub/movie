@@ -11,7 +11,7 @@ class DataController extends Controller
 {
     public function index()
     {
-        $movie_details = Movie::get();
+        $movie_details = Movie::first();
         $current_date = date('Y-m-d');
         if($movie_details->count() == 0)
         {
@@ -26,9 +26,7 @@ class DataController extends Controller
             $youtube_first = implode("/",$youtube_link);
             $youtube_url = 'https://youtube.com/embed/'. $last_youtube_part;
 
-            $poster1 = Movie::select('image1')->first();
-            $poster2 = Movie::select('image2')->first();
-            $poster3 = Movie::select('image3')->first();
+            $poster = Movie::select('image1', 'image2', 'image3')->first();
             $showtime = Showtime::join('show_location_static', 'movie_showtimes.cinema_id', 'show_location_static.id')
                                 ->where('movie_showtimes.date', '=', $current_date)
                                 ->orderBy('show_location_static.name', 'ASC')
@@ -37,9 +35,7 @@ class DataController extends Controller
             return view('welcome', compact(
                 'movie_details',
                 'youtube_url',
-                'poster1',
-                'poster2',
-                'poster3',
+                'poster',
                 'showtime'
             ));
         }
