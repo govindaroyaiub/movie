@@ -41,6 +41,10 @@ class HomeController extends Controller
     
         if($request->hasFile('file'))
         {
+            $check_location_data = Location::first();
+            $check_showtime_data = Showtime::first();
+            $check_movie_details = Movie::first();
+
             $file = $request->file('file')->getClientOriginalName(); 
             $request->file->move(public_path('/'), $file);
 
@@ -56,102 +60,189 @@ class HomeController extends Controller
             $showtime_list = [];
             $full_movie_details = [];
 
-            if($worksheet1)
+            if(($check_location_data == NULL) && ($check_movie_details == NULL) && ($check_showtime_data == NULL))
             {
-                $highestRow = $worksheet1->getHighestDataRow(); 
-                $highestColumn = $worksheet1->getHighestDataColumn(); 
-                $highestColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($highestColumn);
-                for ($row = 2; $row <= $highestRow; ++$row) {
-                    $name = $worksheet1->getCellByColumnAndRow(2, $row)->getValue();
-                    $address = $worksheet1->getCellByColumnAndRow(3, $row)->getValue();
-                    $zip = $worksheet1->getCellByColumnAndRow(4, $row)->getValue();
-                    $city = $worksheet1->getCellByColumnAndRow(5, $row)->getValue();
-                    $phone = $worksheet1->getCellByColumnAndRow(6, $row)->getValue();
-                    $url = $worksheet1->getCellByColumnAndRow(7, $row)->getValue();
-    
-                    $location = [
-                        'name' => $name,
-                        'address' => $address,
-                        'zip' => $zip,
-                        'city' => $city,
-                        'phone' => $phone,
-                        'url' => $url
-                    ];
-                    array_push($localtion_list, $location);
+                if($worksheet3)
+                {
+                    $highestRow = $worksheet3->getHighestDataRow(); 
+                    $highestColumn = $worksheet3->getHighestDataColumn();
+                    $highestColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($highestColumn); 
+                    for ($row = 2; $row <= $highestRow; ++$row) {
+                        $movie_title = $worksheet3->getCellByColumnAndRow(2, $row)->getValue();
+                        $movie_description_short = $worksheet3->getCellByColumnAndRow(3, $row)->getValue();
+                        $movie_description_long = $worksheet3->getCellByColumnAndRow(4, $row)->getValue();
+                        $cinema_date_sheet = $worksheet3->getCellByColumnAndRow(5, $row)->getValue();
+                        $director = $worksheet3->getCellByColumnAndRow(6, $row)->getValue();
+                        $actors = $worksheet3->getCellByColumnAndRow(7, $row)->getValue();
+                        $youtube_url = $worksheet3->getCellByColumnAndRow(8, $row)->getValue();
+                        $image1 = $worksheet3->getCellByColumnAndRow(9, $row)->getValue();
+                        $image2 = $worksheet3->getCellByColumnAndRow(10, $row)->getValue();
+                        $image3 = $worksheet3->getCellByColumnAndRow(11, $row)->getValue();
+                        $duration = $worksheet3->getCellByColumnAndRow(12, $row)->getValue();
+                        $ratings = $worksheet3->getCellByColumnAndRow(13, $row)->getValue();
+                        $cinema_date = date('Y-m-d',\PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($cinema_date_sheet));
+                        
+                        if($movie_title != NULL)
+                        {
+                            $movie_details = [
+                                'movie_title' => $movie_title,
+                                'movie_description_short' => $movie_description_short,
+                                'movie_description_long' => $movie_description_long,
+                                'cinema_date' => $cinema_date,
+                                'director' => $director,
+                                'actors' => $actors,
+                                'youtube_url' => $youtube_url,
+                                'image1' => $image1,
+                                'image2' => $image2,
+                                'image3' => $image3,
+                                'duration' => $duration,
+                                'ratings' => $ratings
+                            ];
+                            array_push($full_movie_details, $movie_details);
+                        }
+                    }
+                    Movie::insert($full_movie_details);
                 }
-            }
-            
-            if($worksheet2)
-            {
-                $highestRow = $worksheet2->getHighestDataRow(); 
-                $highestColumn = $worksheet2->getHighestDataColumn(); 
-                $highestColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($highestColumn);
 
-                for ($row = 2; $row <= $highestRow; ++$row) {
-                    $cinema_id = $worksheet2->getCellByColumnAndRow(2, $row)->getValue();
-                    $date_sheet = $worksheet2->getCellByColumnAndRow(3, $row)->getValue();
-                    $time_sheet = $worksheet2->getCellByColumnAndRow(4, $row)->getValue();
-                    $movie_id = $worksheet2->getCellByColumnAndRow(5, $row)->getValue();
-                    $date = date('Y-m-d',\PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($date_sheet));
-                    $time = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($time_sheet)->format('H:i');
-                    
-                    if($cinema_id != NULL)
-                    {
-                        $showtime = [
-                            'cinema_id' => $cinema_id,
-                            'date' => $date,
-                            'time' => $time,
-                            'movie_id' => $movie_id
-                        ];
-                        array_push($showtime_list, $showtime);
+                if($worksheet2)
+                {   
+                    $latest_movie_details = Movie::orderBy('id', 'DESC')->first();
+
+                    $highestRow = $worksheet2->getHighestDataRow(); 
+                    $highestColumn = $worksheet2->getHighestDataColumn(); 
+                    $highestColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($highestColumn);
+    
+                    for ($row = 2; $row <= $highestRow; ++$row) {
+                        $cinema_id = $worksheet2->getCellByColumnAndRow(2, $row)->getValue();
+                        $date_sheet = $worksheet2->getCellByColumnAndRow(3, $row)->getValue();
+                        $time_sheet = $worksheet2->getCellByColumnAndRow(4, $row)->getValue();
+                        $movie_id = $latest_movie_details['id'];
+                        $date = date('Y-m-d',\PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($date_sheet));
+                        $time = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($time_sheet)->format('H:i');
+                        
+                        if($cinema_id != NULL)
+                        {
+                            $showtime = [
+                                'cinema_id' => $cinema_id,
+                                'date' => $date,
+                                'time' => $time,
+                                'movie_id' => $movie_id
+                            ];
+                            array_push($showtime_list, $showtime);
+                        }
                     }
                 }
+
+                if($worksheet1)
+                {
+                    $highestRow = $worksheet1->getHighestDataRow(); 
+                    $highestColumn = $worksheet1->getHighestDataColumn(); 
+                    $highestColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($highestColumn);
+                    for ($row = 2; $row <= $highestRow; ++$row) {
+                        $name = $worksheet1->getCellByColumnAndRow(2, $row)->getValue();
+                        $address = $worksheet1->getCellByColumnAndRow(3, $row)->getValue();
+                        $zip = $worksheet1->getCellByColumnAndRow(4, $row)->getValue();
+                        $city = $worksheet1->getCellByColumnAndRow(5, $row)->getValue();
+                        $phone = $worksheet1->getCellByColumnAndRow(6, $row)->getValue();
+                        $url = $worksheet1->getCellByColumnAndRow(7, $row)->getValue();
+        
+                        $location = [
+                            'name' => $name,
+                            'address' => $address,
+                            'zip' => $zip,
+                            'city' => $city,
+                            'phone' => $phone,
+                            'url' => $url
+                        ];
+                        array_push($localtion_list, $location);
+                    }
+                }
+                
+                Location::insert($localtion_list);
+                Showtime::insert($showtime_list);
+                return back()->with('success', 'File Uploaded!');
             }
-            
-            if($worksheet3)
+            else
             {
-                $highestRow = $worksheet3->getHighestDataRow(); 
-                $highestColumn = $worksheet3->getHighestDataColumn();
-                $highestColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($highestColumn); 
-                for ($row = 2; $row <= $highestRow; ++$row) {
-                    $movie_title = $worksheet3->getCellByColumnAndRow(2, $row)->getValue();
-                    $movie_description_short = $worksheet3->getCellByColumnAndRow(3, $row)->getValue();
-                    $movie_description_long = $worksheet3->getCellByColumnAndRow(4, $row)->getValue();
-                    $cinema_date_sheet = $worksheet3->getCellByColumnAndRow(5, $row)->getValue();
-                    $director = $worksheet3->getCellByColumnAndRow(6, $row)->getValue();
-                    $actors = $worksheet3->getCellByColumnAndRow(7, $row)->getValue();
-                    $youtube_url = $worksheet3->getCellByColumnAndRow(8, $row)->getValue();
-                    $image1 = $worksheet3->getCellByColumnAndRow(9, $row)->getValue();
-                    $image2 = $worksheet3->getCellByColumnAndRow(10, $row)->getValue();
-                    $image3 = $worksheet3->getCellByColumnAndRow(11, $row)->getValue();
-                    $duration = $worksheet3->getCellByColumnAndRow(12, $row)->getValue();
-                    $ratings = $worksheet3->getCellByColumnAndRow(13, $row)->getValue();
-                    $cinema_date = date('Y-m-d',\PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($cinema_date_sheet));
-                    
-                    if($movie_title != NULL)
-                    {
-                        $movie_details = [
-                            'movie_title' => $movie_title,
-                            'movie_description_short' => $movie_description_short,
-                            'movie_description_long' => $movie_description_long,
-                            'cinema_date' => $cinema_date,
-                            'director' => $director,
-                            'actors' => $actors,
-                            'youtube_url' => $youtube_url,
-                            'image1' => $image1,
-                            'image2' => $image2,
-                            'image3' => $image3,
-                            'duration' => $duration,
-                            'ratings' => $ratings
-                        ];
-                        array_push($full_movie_details, $movie_details);
+                if($worksheet3)
+                {
+                    $last_movie = Movie::orderBy('id', 'DESC')->first();
+                    $last_id = $last_movie['id'];
+                    Movie::where('id', $last_id)->update(['is_deleted' => 1]);
+
+                    $highestRow = $worksheet3->getHighestDataRow(); 
+                    $highestColumn = $worksheet3->getHighestDataColumn();
+                    $highestColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($highestColumn); 
+                    for ($row = 2; $row <= $highestRow; ++$row) {
+                        $movie_title = $worksheet3->getCellByColumnAndRow(2, $row)->getValue();
+                        $movie_description_short = $worksheet3->getCellByColumnAndRow(3, $row)->getValue();
+                        $movie_description_long = $worksheet3->getCellByColumnAndRow(4, $row)->getValue();
+                        $cinema_date_sheet = $worksheet3->getCellByColumnAndRow(5, $row)->getValue();
+                        $director = $worksheet3->getCellByColumnAndRow(6, $row)->getValue();
+                        $actors = $worksheet3->getCellByColumnAndRow(7, $row)->getValue();
+                        $youtube_url = $worksheet3->getCellByColumnAndRow(8, $row)->getValue();
+                        $image1 = $worksheet3->getCellByColumnAndRow(9, $row)->getValue();
+                        $image2 = $worksheet3->getCellByColumnAndRow(10, $row)->getValue();
+                        $image3 = $worksheet3->getCellByColumnAndRow(11, $row)->getValue();
+                        $duration = $worksheet3->getCellByColumnAndRow(12, $row)->getValue();
+                        $ratings = $worksheet3->getCellByColumnAndRow(13, $row)->getValue();
+                        $cinema_date = date('Y-m-d',\PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($cinema_date_sheet));
+                        
+                        if($movie_title != NULL)
+                        {
+                            $movie_details = [
+                                'movie_title' => $movie_title,
+                                'movie_description_short' => $movie_description_short,
+                                'movie_description_long' => $movie_description_long,
+                                'cinema_date' => $cinema_date,
+                                'director' => $director,
+                                'actors' => $actors,
+                                'youtube_url' => $youtube_url,
+                                'image1' => $image1,
+                                'image2' => $image2,
+                                'image3' => $image3,
+                                'duration' => $duration,
+                                'ratings' => $ratings
+                            ];
+                            array_push($full_movie_details, $movie_details);
+                        }
+                    }
+                    Movie::insert($full_movie_details);
+                }
+
+                if($worksheet2)
+                {
+                    Showtime::where('is_deleted', 0)->update(['is_deleted' => 1]);
+                    $latest_movie_details = Movie::orderBy('id', 'DESC')->first();
+
+                    $highestRow = $worksheet2->getHighestDataRow(); 
+                    $highestColumn = $worksheet2->getHighestDataColumn(); 
+                    $highestColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($highestColumn);
+    
+                    for ($row = 2; $row <= $highestRow; ++$row) {
+                        $cinema_id = $worksheet2->getCellByColumnAndRow(2, $row)->getValue();
+                        $date_sheet = $worksheet2->getCellByColumnAndRow(3, $row)->getValue();
+                        $time_sheet = $worksheet2->getCellByColumnAndRow(4, $row)->getValue();
+                        $movie_id = $latest_movie_details['id'];
+                        $date = date('Y-m-d',\PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($date_sheet));
+                        $time = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($time_sheet)->format('H:i');
+                        
+                        if($cinema_id != NULL)
+                        {
+                            $showtime = [
+                                'cinema_id' => $cinema_id,
+                                'date' => $date,
+                                'time' => $time,
+                                'movie_id' => $movie_id
+                            ];
+                            array_push($showtime_list, $showtime);
+                        }
                     }
                 }
+                
+                Showtime::insert($showtime_list);
+                return back()->with('success', 'File Uploaded!');
             }
-            Location::insert($localtion_list);
-            Showtime::insert($showtime_list);
-            Movie::insert($full_movie_details);
-            return back()->with('success', 'File Uploaded!');
         }
     }
 }
