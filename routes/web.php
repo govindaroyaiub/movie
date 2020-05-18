@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/land', function() {
+  return view('landing');
+});
+
 Route::get('/', 'DataController@index');
 
 Auth::routes();

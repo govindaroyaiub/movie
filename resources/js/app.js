@@ -1,32 +1,45 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
 
 window.Vue = require('vue');
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+const files = require.context('./', true, /\.vue$/i)
+files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
 
 const app = new Vue({
     el: '#app',
 });
+
+const land = new Vue({
+    el: '#land',
+});
+
+
+const searchForm = document.querySelector('.landing-search');
+const searchInput = document.querySelector('#land-search-input');
+const searchBtn = document.querySelector('#land-search-btn');
+
+
+searchForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+});
+
+
+function searchBtnAnimationStart(e) {
+    gsap.to(searchBtn, {
+        duration: 0.2,
+        display: 'block',
+        width: '40px'
+    })
+}
+
+function searchBtnAnimationEnd(e) {
+    gsap.to(searchBtn, {
+        duration: 0.001,
+        display: 'none',
+        width: '0px'
+    })
+}
+
+searchInput.addEventListener('focus', searchBtnAnimationStart);
+searchBtn.addEventListener('click', searchBtnAnimationEnd);
