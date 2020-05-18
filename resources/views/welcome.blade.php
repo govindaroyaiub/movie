@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="poster mt-2">
-                        <img class="img-fluid w-100" src="{{ $poster->image2 }}" alt="">
+                        <img class="img-fluid w-100" src="{{ $poster->image1 }}" alt="">
                     </div>
                 </div>
                 <div class="col-md-4 text-center text-uppercase">
