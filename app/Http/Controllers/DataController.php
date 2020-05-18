@@ -13,7 +13,7 @@ class DataController extends Controller
     {
         $movie_details = Movie::first();
         $current_date = date('Y-m-d');
-        if($movie_details->count() == 0)
+        if($movie_details == NULL)
         {
             return view('coming_soon');
         }
