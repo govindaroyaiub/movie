@@ -21,16 +21,15 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="land-poster">
-                        <img class="img-fluid w-100"
-                            src="{{ $movie_details->image1 }}"
-                            alt="">
+                        <img class="img-fluid w-100" src="{{ $movie_details->image1 }}" alt="">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="land-content">
                         <form class="landing-search">
                             <div class="form-group">
-                                <input id="land-search-input" type="search" class="form-control q" autocomplete="off" placeholder="Search">
+                                <input id="land-search-input" type="search" class="form-control q" autocomplete="off"
+                                    placeholder="Search">
                                 <button type="submit" id="land-search-btn">&times;</button>
                             </div>
                         </form>
@@ -42,17 +41,12 @@
                             <div class="accordion r" id="accordionSearch"></div>
                         </div>
 
-                        <p class="text-center">IT LOOKS LIKE YOU’RE IN DHAKA AND THIS PAGE IS FOR USERS IN CANADA! WOULD
-                            YOU
-                            LIKE TO SEARCH A
-                            LOCATION IN CANADA?
+                        <br>
+
+                        <p class="text-center">WATCH THE TRAILER BELOW
                         </p>
 
-                        <p class="text-center">OR WATCH THE TRAILER BELOW
-                        </p>
-
-                        <iframe class="w-100" height="200" src="{{ $youtube_url }}"
-                            frameborder="0"
+                        <iframe class="w-100" height="200" src="{{ $youtube_url }}" frameborder="0"
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
 
@@ -61,33 +55,19 @@
 
 
                         <ul class="landing-city-list">
-                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>
-                                    Woodbrdige</a></li>
-                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>
-                                    Edmonton</a></li>
-                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>
-                                    Winnipeg</a></li>
-                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i> Richmond
-                                    hill</a></li>
-                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>
-                                    Vancouver</a></li>
-                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>
-                                    Vicotria</a></li>
-                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i> Toronto</a>
-                            </li>
-                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>
-                                    Oakville</a></li>
-                            <li class="city-item"><a href="#">More +</a></li>
+                            @foreach($city as $row)
+                            <li class="city-item"><a class="city-link" href="#"><i
+                                        class="fa fa-search"></i>{{$row->city}}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="land-plot">
-                        <img class="img-fluid mt-2"
-                            src={{ $movie_details->image1 }}"
-                            alt="">
+                        <img class="img-fluid m-2" src="{{ $movie_details->image1 }}"
+                            style="position:relative; left:25%;" alt="">
 
-                            <h3>{{ $movie_details->movie_description_short }}</h3>
+                        <h3 style="text-align:center; text-decoration: underline;">{{ $movie_details->movie_description_short }}</h3>
 
                         <p class="my-1">{{ $movie_details->movie_description_long }}</p>
 
@@ -96,7 +76,7 @@
                             <p><span class="text-red">WRITTEN BY:</span> {{ $movie_details->writer }}</p>
                             <p><span class="text-red">PRODUCED BY:</span> {{ $movie_details->producer }}</p>
                             <p><span class="text-red">CAST:</span> {{ $movie_details->actors }}</p>
-                            <p><span class="text-red">Rating</span> {{ $movie_details->ratings }}</p>
+                            <p><span class="text-red">Rating:</span> {{ $movie_details->ratings }}</p>
                         </div>
                     </div>
                 </div>
