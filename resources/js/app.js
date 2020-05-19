@@ -1,6 +1,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+const moment = require('moment');
+
 
 const files = require.context('./', true, /\.vue$/i)
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
@@ -67,28 +69,28 @@ function findMatches(wordToMatch, shows) {
 function displayMatches() {
     const matchArr = findMatches(this.value, shows);
     const html = matchArr
-        .map((x) => {
+        .map((value) => {
             return `
                 <div class="single-search-box">
                     <div id="searchOne">
-                        <button type="button" data-toggle="collapse" data-target="#demo${x.id}"
+                        <button type="button" data-toggle="collapse" data-target="#s1${value.id}"
                             aria-expanded="true">
                             <div class="ls-box">
-                                <i class="fa fa-map-marker fa-3x"></i>
+                                <i class="fa fa-video fa-3x"></i>
                                 <div>
-                                    <h3>${x.city}</h3>
-                                    <p>${x.name}</p>
+                                    <h3>${value.city}</h3>
+                                    <p>${value.name}</p>
                                 </div>
-                                <p class="ls-at">At ${x.date} ${x.time}</p>
+                                <p class="ls-at">${moment(value.date).format('MMMM Do')} ${moment(value.time, 'HH:mm').format('HH:mm')}</p>
                             </div>
                         </button>
                     </div>
 
-                    <div id="demo${x.id}" class="collapse"
+                    <div id="s1${value.id}" class="collapse"
                         data-parent="#searchAcc">
                         <div class="buy-ticket">
                             <h3>The Intruder</h3>
-                            <a target="_blank" href="${x.ticket_url}"><i class="fa fa-ticket"></i> GET TICKETS</a>
+                            <a target="_blank" href="${value.ticket_url}"><i class="fa fa-ticket"></i> GET TICKETS</a>
                         </div>
                     </div>
                 </div>
