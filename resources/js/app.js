@@ -71,7 +71,7 @@ function displayMatches() {
             return `
                 <div class="single-search-box">
                     <div id="searchOne">
-                        <button type="button" data-toggle="collapse" data-target="#s"
+                        <button type="button" data-toggle="collapse" data-target="#demo${x.id}"
                             aria-expanded="true">
                             <div class="ls-box">
                                 <i class="fa fa-map-marker fa-3x"></i>
@@ -79,12 +79,12 @@ function displayMatches() {
                                     <h3>${x.city}</h3>
                                     <p>${x.name}</p>
                                 </div>
-                                <p class="ls-at">At 22.20</p>
+                                <p class="ls-at">At ${x.date} ${x.time}</p>
                             </div>
                         </button>
                     </div>
 
-                    <div id="s" class="collapse"
+                    <div id="demo${x.id}" class="collapse"
                         data-parent="#searchAcc">
                         <div class="buy-ticket">
                             <h3>The Intruder</h3>

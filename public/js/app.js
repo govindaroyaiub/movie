@@ -49782,7 +49782,7 @@ function findMatches(wordToMatch, shows) {
 function displayMatches() {
   var matchArr = findMatches(this.value, shows);
   var html = matchArr.map(function (x) {
-    return "\n                <div class=\"single-search-box\">\n                    <div id=\"searchOne\">\n                        <button type=\"button\" data-toggle=\"collapse\" data-target=\"#s\"\n                            aria-expanded=\"true\">\n                            <div class=\"ls-box\">\n                                <i class=\"fa fa-map-marker fa-3x\"></i>\n                                <div>\n                                    <h3>".concat(x.city, "</h3>\n                                    <p>").concat(x.name, "</p>\n                                </div>\n                                <p class=\"ls-at\">At 22.20</p>\n                            </div>\n                        </button>\n                    </div>\n\n                    <div id=\"s\" class=\"collapse\"\n                        data-parent=\"#searchAcc\">\n                        <div class=\"buy-ticket\">\n                            <h3>The Intruder</h3>\n                            <a target=\"_blank\" href=\"").concat(x.ticket_url, "\"><i class=\"fa fa-ticket\"></i> GET TICKETS</a>\n                        </div>\n                    </div>\n                </div>\n    ");
+    return "\n                <div class=\"single-search-box\">\n                    <div id=\"searchOne\">\n                        <button type=\"button\" data-toggle=\"collapse\" data-target=\"#demo".concat(x.id, "\"\n                            aria-expanded=\"true\">\n                            <div class=\"ls-box\">\n                                <i class=\"fa fa-map-marker fa-3x\"></i>\n                                <div>\n                                    <h3>").concat(x.city, "</h3>\n                                    <p>").concat(x.name, "</p>\n                                </div>\n                                <p class=\"ls-at\">At ").concat(x.date, " ").concat(x.time, "</p>\n                            </div>\n                        </button>\n                    </div>\n\n                    <div id=\"demo").concat(x.id, "\" class=\"collapse\"\n                        data-parent=\"#searchAcc\">\n                        <div class=\"buy-ticket\">\n                            <h3>The Intruder</h3>\n                            <a target=\"_blank\" href=\"").concat(x.ticket_url, "\"><i class=\"fa fa-ticket\"></i> GET TICKETS</a>\n                        </div>\n                    </div>\n                </div>\n    ");
   }).join("");
   r.innerHTML = html;
 }
@@ -49924,8 +49924,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ebnsina/code/movie/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/ebnsina/code/movie/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\blog\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\blog\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
