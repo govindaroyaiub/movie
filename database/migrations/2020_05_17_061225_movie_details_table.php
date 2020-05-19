@@ -27,7 +27,8 @@ class MovieDetailsTable extends Migration
             $table->longText('image3')->nullable();
             $table->longText('duration')->nullable();
             $table->string('ratings')->nullable();
-            $table->tinyInteger('is_deleted')->default('0');
+            $table->longText('base_url')->nullable();
+            $table->longText('ticket_url')->nullable();
             $table->timestamps();
         });
     }

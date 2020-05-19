@@ -80,6 +80,8 @@ class HomeController extends Controller
                         $image3 = $worksheet3->getCellByColumnAndRow(11, $row)->getValue();
                         $duration = $worksheet3->getCellByColumnAndRow(12, $row)->getValue();
                         $ratings = $worksheet3->getCellByColumnAndRow(13, $row)->getValue();
+                        $get_base_url = $worksheet3->getCellByColumnAndRow(14, $row)->getValue();
+                        $get_ticket_url = $worksheet3->getCellByColumnAndRow(15, $row)->getValue();
                         $cinema_date = date('Y-m-d',\PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($cinema_date_sheet));
                         
                         if($movie_title != NULL)
@@ -96,7 +98,9 @@ class HomeController extends Controller
                                 'image2' => $image2,
                                 'image3' => $image3,
                                 'duration' => $duration,
-                                'ratings' => $ratings
+                                'ratings' => $ratings,
+                                'base_url' => $get_base_url,
+                                'ticket_url' => $get_ticket_url
                             ];
                             array_push($full_movie_details, $movie_details);
                         }
@@ -106,7 +110,8 @@ class HomeController extends Controller
 
                 if($worksheet2)
                 {   
-                    $latest_movie_details = Movie::orderBy('id', 'DESC')->first();
+                    $app_url = config('app.url');
+                    $movie_details = Movie::where('base_url', '=', $app_url)->first();
 
                     $highestRow = $worksheet2->getHighestDataRow(); 
                     $highestColumn = $worksheet2->getHighestDataColumn(); 
@@ -116,7 +121,7 @@ class HomeController extends Controller
                         $cinema_id = $worksheet2->getCellByColumnAndRow(2, $row)->getValue();
                         $date_sheet = $worksheet2->getCellByColumnAndRow(3, $row)->getValue();
                         $time_sheet = $worksheet2->getCellByColumnAndRow(4, $row)->getValue();
-                        $movie_id = $latest_movie_details['id'];
+                        $movie_id = $movie_details['id'];
                         $date = date('Y-m-d',\PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($date_sheet));
                         $time = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($time_sheet)->format('H:i');
                         
@@ -166,10 +171,6 @@ class HomeController extends Controller
             {
                 if($worksheet3)
                 {
-                    $last_movie = Movie::orderBy('id', 'DESC')->first();
-                    $last_id = $last_movie['id'];
-                    Movie::where('id', $last_id)->update(['is_deleted' => 1]);
-
                     $highestRow = $worksheet3->getHighestDataRow(); 
                     $highestColumn = $worksheet3->getHighestDataColumn();
                     $highestColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($highestColumn); 
@@ -186,6 +187,8 @@ class HomeController extends Controller
                         $image3 = $worksheet3->getCellByColumnAndRow(11, $row)->getValue();
                         $duration = $worksheet3->getCellByColumnAndRow(12, $row)->getValue();
                         $ratings = $worksheet3->getCellByColumnAndRow(13, $row)->getValue();
+                        $get_base_url = $worksheet3->getCellByColumnAndRow(14, $row)->getValue();
+                        $get_ticket_url = $worksheet3->getCellByColumnAndRow(15, $row)->getValue();
                         $cinema_date = date('Y-m-d',\PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($cinema_date_sheet));
                         
                         if($movie_title != NULL)
@@ -202,7 +205,9 @@ class HomeController extends Controller
                                 'image2' => $image2,
                                 'image3' => $image3,
                                 'duration' => $duration,
-                                'ratings' => $ratings
+                                'ratings' => $ratings,
+                                'base_url' => $get_base_url,
+                                'ticket_url' => $get_ticket_url
                             ];
                             array_push($full_movie_details, $movie_details);
                         }
@@ -212,8 +217,8 @@ class HomeController extends Controller
 
                 if($worksheet2)
                 {
-                    Showtime::where('is_deleted', 0)->update(['is_deleted' => 1]);
-                    $latest_movie_details = Movie::orderBy('id', 'DESC')->first();
+                    $app_url = config('app.url');
+                    $movie_details = Movie::where('base_url', '=', $app_url)->first();
 
                     $highestRow = $worksheet2->getHighestDataRow(); 
                     $highestColumn = $worksheet2->getHighestDataColumn(); 
@@ -223,7 +228,7 @@ class HomeController extends Controller
                         $cinema_id = $worksheet2->getCellByColumnAndRow(2, $row)->getValue();
                         $date_sheet = $worksheet2->getCellByColumnAndRow(3, $row)->getValue();
                         $time_sheet = $worksheet2->getCellByColumnAndRow(4, $row)->getValue();
-                        $movie_id = $latest_movie_details['id'];
+                        $movie_id = $movie_details['id'];
                         $date = date('Y-m-d',\PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($date_sheet));
                         $time = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($time_sheet)->format('H:i');
                         
