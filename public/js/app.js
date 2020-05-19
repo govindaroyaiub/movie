@@ -49709,6 +49709,18 @@ webpackContext.id = "./resources/js sync recursive \\.vue$/";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -49748,7 +49760,36 @@ function searchBtnAnimationEnd(e) {
 }
 
 searchInput.addEventListener('focus', searchBtnAnimationStart);
-searchBtn.addEventListener('click', searchBtnAnimationEnd);
+searchBtn.addEventListener('click', searchBtnAnimationEnd); // AJAX TYPED SEARCH
+
+var q = document.querySelector(".q");
+var r = document.querySelector(".r");
+var url = "http://localhost:3000/api/shows";
+var shows = [];
+console.log(shows);
+fetch(url).then(function (blob) {
+  return blob.json();
+}).then(function (data) {
+  return shows.push.apply(shows, _toConsumableArray(data));
+});
+
+function findMatches(wordToMatch, shows) {
+  return shows.filter(function (show) {
+    var regex = new RegExp(wordToMatch, "gi");
+    return show.city.match(regex) || show.address.match(regex);
+  });
+}
+
+function displayMatches() {
+  var matchArr = findMatches(this.value, shows);
+  var html = matchArr.map(function (x) {
+    return "\n      <li>".concat(x.city, "</li>\n    ");
+  }).join("");
+  r.innerHTML = html;
+}
+
+q.addEventListener("change", displayMatches);
+q.addEventListener("keyup", displayMatches);
 
 /***/ }),
 

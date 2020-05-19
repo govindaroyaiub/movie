@@ -43,3 +43,41 @@ function searchBtnAnimationEnd(e) {
 
 searchInput.addEventListener('focus', searchBtnAnimationStart);
 searchBtn.addEventListener('click', searchBtnAnimationEnd);
+
+
+// AJAX TYPED SEARCH
+const q = document.querySelector(".q");
+const r = document.querySelector(".r");
+
+const url = "http://localhost:3000/api/shows";
+const shows = [];
+
+console.log(shows);
+
+
+fetch(url)
+    .then((blob) => blob.json())
+    .then((data) => shows.push(...data));
+
+function findMatches(wordToMatch, shows) {
+    return shows.filter((show) => {
+        const regex = new RegExp(wordToMatch, "gi");
+        return show.city.match(regex) || show.address.match(regex);
+    });
+}
+
+
+function displayMatches() {
+    const matchArr = findMatches(this.value, shows);
+    const html = matchArr
+        .map((x) => {
+            return `
+      <li>${x.city}</li>
+    `;
+        })
+        .join("");
+    r.innerHTML = html;
+}
+
+q.addEventListener("change", displayMatches);
+q.addEventListener("keyup", displayMatches);

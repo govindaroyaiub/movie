@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/land', function() {
-  return view('landing');
-});
+
+Route::get('/land', 'PagesController@landing');
+Route::get('/api/shows', 'PagesController@showsApi');
 
 Route::get('/', 'DataController@index');
 

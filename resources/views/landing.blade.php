@@ -29,7 +29,7 @@
                     <div class="land-content">
                         <form class="landing-search">
                             <div class="form-group">
-                                <input id="land-search-input" type="search" class="form-control" placeholder="Search">
+                                <input id="land-search-input" type="search" class="form-control q" placeholder="Search">
                                 <button type="submit" id="land-search-btn">&times;</button>
                             </div>
                         </form>
@@ -38,52 +38,38 @@
                         <div class="land-search-result">
                             <p class="ls-help">ENTER YOUR LOCATION ABOVE OR SELECT YOUR THEATER BELOW</p>
 
-                            <div class="accordion" id="accordionExample">
-                                <div class="single-search-box">
-                                    <div id="headingOne">
-                                        <button type="button" data-toggle="collapse" data-target="#collapseOne"
-                                            aria-expanded="true" aria-controls="collapseOne">
-                                            <div class="ls-box">
-                                                <i class="fa fa-map-marker fa-3x"></i>
-                                                <div>
-                                                    <h3>Star Cineplex world</h3>
-                                                    <p>Jamuna future park, Basundhara RA</p>
-                                                </div>
-                                                <p class="ls-at">At 22.20</p>
-                                            </div>
-                                        </button>
-                                    </div>
+                            <ul class="r"></ul>
 
-                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                                        data-parent="#accordionExample">
-                                        <div class="buy-ticket">
-                                            <h3>The Intruder</h3>
-                                            <a href="#"><i class="fa fa-ticket"></i> GET TICKETS</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="single-search-box">
-                                    <div id="headingTwo">
-                                        <button type="button" data-toggle="collapse" data-target="#collapseTwo"
-                                            aria-expanded="false" aria-controls="collapseTwo">
-                                            <div class="ls-box">
-                                                <i class="fa fa-map-marker fa-3x"></i>
-                                                <div>
-                                                    <h3>Planet Cineplex</h3>
-                                                    <p>Jamuna future park, Basundhara RA</p>
+
+
+
+                            <div class="accordion d-none" id="searchAcc">
+                                @foreach($showtime as $st)
+                                    <div class="single-search-box">
+                                        <div id="searchOne">
+                                            <button type="button" data-toggle="collapse" data-target="#collapseOne"
+                                                aria-expanded="true" aria-controls="collapseOne">
+                                                <div class="ls-box">
+                                                    <i class="fa fa-map-marker fa-3x"></i>
+                                                    <div>
+                                                        <h3>{{ $st->name }}</h3>
+                                                        <p>{{ $st->address }}</p>
+                                                    </div>
+                                                    <p class="ls-at">At 22.20</p>
                                                 </div>
-                                                <p class="ls-at">At 22.20</p>
+                                            </button>
+                                        </div>
+
+                                        <div id="collapseOne" class="collapse" aria-labelledby="searchOne"
+                                            data-parent="#searchAcc">
+                                            <div class="buy-ticket">
+                                                <h3>The Intruder</h3>
+                                                <a href="#"><i class="fa fa-ticket"></i> GET TICKETS</a>
                                             </div>
-                                        </button>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                        data-parent="#accordionExample">
-                                        <div class="buy-ticket">
-                                            <h3>The Intruder</h3>
-                                            <a href="#"><i class="fa fa-ticket"></i> GET TICKETS</a>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
+
                             </div>
                         </div>
 

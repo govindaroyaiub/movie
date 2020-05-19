@@ -33,7 +33,7 @@ class DataController extends Controller
                                 ->where('show_location_static.is_deleted', '=', 0)
                                 ->orderBy('show_location_static.name', 'ASC')
                                 ->get();
-                                
+
             return view('welcome', compact(
                 'movie_details',
                 'youtube_url',
