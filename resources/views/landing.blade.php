@@ -30,7 +30,7 @@
                     <div class="land-content">
                         <form class="landing-search">
                             <div class="form-group">
-                                <input id="land-search-input" type="search" class="form-control q" placeholder="Search">
+                                <input id="land-search-input" type="search" class="form-control q" autocomplete="off" placeholder="Search">
                                 <button type="submit" id="land-search-btn">&times;</button>
                             </div>
                         </form>
@@ -39,12 +39,9 @@
                         <div class="land-search-result">
                             <p class="ls-help">ENTER YOUR LOCATION ABOVE OR SELECT YOUR THEATER BELOW</p>
 
-                            <ul class="r"></ul>
+                            <div class="accordion d-nonee r" id="searchAcc"></div>
 
-
-
-
-                            <div class="accordion d-nonee" id="searchAcc">
+                            <!-- <div class="accordion d-nonee r" id="searchAcc">
                                 @foreach($showtime as $st)
                                     <div class="single-search-box">
                                         <div id="searchOne">
@@ -72,7 +69,7 @@
                                     </div>
                                 @endforeach
 
-                            </div>
+                            </div> -->
                         </div>
 
                         <p class="text-center">IT LOOKS LIKE YOU’RE IN DHAKA AND THIS PAGE IS FOR USERS IN CANADA! WOULD

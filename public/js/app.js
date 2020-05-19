@@ -49766,7 +49766,10 @@ var q = document.querySelector(".q");
 var r = document.querySelector(".r");
 var url = "http://localhost:3000/api/shows";
 var shows = [];
-console.log(shows);
+var x1 = shows.reduce(function (a, obj) {
+  return a + Object.keys(obj).length;
+}, 0);
+console.log(x1);
 fetch(url).then(function (blob) {
   return blob.json();
 }).then(function (data) {
@@ -49776,14 +49779,14 @@ fetch(url).then(function (blob) {
 function findMatches(wordToMatch, shows) {
   return shows.filter(function (show) {
     var regex = new RegExp(wordToMatch, "gi");
-    return show.city.match(regex) || show.address.match(regex);
+    return show.city.match(regex);
   });
 }
 
 function displayMatches() {
   var matchArr = findMatches(this.value, shows);
   var html = matchArr.map(function (x) {
-    return "\n      <li>".concat(x.city, "</li>\n    ");
+    return "\n                <div class=\"single-search-box\">\n                    <div id=\"searchOne\">\n                        <button type=\"button\" data-toggle=\"collapse\" data-target=\"#s1\"\n                            aria-expanded=\"true\">\n                            <div class=\"ls-box\">\n                                <i class=\"fa fa-map-marker fa-3x\"></i>\n                                <div>\n                                    <h3>".concat(x.city, "</h3>\n                                    <p>").concat(x.name, "</p>\n                                </div>\n                                <p class=\"ls-at\">At 22.20</p>\n                            </div>\n                        </button>\n                    </div>\n\n                    <div id=\"s1\" class=\"collapse\"\n                        data-parent=\"#searchAcc\">\n                        <div class=\"buy-ticket\">\n                            <h3>The Intruder</h3>\n                            <a target=\"_blank\" href=\"").concat(x.ticket_url, "\"><i class=\"fa fa-ticket\"></i> GET TICKETS</a>\n                        </div>\n                    </div>\n                </div>\n    ");
   }).join("");
   r.innerHTML = html;
 }
