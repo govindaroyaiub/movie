@@ -53,6 +53,8 @@ class DataController extends Controller
                                 ->join('show_location_static', 'movie_showtimes.cinema_id', 'show_location_static.id')
                                 ->select(
                                 'movie_details.title',
+                                'movie_details.ticket_url',
+                                'movie_details.base_url',
                                 'movie_showtimes.id', 
                                 'movie_showtimes.cinema_id', 
                                 'movie_showtimes.date', 
