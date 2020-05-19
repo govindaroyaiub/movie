@@ -206,9 +206,14 @@
 }
 
 .landing-area .landing-content .land-search-result .single-search-box button {
-  background-color: transparent;
+  background-color: #141314;
   border: 0;
   width: 100%;
+  padding: 0.6rem;
+}
+
+.landing-area .landing-content .land-search-result .single-search-box button:focus {
+  outline: none !important;
 }
 
 .landing-area .landing-content .land-search-result .single-search-box .ls-box {
@@ -290,9 +295,18 @@
   align-items: center;
 }
 
-.landing-area .landing-content .landing-city-list a,
-.landing-area .landing-content .landing-city-list .city-link {
-  display: inline-flex;
+.landing-area .landing-content .landing-city-list .city-item:hover a {
+  text-decoration: none;
+}
+
+.landing-area .landing-content .landing-city-list .city-item:hover a i {
+  transform: translateX(0);
+  font-size: 1.2rem;
+}
+
+.landing-area .landing-content .landing-city-list .city-item a,
+.landing-area .landing-content .landing-city-list .city-item .city-link {
+  display: flex;
   text-align: center;
   cursor: pointer;
   margin: 0.5rem 0.5rem 0 0;
@@ -310,25 +324,10 @@
   font-size: 0.9rem;
 }
 
-.landing-area .landing-content .landing-city-list a i,
-.landing-area .landing-content .landing-city-list .city-link i {
+.landing-area .landing-content .landing-city-list .city-item a i,
+.landing-area .landing-content .landing-city-list .city-item .city-link i {
   transform: translateX(-32px);
   margin-right: 0.4rem;
-}
-
-.landing-area .landing-content .landing-city-list a:hover,
-.landing-area .landing-content .landing-city-list .city-link:hover {
-  text-decoration: none;
-  font-size: 0.7rem;
-  min-width: 100px;
-  height: 40px;
-  line-height: 40px;
-}
-
-.landing-area .landing-content .landing-city-list a:hover i,
-.landing-area .landing-content .landing-city-list .city-link:hover i {
-  transform: translateX(0px);
-  font-size: 1rem;
 }
 
 .landing-area .landing-footer {

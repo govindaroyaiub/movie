@@ -1,0 +1,42 @@
+ /* Extra small devices (portrait phones, less than 576px) */
+ @media (max-width: 575.98px) {
+
+     html,
+     body {
+         font-size: 14px;
+     }
+
+     .landing-header {
+       position: sticky;
+       top: 0;
+       left: 0;
+       width: 100%;
+       z-index: 200;
+     }
+
+     .land-content,
+     .landing-footer,
+     .land-plot {
+         padding: 1rem 2rem;
+     }
+
+     .land-poster {
+         padding: .3rem 1rem;
+     }
+
+     .land-poster img {
+         width: 60px;
+     }
+ }
+
+ /* Small devices (landscape phones, 576px and up) */
+ @media (min-width: 576px) and (max-width: 767.98px) {}
+
+ /* Medium devices (tablets, 768px and up) */
+ @media (min-width: 768px) and (max-width: 991.98px) {}
+
+ /* Large devices (desktops, 992px and up) */
+ @media (min-width: 992px) and (max-width: 1199.98px) {}
+
+ /* Extra large devices (large desktops, 1200px and up) */
+ @media (min-width: 1200px) {}

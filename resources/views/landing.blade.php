@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing</title>
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/mq.css') }}">
 </head>
 
 <body>
@@ -105,15 +106,23 @@
 
 
                         <ul class="landing-city-list">
-                            <li><a class="city-link" href="#"><i class="fa fa-search"></i> Woodbrdige</a></li>
-                            <li><a class="city-link" href="#"><i class="fa fa-search"></i> Edmonton</a></li>
-                            <li><a class="city-link" href="#"><i class="fa fa-search"></i> Winnipeg</a></li>
-                            <li><a class="city-link" href="#"><i class="fa fa-search"></i> Richmond hill</a></li>
-                            <li><a class="city-link" href="#"><i class="fa fa-search"></i> Vancouver</a></li>
-                            <li><a class="city-link" href="#"><i class="fa fa-search"></i> Vicotria</a></li>
-                            <li><a class="city-link" href="#"><i class="fa fa-search"></i> Toronto</a></li>
-                            <li><a class="city-link" href="#"><i class="fa fa-search"></i> Oakville</a></li>
-                            <li><a href="#">More +</a></li>
+                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>
+                                    Woodbrdige</a></li>
+                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>
+                                    Edmonton</a></li>
+                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>
+                                    Winnipeg</a></li>
+                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i> Richmond
+                                    hill</a></li>
+                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>
+                                    Vancouver</a></li>
+                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>
+                                    Vicotria</a></li>
+                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i> Toronto</a>
+                            </li>
+                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>
+                                    Oakville</a></li>
+                            <li class="city-item"><a href="#">More +</a></li>
                         </ul>
                     </div>
                 </div>
