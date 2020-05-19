@@ -39,37 +39,7 @@
                         <div class="land-search-result">
                             <p class="ls-help">ENTER YOUR LOCATION ABOVE OR SELECT YOUR THEATER BELOW</p>
 
-                            <div class="accordion d-nonee r" id="searchAcc"></div>
-
-                            <!-- <div class="accordion d-nonee r" id="searchAcc">
-                                @foreach($showtime as $st)
-                                    <div class="single-search-box">
-                                        <div id="searchOne">
-                                            <button type="button" data-toggle="collapse" data-target="#s1"
-                                                aria-expanded="true">
-                                                <div class="ls-box">
-                                                    <i class="fa fa-map-marker fa-3x"></i>
-                                                    <div>
-                                                        <h3>{{ $st->name }}</h3>
-                                                        <p>{{ $st->address }}</p>
-                                                        {{ $st->id }}
-                                                    </div>
-                                                    <p class="ls-at">At 22.20</p>
-                                                </div>
-                                            </button>
-                                        </div>
-
-                                        <div id="s1" class="collapse"
-                                            data-parent="#searchAcc">
-                                            <div class="buy-ticket">
-                                                <h3>The Intruder</h3>
-                                                <a href="#"><i class="fa fa-ticket"></i> GET TICKETS</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-
-                            </div> -->
+                            <div class="accordion r" id="searchAcc"></div>
                         </div>
 
                         <p class="text-center">IT LOOKS LIKE YOU’RE IN DHAKA AND THIS PAGE IS FOR USERS IN CANADA! WOULD
