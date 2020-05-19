@@ -70650,7 +70650,7 @@ function displayMatches() {
   landSearchResult.classList.remove('d-none');
   var matchArr = findMatches(this.value, shows);
   var html = matchArr.map(function (value) {
-    return "\n                <div class=\"single-search-box\">\n                    <div id=\"searchOne\">\n                        <button type=\"button\" data-toggle=\"collapse\" data-target=\"#s1".concat(value.id, "\"\n                            aria-expanded=\"true\">\n                            <div class=\"ls-box\">\n                                <i class=\"fa fa-file-video-o fa-3x\"></i>\n                                <div>\n                                    <h3>").concat(value.city, "</h3>\n                                    <p>").concat(value.name, "</p>\n                                </div>\n                                <p class=\"ls-at\">").concat(moment(value.date).format('MMMM Do'), " ").concat(moment(value.time, 'HH:mm').format('HH:mm'), "</p>\n                            </div>\n                        </button>\n                    </div>\n\n                    <div id=\"s1").concat(value.id, "\" class=\"collapse\"\n                        data-parent=\"#searchAcc\">\n                        <div class=\"buy-ticket\">\n                            <h3>").concat(value.movie_title, "</h3>\n                            <a target=\"_blank\" href=\"").concat(value.ticket_url, "\"><i class=\"fa fa-ticket\"></i> GET TICKETS</a>\n                        </div>\n                    </div>\n                </div>\n    ");
+    return "\n                <div class=\"single-search-box\">\n\n                <div class=\"\">\n                <div class=\"\" id=\"heading-".concat(value.id, "\">\n                  <h2 class=\"mb-0\">\n                    <button type=\"button\" data-toggle=\"collapse\" data-target=\"#collapse").concat(value.id, "\" aria-expanded=\"true\" aria-controls=\"collapse").concat(value.id, "\">\n                    <div class=\"ls-box\">\n                    <i class=\"fa fa-file-video-o fa-2x\"></i>\n                    <div>\n                        <h3>").concat(value.city, "</h3>\n                        <p>").concat(value.name, "</p>\n                    </div>\n                    <p class=\"ls-at\">").concat(moment(value.date).format('MMMM Do'), " ").concat(moment(value.time, 'HH:mm').format('HH:mm'), "</p>\n                </div>\n                    </button>\n                  </h2>\n                </div>\n            \n                <div id=\"collapse").concat(value.id, "\" class=\"collapse\" aria-labelledby=\"heading-").concat(value.id, "\" data-parent=\"#accordionSearch\">\n                <div class=\"buy-ticket\">\n                <h3>").concat(value.movie_title, "</h3>\n                <a target=\"_blank\" href=\"").concat(value.ticket_url, "\"><i class=\"fa fa-ticket\"></i> GET TICKETS</a>\n            </div>\n                </div>\n              </div>      \n    ");
   }).join("");
   r.innerHTML = html;
 }
@@ -70792,8 +70792,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\blog\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\blog\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/ebnsina/code/movie/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/ebnsina/code/movie/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

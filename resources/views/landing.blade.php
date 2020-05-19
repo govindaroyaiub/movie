@@ -39,7 +39,7 @@
                         <div class="land-search-result">
                             <p class="ls-help">ENTER YOUR LOCATION ABOVE OR SELECT YOUR THEATER BELOW</p>
 
-                            <div class="accordion r" id="searchAcc"></div>
+                            <div class="accordion r" id="accordionSearch"></div>
                         </div>
 
                         <p class="text-center">IT LOOKS LIKE YOU’RE IN DHAKA AND THIS PAGE IS FOR USERS IN CANADA! WOULD

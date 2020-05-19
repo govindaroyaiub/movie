@@ -79,28 +79,30 @@ function displayMatches() {
         .map((value) => {
             return `
                 <div class="single-search-box">
-                    <div id="searchOne">
-                        <button type="button" data-toggle="collapse" data-target="#s1${value.id}"
-                            aria-expanded="true">
-                            <div class="ls-box">
-                                <i class="fa fa-file-video-o fa-3x"></i>
-                                <div>
-                                    <h3>${value.city}</h3>
-                                    <p>${value.name}</p>
-                                </div>
-                                <p class="ls-at">${moment(value.date).format('MMMM Do')} ${moment(value.time, 'HH:mm').format('HH:mm')}</p>
-                            </div>
-                        </button>
-                    </div>
 
-                    <div id="s1${value.id}" class="collapse"
-                        data-parent="#searchAcc">
-                        <div class="buy-ticket">
-                            <h3>${value.movie_title}</h3>
-                            <a target="_blank" href="${value.ticket_url}"><i class="fa fa-ticket"></i> GET TICKETS</a>
-                        </div>
+                <div class="">
+                <div class="" id="heading-${value.id}">
+                  <h2 class="mb-0">
+                    <button type="button" data-toggle="collapse" data-target="#collapse${value.id}" aria-expanded="true" aria-controls="collapse${value.id}">
+                    <div class="ls-box">
+                    <i class="fa fa-file-video-o fa-2x"></i>
+                    <div>
+                        <h3>${value.city}</h3>
+                        <p>${value.name}</p>
                     </div>
+                    <p class="ls-at">${moment(value.date).format('MMMM Do')} ${moment(value.time, 'HH:mm').format('HH:mm')}</p>
                 </div>
+                    </button>
+                  </h2>
+                </div>
+            
+                <div id="collapse${value.id}" class="collapse" aria-labelledby="heading-${value.id}" data-parent="#accordionSearch">
+                <div class="buy-ticket">
+                <h3>${value.movie_title}</h3>
+                <a target="_blank" href="${value.ticket_url}"><i class="fa fa-ticket"></i> GET TICKETS</a>
+            </div>
+                </div>
+              </div>      
     `;
         })
         .join("");
