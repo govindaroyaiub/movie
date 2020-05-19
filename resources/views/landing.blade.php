@@ -42,13 +42,9 @@
                             <div class="accordion r" id="searchAcc"></div>
                         </div>
 
-                        <p class="text-center">IT LOOKS LIKE YOU’RE IN DHAKA AND THIS PAGE IS FOR USERS IN CANADA! WOULD
-                            YOU
-                            LIKE TO SEARCH A
-                            LOCATION IN CANADA?
-                        </p>
+                        <br>
 
-                        <p class="text-center">OR WATCH THE TRAILER BELOW
+                        <p class="text-center">WATCH THE TRAILER BELOW
                         </p>
 
                         <iframe class="w-100" height="200" src="{{ $youtube_url }}"
@@ -61,31 +57,15 @@
 
 
                         <ul class="landing-city-list">
-                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>
-                                    Woodbrdige</a></li>
-                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>
-                                    Edmonton</a></li>
-                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>
-                                    Winnipeg</a></li>
-                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i> Richmond
-                                    hill</a></li>
-                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>
-                                    Vancouver</a></li>
-                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>
-                                    Vicotria</a></li>
-                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i> Toronto</a>
-                            </li>
-                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>
-                                    Oakville</a></li>
-                            <li class="city-item"><a href="#">More +</a></li>
+                        @foreach($city as $row)
+                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>{{$row->city}}</a></li>
+                        @endforeach
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="land-plot">
-                        <img class="img-fluid mt-2"
-                            src={{ $movie_details->image1 }}"
-                            alt="">
+                    <img class="img-fluid m-2" src="{{ $movie_details->image1 }}" style="position:relative; left:20%;" alt="">
 
                             <h3>{{ $movie_details->movie_description_short }}</h3>
 

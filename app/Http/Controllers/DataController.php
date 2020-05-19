@@ -35,11 +35,21 @@ class DataController extends Controller
                                 ->orderBy('show_location_static.name', 'ASC')
                                 ->get();
 
+            $city = Showtime::join('movie_details', 'movie_showtimes.movie_id', 'movie_details.id')
+                                ->join('show_location_static', 'movie_showtimes.cinema_id', 'show_location_static.id')
+                                ->select('show_location_static.city')
+                                ->where('movie_details.base_url', '=', $app_url)
+                                ->where('movie_showtimes.date', '=', $current_date)
+                                ->orderBy('show_location_static.city', 'ASC')
+                                ->distinct()
+                                ->get();
+
             return view('landing', compact(
                 'movie_details',
                 'youtube_url',
                 'poster',
-                'showtime'
+                'showtime',
+                'city'
             ));
         }
     }
