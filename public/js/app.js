@@ -70631,8 +70631,9 @@ searchBtn.addEventListener('click', removeSearchoutput); // AJAX TYPED SEARCH
 
 var q = document.querySelector(".q");
 var r = document.querySelector(".r");
-var url = "http://localhost:3000/api/shows";
+var url = "".concat(location.href, "api/shows");
 var shows = [];
+console.log(url);
 fetch(url).then(function (blob) {
   return blob.json();
 }).then(function (data) {
@@ -70792,8 +70793,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\movie\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\movie\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/ebnsina/code/movie/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/ebnsina/code/movie/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

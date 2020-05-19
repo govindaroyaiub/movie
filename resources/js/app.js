@@ -57,8 +57,10 @@ searchBtn.addEventListener('click', removeSearchoutput);
 const q = document.querySelector(".q");
 const r = document.querySelector(".r");
 
-const url = "http://localhost:3000/api/shows";
+const url = `${location.href}api/shows`;
 const shows = [];
+
+console.log(url);
 
 
 fetch(url)
