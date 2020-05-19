@@ -21,16 +21,15 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="land-poster">
-                        <img class="img-fluid w-100"
-                            src="{{ $movie_details->image1 }}"
-                            alt="">
+                        <img class="img-fluid w-100" src="{{ $movie_details->image1 }}" alt="">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="land-content">
                         <form class="landing-search">
                             <div class="form-group">
-                                <input id="land-search-input" type="search" class="form-control q" autocomplete="off" placeholder="Search">
+                                <input id="land-search-input" type="search" class="form-control q" autocomplete="off"
+                                    placeholder="Search">
                                 <button type="submit" id="land-search-btn">&times;</button>
                             </div>
                         </form>
@@ -47,8 +46,7 @@
                         <p class="text-center">WATCH THE TRAILER BELOW
                         </p>
 
-                        <iframe class="w-100" height="200" src="{{ $youtube_url }}"
-                            frameborder="0"
+                        <iframe class="w-100" height="200" src="{{ $youtube_url }}" frameborder="0"
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
 
@@ -57,17 +55,19 @@
 
 
                         <ul class="landing-city-list">
-                        @foreach($city as $row)
-                            <li class="city-item"><a class="city-link" href="#"><i class="fa fa-search"></i>{{$row->city}}</a></li>
-                        @endforeach
+                            @foreach($city as $row)
+                            <li class="city-item"><a class="city-link" href="#"><i
+                                        class="fa fa-search"></i>{{$row->city}}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="land-plot">
-                    <img class="img-fluid m-2" src="{{ $movie_details->image1 }}" style="position:relative; left:20%;" alt="">
+                        <img class="img-fluid m-2" src="{{ $movie_details->image1 }}"
+                            style="position:relative; left:25%;" alt="">
 
-                            <h3>{{ $movie_details->movie_description_short }}</h3>
+                        <h3 style="text-align:center; text-decoration: underline;">{{ $movie_details->movie_description_short }}</h3>
 
                         <p class="my-1">{{ $movie_details->movie_description_long }}</p>
 
