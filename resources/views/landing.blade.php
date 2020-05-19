@@ -76,7 +76,7 @@
                             <p><span class="text-red">WRITTEN BY:</span> {{ $movie_details->writer }}</p>
                             <p><span class="text-red">PRODUCED BY:</span> {{ $movie_details->producer }}</p>
                             <p><span class="text-red">CAST:</span> {{ $movie_details->actors }}</p>
-                            <p><span class="text-red">Rating</span> {{ $movie_details->ratings }}</p>
+                            <p><span class="text-red">Rating:</span> {{ $movie_details->ratings }}</p>
                         </div>
                     </div>
                 </div>
