@@ -11,17 +11,18 @@
 
 <body>
 
+
     <div id="land" class="landing-area">
         <header class="landing-header">
-            The Intruder <a target="_blank" href="#"><i class="fa fa-external-link"></i></a>
+            {{ $movie_details->movie_title }} <a target="_blank" href="#"><i class="fa fa-external-link"></i></a>
         </header>
 
         <section class="landing-content">
             <div class="row">
                 <div class="col-md-4">
                     <div class="land-poster">
-                        <img class="img-fluid"
-                            src="https://dx35vtwkllhj9.cloudfront.net/sonypictures/the-intruder/images/regions/ca/onesheet.jpg"
+                        <img class="img-fluid w-100"
+                            src="{{ $movie_details->image1 }}"
                             alt="">
                     </div>
                 </div>
@@ -43,24 +44,25 @@
 
 
 
-                            <div class="accordion d-none" id="searchAcc">
+                            <div class="accordion d-nonee" id="searchAcc">
                                 @foreach($showtime as $st)
                                     <div class="single-search-box">
                                         <div id="searchOne">
-                                            <button type="button" data-toggle="collapse" data-target="#collapseOne"
-                                                aria-expanded="true" aria-controls="collapseOne">
+                                            <button type="button" data-toggle="collapse" data-target="#s1"
+                                                aria-expanded="true">
                                                 <div class="ls-box">
                                                     <i class="fa fa-map-marker fa-3x"></i>
                                                     <div>
                                                         <h3>{{ $st->name }}</h3>
                                                         <p>{{ $st->address }}</p>
+                                                        {{ $st->id }}
                                                     </div>
                                                     <p class="ls-at">At 22.20</p>
                                                 </div>
                                             </button>
                                         </div>
 
-                                        <div id="collapseOne" class="collapse" aria-labelledby="searchOne"
+                                        <div id="s1" class="collapse"
                                             data-parent="#searchAcc">
                                             <div class="buy-ticket">
                                                 <h3>The Intruder</h3>
@@ -82,7 +84,7 @@
                         <p class="text-center">OR WATCH THE TRAILER BELOW
                         </p>
 
-                        <iframe class="w-100" height="200" src="https://www.youtube.com/embed/H8Ego3_43lQ"
+                        <iframe class="w-100" height="200" src="{{ $youtube_url }}"
                             frameborder="0"
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -115,25 +117,19 @@
                 <div class="col-md-4">
                     <div class="land-plot">
                         <img class="img-fluid mt-2"
-                            src="https://dx35vtwkllhj9.cloudfront.net/sonypictures/the-intruder/images/regions/ca/tt.png"
+                            src={{ $movie_details->image1 }}"
                             alt="">
 
-                        <p class="my-1">When a young married couple (Michael Ealy and Meagan Good) buys their dream
-                            house in
-                            the Napa
-                            Valley, they think they have found the perfect home to take their next steps as a family.
-                            But
-                            when the strangely attached seller (Dennis Quaid) continues to infiltrate their lives, they
-                            begin to suspect that he has hidden motivations beyond a quick sale.</p>
+                            <h3>{{ $movie_details->movie_description_short }}</h3>
+
+                        <p class="my-1">{{ $movie_details->movie_description_long }}</p>
 
                         <div class="my-3">
-                            <p><span class="text-red">DIRECTED BY:</span> Deon Taylor</p>
-                            <p><span class="text-red">WRITTEN BY:</span> David Loughery</p>
-                            <p><span class="text-red">PRODUCED BY:</span> Roxanne Avent, Deon Taylor, Mark Burg,
-                                Jonathan
-                                Schwartz, Brad Kaplan</p>
-                            <p><span class="text-red">CAST:</span> Michael Ealy, Meagan Good, Joseph Sikora, and Dennis
-                                Quaid </p>
+                            <p><span class="text-red">DIRECTED BY:</span> {{ $movie_details->director }}</p>
+                            <p><span class="text-red">WRITTEN BY:</span> {{ $movie_details->writer }}</p>
+                            <p><span class="text-red">PRODUCED BY:</span> {{ $movie_details->producer }}</p>
+                            <p><span class="text-red">CAST:</span> {{ $movie_details->actors }}</p>
+                            <p><span class="text-red">Rating</span> {{ $movie_details->ratings }}</p>
                         </div>
                     </div>
                 </div>

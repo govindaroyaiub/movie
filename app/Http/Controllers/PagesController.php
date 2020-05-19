@@ -34,23 +34,12 @@ class PagesController extends Controller
           ->orderBy('show_location_static.name', 'ASC')
           ->get();
           
-          return view('landing', compact(
+          return view('welcome', compact(
             'movie_details',
             'youtube_url',
             'poster',
             'showtime'
           ));
         }
-    }
-
-    public function showsApi()
-    {
-        $current_date = date('Y-m-d');
-        return Showtime::join('show_location_static', 'movie_showtimes.cinema_id', 'show_location_static.id')
-        ->where('movie_showtimes.date', '=', $current_date)
-        ->where('movie_showtimes.is_deleted', '=', 0)
-        ->where('show_location_static.is_deleted', '=', 0)
-        ->orderBy('show_location_static.name', 'ASC')
-        ->get();
     }
 }

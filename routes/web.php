@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/land', 'PagesController@landing');
-Route::get('/api/shows', 'PagesController@showsApi');
 
 Route::get('/', 'DataController@index');
+Route::get('/api/shows', 'DataController@showsApi');
 
 Auth::routes();
 
