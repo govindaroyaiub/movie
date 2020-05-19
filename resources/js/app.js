@@ -43,8 +43,13 @@ function searchBtnAnimationEnd(e) {
     })
 }
 
+function removeSearchoutput() {
+    document.querySelector('.land-search-result').classList.add('d-none');
+}
+
 searchInput.addEventListener('focus', searchBtnAnimationStart);
 searchBtn.addEventListener('click', searchBtnAnimationEnd);
+searchBtn.addEventListener('click', removeSearchoutput);
 
 
 // AJAX TYPED SEARCH
@@ -89,7 +94,7 @@ function displayMatches() {
                     <div id="s1${value.id}" class="collapse"
                         data-parent="#searchAcc">
                         <div class="buy-ticket">
-                            <h3>The Intruder</h3>
+                            <h3>${value.movie_title}</h3>
                             <a target="_blank" href="${value.ticket_url}"><i class="fa fa-ticket"></i> GET TICKETS</a>
                         </div>
                     </div>

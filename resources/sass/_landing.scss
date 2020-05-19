@@ -76,6 +76,12 @@
             }
 
             .single-search-box {
+                .collapse.show {
+                    div {
+                        color: #fff;
+                    }
+                }
+
                 button {
                     background-color: #141314;
                     border: 0;

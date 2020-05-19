@@ -205,6 +205,10 @@
   font-weight: bold;
 }
 
+.landing-area .landing-content .land-search-result .single-search-box .collapse.show div {
+  color: #fff;
+}
+
 .landing-area .landing-content .land-search-result .single-search-box button {
   background-color: #141314;
   border: 0;
