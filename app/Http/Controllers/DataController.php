@@ -52,6 +52,7 @@ class DataController extends Controller
         return Showtime::join('movie_details', 'movie_showtimes.movie_id', 'movie_details.id')
                                 ->join('show_location_static', 'movie_showtimes.cinema_id', 'show_location_static.id')
                                 ->select(
+                                'movie_details.title',
                                 'movie_showtimes.id', 
                                 'movie_showtimes.cinema_id', 
                                 'movie_showtimes.date', 
