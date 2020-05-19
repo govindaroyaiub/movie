@@ -20,6 +20,8 @@ class MovieDetailsTable extends Migration
             $table->longText('movie_description_long')->nullable();
             $table->date('cinema_date')->nullable();
             $table->string('director')->nullable();
+            $table->longText('producer')->nullable();
+            $table->longText('writer')->nullable();
             $table->longText('actors')->nullable();
             $table->longText('youtube_url')->nullable();
             $table->longText('image1')->nullable();

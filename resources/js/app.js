@@ -53,11 +53,6 @@ const url = "http://localhost:3000/api/shows";
 const shows = [];
 
 
-const x1 = shows.reduce((a, obj) => a + Object.keys(obj).length, 0);
-console.log(x1);
-
-
-
 fetch(url)
     .then((blob) => blob.json())
     .then((data) => shows.push(...data));
@@ -69,8 +64,6 @@ function findMatches(wordToMatch, shows) {
     });
 }
 
-
-
 function displayMatches() {
     const matchArr = findMatches(this.value, shows);
     const html = matchArr
@@ -78,7 +71,7 @@ function displayMatches() {
             return `
                 <div class="single-search-box">
                     <div id="searchOne">
-                        <button type="button" data-toggle="collapse" data-target="#s1"
+                        <button type="button" data-toggle="collapse" data-target="#s"
                             aria-expanded="true">
                             <div class="ls-box">
                                 <i class="fa fa-map-marker fa-3x"></i>
@@ -91,7 +84,7 @@ function displayMatches() {
                         </button>
                     </div>
 
-                    <div id="s1" class="collapse"
+                    <div id="s" class="collapse"
                         data-parent="#searchAcc">
                         <div class="buy-ticket">
                             <h3>The Intruder</h3>
