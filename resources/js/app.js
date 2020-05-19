@@ -20,6 +20,7 @@ const land = new Vue({
 const searchForm = document.querySelector('.landing-search');
 const searchInput = document.querySelector('#land-search-input');
 const searchBtn = document.querySelector('#land-search-btn');
+const landSearchResult = document.querySelector('.land-search-result');
 
 
 searchForm.addEventListener('submit', function (e) {
@@ -44,7 +45,7 @@ function searchBtnAnimationEnd(e) {
 }
 
 function removeSearchoutput() {
-    document.querySelector('.land-search-result').classList.add('d-none');
+    landSearchResult.classList.add('d-none');
 }
 
 searchInput.addEventListener('focus', searchBtnAnimationStart);
@@ -72,6 +73,7 @@ function findMatches(wordToMatch, shows) {
 }
 
 function displayMatches() {
+    landSearchResult.classList.remove('d-none');
     const matchArr = findMatches(this.value, shows);
     const html = matchArr
         .map((value) => {
@@ -81,7 +83,7 @@ function displayMatches() {
                         <button type="button" data-toggle="collapse" data-target="#s1${value.id}"
                             aria-expanded="true">
                             <div class="ls-box">
-                                <i class="fa fa-video fa-3x"></i>
+                                <i class="fa fa-file-video-o fa-3x"></i>
                                 <div>
                                     <h3>${value.city}</h3>
                                     <p>${value.name}</p>
