@@ -51,6 +51,17 @@ class DataController extends Controller
         $current_date = date('Y-m-d');
         return Showtime::join('movie_details', 'movie_showtimes.movie_id', 'movie_details.id')
                                 ->join('show_location_static', 'movie_showtimes.cinema_id', 'show_location_static.id')
+                                ->select(
+                                'movie_showtimes.id', 
+                                'movie_showtimes.cinema_id', 
+                                'movie_showtimes.date', 
+                                'movie_showtimes.time', 
+                                'show_location_static.name', 
+                                'show_location_static.address', 
+                                'show_location_static.zip', 
+                                'show_location_static.city', 
+                                'show_location_static.phone', 
+                                'show_location_static.url')
                                 ->where('movie_details.base_url', '=', $app_url)
                                 ->where('movie_showtimes.date', '=', $current_date)
                                 ->orderBy('show_location_static.name', 'ASC')
