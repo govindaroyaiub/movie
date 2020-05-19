@@ -19,7 +19,6 @@ class MovieShowtimesTable extends Migration
             $table->date('date')->nullable();
             $table->string('time')->nullable();
             $table->bigInteger('movie_id')->nullable();
-            $table->tinyInteger('is_deleted')->default('0');
             $table->timestamps();
         });
     }
