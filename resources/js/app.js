@@ -57,7 +57,7 @@ searchBtn.addEventListener('click', removeSearchoutput);
 const q = document.querySelector(".q");
 const r = document.querySelector(".r");
 
-const url = `${location.href}api/shows`;
+const url = `https://movie.planetnine.com/api/shows`;
 const shows = [];
 
 console.log(shows);
