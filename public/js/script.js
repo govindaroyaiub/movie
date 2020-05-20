@@ -1,21 +1,3 @@
-require('./bootstrap');
-
-window.Vue = require('vue');
-const moment = require('moment');
-
-
-const files = require.context('./', true, /\.vue$/i)
-files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-
-const app = new Vue({
-    el: '#app',
-});
-
-const land = new Vue({
-    el: '#land',
-});
-
 
 const searchForm = document.querySelector('.landing-search');
 const searchInput = document.querySelector('#land-search-input');

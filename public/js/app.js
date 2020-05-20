@@ -70633,7 +70633,7 @@ var q = document.querySelector(".q");
 var r = document.querySelector(".r");
 var url = "".concat(location.href, "api/shows");
 var shows = [];
-console.log(url);
+console.log(shows);
 fetch(url).then(function (blob) {
   return blob.json();
 }).then(function (data) {
