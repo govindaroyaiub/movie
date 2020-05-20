@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing</title>
+    <title>{{ $movie_details->movie_title }}</title>
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/mq.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/mq.css') }}">
 </head>
 
 <body>
@@ -64,8 +64,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="land-plot">
-                        <img class="img-fluid m-2" src="{{ $movie_details->image1 }}"
-                            style="position:relative; left:25%;" alt="">
+                        <img width="100" class="img-fluid mx-auto d-block m-2" src="{{ $movie_details->image1 }}" alt="">
 
                         <h3 style="text-align:center; text-decoration: underline;">{{ $movie_details->movie_description_short }}</h3>
 

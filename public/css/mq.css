@@ -25,7 +25,7 @@
      }
 
      .land-poster img {
-         width: 60px;
+         width: 60px !important;
      }
  }
 
