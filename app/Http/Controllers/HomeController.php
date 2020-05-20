@@ -114,7 +114,7 @@ class HomeController extends Controller
 
                 if($worksheet2)
                 {   
-                    $app_url = config('app.url');
+                    $app_url = 'https://movie.planetnine.com/';
                     $movie_details = Movie::where('base_url', '=', $app_url)->first();
 
                     $highestRow = $worksheet2->getHighestDataRow(); 
@@ -225,7 +225,7 @@ class HomeController extends Controller
 
                 if($worksheet2)
                 {
-                    $app_url = config('app.url');
+                    $app_url = 'https://movie.planetnine.com/';
                     $movie_details = Movie::where('base_url', '=', $app_url)->first();
 
                     $highestRow = $worksheet2->getHighestDataRow(); 

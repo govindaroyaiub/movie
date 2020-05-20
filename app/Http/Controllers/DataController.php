@@ -11,7 +11,7 @@ class DataController extends Controller
 {
     public function index()
     {
-        $app_url = config('app.url');
+        $app_url = 'https://movie.planetnine.com/';
         $movie_details = Movie::where('base_url', '=', $app_url)->first();
         $current_date = date('Y-m-d');
         if($movie_details == NULL)
@@ -43,6 +43,7 @@ class DataController extends Controller
                                 ->orderBy('show_location_static.city', 'ASC')
                                 ->distinct()
                                 ->get();
+                                
 
             return view('landing', compact(
                 'movie_details',
@@ -56,7 +57,7 @@ class DataController extends Controller
 
     public function showsApi()
     {
-        $app_url = config('app.url');
+        $app_url = 'https://movie.planetnine.com/';
         $movie_details = Movie::where('base_url', '=', $app_url)->first();
         $current_date = date('Y-m-d');
         return Showtime::join('movie_details', 'movie_showtimes.movie_id', 'movie_details.id')
