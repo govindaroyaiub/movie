@@ -60,7 +60,7 @@ class DataController extends Controller
         $app_url = 'https://movie.planetnine.com/';
         $movie_details = Movie::where('base_url', '=', $app_url)->first();
         $current_date = date('Y-m-d');
-        return Showtime::join('movie_details', 'movie_showtimes.movie_id', 'movie_details.id')
+        $showtime = Showtime::join('movie_details', 'movie_showtimes.movie_id', 'movie_details.id')
                                 ->join('show_location_static', 'movie_showtimes.cinema_id', 'show_location_static.id')
                                 ->select(
                                 'movie_details.movie_title',
@@ -80,5 +80,8 @@ class DataController extends Controller
                                 ->where('movie_showtimes.date', '=', $current_date)
                                 ->orderBy('show_location_static.name', 'ASC')
                                 ->get();
+
+                                return $showtime;
+
     }
 }
