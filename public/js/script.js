@@ -99,12 +99,12 @@ function displayMatches() {
 }
 
 function getCities() {
+    const shows2 = [];
     fetch(url)
         .then(blob => blob.json())
-        .then(data => shows.push(...data));
+        .then(data => shows2.push(...data));
 
-    const citiesArr = shows.map(element => element.city);
-    const city = [...new Set(citiesArr)];
+    const city = [...new Set(shows.map(item => item.city))];
 
     const cityHtml = city
         .map(c => {
@@ -128,8 +128,8 @@ function getCities() {
 
             const cityQuery = this.textContent;
 
-            const filter = shows.filter(el => {
-                return el.city === cityQuery
+            const filter = shows2.filter(el => {
+                return el.city === cityQuery;
             });
 
             const cHtml = filter
