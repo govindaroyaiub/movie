@@ -19,12 +19,12 @@
 
         <section class="landing-content">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-md-4">
                     <div class="land-poster">
                         <img class="img-fluid w-100" src="{{ $movie_details->image1 }}" alt="">
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-md-4">
                     <div class="land-content">
                         <form class="landing-search">
                             <div class="form-group">
@@ -38,7 +38,10 @@
                         <div class="land-search-result">
                             <p class="ls-help">ENTER YOUR LOCATION ABOVE OR SELECT YOUR THEATER BELOW</p>
 
-                            <div class="accordion r" id="accordionSearch"></div>
+                            <div class="main-acc accordion" id="accordionExample"></div>
+
+                            <div class="city-acc accordion d-none" id="accordionExample2"></div>
+
                         </div>
 
                         <br>
@@ -53,16 +56,18 @@
 
                         <h2 class="h6 my-3">MORE SHOWTIMES FOUND IN THE CITIES BELOW</h2>
 
+                        <ul class="landing-city-list"></ul>
 
-                        <ul class="landing-city-list">
+                        <!-- <ul class="landing-city-list">
                             @foreach($city as $row)
                                 <li class="city-item"><a class="city-link" href="#"><i
                                             class="fa fa-search"></i>{{ $row->city }}</a></li>
                             @endforeach
-                        </ul>
+                        </ul> -->
+
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-md-4">
                     <div class="land-plot">
                         <img width="100" class="img-fluid mx-auto d-block m-2" src="{{ $movie_details->image1 }}"
                             alt="">
@@ -95,15 +100,10 @@
     </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
     <script src="{{ asset('/js/script.js') }}"></script>

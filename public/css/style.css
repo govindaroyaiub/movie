@@ -1,0 +1,45 @@
+.main-acc {
+    background-color: palevioletred;
+    color: #222;
+}
+
+
+.acc-title {
+    background: #141313;
+    color: #fff;
+    padding: .8rem;
+}
+
+.acc-title h3 {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.acc-title p {
+    color: #464648;
+    font-size: .8rem;
+    text-transform: uppercase;
+}
+
+
+.acc-description {
+    background-color: #96190a;
+    color: white;
+    transition: 0.3s;
+    padding: 1rem;
+}
+
+.acc-description a {
+    background-color: #ff3014;
+    display: inline-block;
+    padding: 10px 15px;
+    font-weight: bold;
+    color: #000;
+    border-radius: 4px;
+    transition: all 3s;
+}
+
+.acc-description a:hover {
+    text-decoration: none;
+}
