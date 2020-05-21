@@ -126,13 +126,13 @@ function getCities() {
             cr.classList.remove("d-block");
             cr.classList.add("d-block");
 
-            // const result = shows.filter(abc => {
-            //     if (abc.name = 'Pathé City') {
-            //         return 'YES';
-            //     }
-            // });
+            const cityQuery = this.textContent;
 
-            const cHtml = shows
+            const filter = shows.filter(el => {
+                return el.city === cityQuery
+            });
+
+            const cHtml = filter
                 .map(md => {
                     return `
                 <div id="heading${md.id}">
