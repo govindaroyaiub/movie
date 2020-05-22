@@ -11,6 +11,9 @@ class DataController extends Controller
 {
     public function index()
     {
+        $title = new \Imdb\Title(7374926);
+        $rating = $title->rating();
+
         $app_url = 'https://movie.planetnine.com/';
         $movie_details = Movie::where('base_url', '=', $app_url)->first();
         $current_date = date('Y-m-d');
@@ -50,7 +53,8 @@ class DataController extends Controller
                 'youtube_url',
                 'poster',
                 'showtime',
-                'city'
+                'city',
+                'rating'
             ));
         }
     }
