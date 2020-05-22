@@ -25,31 +25,26 @@
     #critics2{
         position: relative;
         top: -96px;
-        transform: translateX(-50px);
         opacity:0;
     }
     #critics3{
         position: relative;
         top: -168px;
-        transform: translateX(-50px);
         opacity:0;
     }
     #critics4{
         position: relative;
         top: -239px;
-        transform: translateX(-50px);
         opacity:0;
     }
     #critics5{
         position: relative;
         top: -311px;
-        transform: translateX(-50px);
         opacity:0;
     }
     #critics6{
         position: relative;
         top: -385px;
-        transform: translateX(-50px);
         opacity:0;
     }
     </style>
@@ -133,27 +128,27 @@
                         <br>
                         <div class="critics">
                             <div id="critics1">
-                                <h5>"Green is at a career-best as the stoic Sarah, simultaneously determined and on the edge of breaking."</h5>
+                                <h6>"Green is at a career-best as the stoic Sarah, simultaneously determined and on the edge of breaking."</h6>
                                 <p style="text-decoration: underline;">Little White Lies</p>
                             </div>
                             <div id="critics2">
-                                <h5>"moving mother-daughter story"</h5>
+                                <h6>"moving mother-daughter story"</h6>
                                 <p style="text-decoration: underline;">The Hollywood Reporter</p>
                             </div>
                             <div id="critics3">
-                                <h5>"A significant, ambitious and entirely impressive film"</h5>
+                                <h6>"A significant, ambitious and entirely impressive film"</h6>
                                 <p style="text-decoration: underline;">Screen International</p>
                             </div>
                             <div id="critics4">
-                                <h5>"excellent acting by Eva Green"</h5>
+                                <h6>"excellent acting by Eva Green"</h6>
                                 <p style="text-decoration: underline;">Film Inquiry</p>
                             </div>
                             <div id="critics5">
-                                <h5>"Natural, beautiful and insightful"</h5>
+                                <h6>"Natural, beautiful and insightful"</h6>
                                 <p style="text-decoration: underline;">The List</p>
                             </div>
                             <div id="critics6">
-                                <h5>"a space movie that spends most of its time on Earth"</h5>
+                                <h6>"a space movie that spends most of its time on Earth"</h6>
                                 <p style="text-decoration: underline;">The Playlist</p>
                             </div>
                         </div>
@@ -185,17 +180,17 @@
     $(window).on('load', function() {
       var t1 = new TimelineMax({repeat:5000, repeatDelay:1});
       t1
-      .to('#critics1', .5, {x:50, opacity:0, ease:Power2.easeOut}, '+=2')
-      .to('#critics2', .5, {x:0, opacity:1, ease:Power2.easeOut}, '+=.5')
-      .to('#critics2', .5, {x:50, opacity:0, ease:Power2.easeOut}, '+=2')
-      .to('#critics3', .5, {x:0, opacity:1, ease:Power2.easeOut}, '+=.5')
-      .to('#critics3', .5, {x:50, opacity:0, ease:Power2.easeOut}, '+=2')
-      .to('#critics4', .5, {x:0, opacity:1, ease:Power2.easeOut}, '+=.5')
-      .to('#critics4', .5, {x:50, opacity:0, ease:Power2.easeOut}, '+=2')
-      .to('#critics5', .5, {x:0, opacity:1, ease:Power2.easeOut}, '+=.5')
-      .to('#critics5', .5, {x:50, opacity:0, ease:Power2.easeOut}, '+=2')
-      .to('#critics6', .5, {x:0, opacity:1, ease:Power2.easeOut}, '+=.5')
-      .to('#critics6', .5, {x:50, opacity:0, ease:Power2.easeOut}, '+=2')
+      .to('#critics1', .5, {opacity:0, ease:Power2.easeOut}, '+=2')
+      .to('#critics2', .5, {opacity:1, ease:Power2.easeOut}, '+=.5')
+      .to('#critics2', .5, {opacity:0, ease:Power2.easeOut}, '+=2')
+      .to('#critics3', .5, {opacity:1, ease:Power2.easeOut}, '+=.5')
+      .to('#critics3', .5, {opacity:0, ease:Power2.easeOut}, '+=2')
+      .to('#critics4', .5, {opacity:1, ease:Power2.easeOut}, '+=.5')
+      .to('#critics4', .5, {opacity:0, ease:Power2.easeOut}, '+=2')
+      .to('#critics5', .5, {opacity:1, ease:Power2.easeOut}, '+=.5')
+      .to('#critics5', .5, {opacity:0, ease:Power2.easeOut}, '+=2')
+      .to('#critics6', .5, {opacity:1, ease:Power2.easeOut}, '+=.5')
+      .to('#critics6', .5, {opacity:0, ease:Power2.easeOut}, '+=2')
     }); 
     </script>
 </body>
