@@ -64,6 +64,11 @@
                     <div class="land-poster">
                         <img class="img-fluid w-100" src="{{ $movie_details->image1 }}" alt="">
                     </div>
+
+                    <div class="mobile-meta d-flex align-items-center d-sm-block d-md-none">
+                        <img width="60" class="block mt-3 mx-3" src="{{ $movie_details->image1 }}" alt="">
+                        <p class="m-0">{{ $movie_details->movie_description_short }}</p>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="land-content">
