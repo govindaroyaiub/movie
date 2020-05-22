@@ -8,10 +8,54 @@
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/mq.css') }}">
+    <style>
+    .critics{
+        position: absolute;
+        width:100%;
+        height:30px;
+        display: inline-block;
+        justify-content: center;
+        text-align: center;
+    }
+
+    #critics1{
+        position: relative;
+        top: 0;
+    }
+    #critics2{
+        position: relative;
+        top: -96px;
+        transform: translateX(-50px);
+        opacity:0;
+    }
+    #critics3{
+        position: relative;
+        top: -168px;
+        transform: translateX(-50px);
+        opacity:0;
+    }
+    #critics4{
+        position: relative;
+        top: -239px;
+        transform: translateX(-50px);
+        opacity:0;
+    }
+    #critics5{
+        position: relative;
+        top: -311px;
+        transform: translateX(-50px);
+        opacity:0;
+    }
+    #critics6{
+        position: relative;
+        top: -385px;
+        transform: translateX(-50px);
+        opacity:0;
+    }
+    </style>
 </head>
 
 <body>
-
 
     <div id="land" class="landing-area">
         <header class="landing-header">
@@ -50,7 +94,7 @@
                         <p class="text-center">WATCH THE TRAILER BELOW
                         </p>
 
-                        <iframe class="w-100" height="200" src="{{ $youtube_url }}" frameborder="0"
+                        <iframe class="w-100" height="400" src="{{ $youtube_url }}" frameborder="0"
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
 
@@ -83,8 +127,35 @@
                             <p><span class="text-red">WRITTEN BY:</span> {{ $movie_details->writer }}</p>
                             <p><span class="text-red">PRODUCED BY:</span> {{ $movie_details->producer }}</p>
                             <p><span class="text-red">CAST:</span> {{ $movie_details->actors }}</p>
-                            <p><span class="text-red">RATING:</span> {{ $movie_details->ratings }}</p>
-                            <p><span class="text-red">DUARATION:</span> {{ $movie_details->duration }}</p>
+                            <p><span class="text-red">Rating:</span> {{ $movie_details->ratings }}</p>
+                            <p><span class="text-red">Duration:</span> {{ $movie_details->duration }}</p>
+                        </div>
+                        <br>
+                        <div class="critics">
+                            <div id="critics1">
+                                <h5>"Green is at a career-best as the stoic Sarah, simultaneously determined and on the edge of breaking."</h5>
+                                <p style="text-decoration: underline;">Little White Lies</p>
+                            </div>
+                            <div id="critics2">
+                                <h5>"moving mother-daughter story"</h5>
+                                <p style="text-decoration: underline;">The Hollywood Reporter</p>
+                            </div>
+                            <div id="critics3">
+                                <h5>"A significant, ambitious and entirely impressive film"</h5>
+                                <p style="text-decoration: underline;">Screen International</p>
+                            </div>
+                            <div id="critics4">
+                                <h5>"excellent acting by Eva Green"</h5>
+                                <p style="text-decoration: underline;">Film Inquiry</p>
+                            </div>
+                            <div id="critics5">
+                                <h5>"Natural, beautiful and insightful"</h5>
+                                <p style="text-decoration: underline;">The List</p>
+                            </div>
+                            <div id="critics6">
+                                <h5>"a space movie that spends most of its time on Earth"</h5>
+                                <p style="text-decoration: underline;">The Playlist</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -109,6 +180,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
     <script src="{{ asset('/js/script.js') }}"></script>
+    <script src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_2.1.2_min.js"></script>
+    <script>
+    $(window).on('load', function() {
+      var t1 = new TimelineMax({repeat:100, repeatDelay:1});
+      t1
+      .to('#critics1', .5, {x:50, opacity:0, ease:Power2.easeOut}, '+=2')
+      .to('#critics2', .5, {x:0, opacity:1, ease:Power2.easeOut}, '+=.5')
+      .to('#critics2', .5, {x:50, opacity:0, ease:Power2.easeOut}, '+=2')
+      .to('#critics3', .5, {x:0, opacity:1, ease:Power2.easeOut}, '+=.5')
+      .to('#critics3', .5, {x:50, opacity:0, ease:Power2.easeOut}, '+=2')
+      .to('#critics4', .5, {x:0, opacity:1, ease:Power2.easeOut}, '+=.5')
+      .to('#critics4', .5, {x:50, opacity:0, ease:Power2.easeOut}, '+=2')
+      .to('#critics5', .5, {x:0, opacity:1, ease:Power2.easeOut}, '+=.5')
+      .to('#critics5', .5, {x:50, opacity:0, ease:Power2.easeOut}, '+=2')
+      .to('#critics6', .5, {x:0, opacity:1, ease:Power2.easeOut}, '+=.5')
+      .to('#critics6', .5, {x:50, opacity:0, ease:Power2.easeOut}, '+=2')
+    }); 
+    </script>
 </body>
 
 </html>
