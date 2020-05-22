@@ -183,7 +183,7 @@
     <script src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_2.1.2_min.js"></script>
     <script>
     $(window).on('load', function() {
-      var t1 = new TimelineMax({repeat:100, repeatDelay:1});
+      var t1 = new TimelineMax({repeat:5000, repeatDelay:1});
       t1
       .to('#critics1', .5, {x:50, opacity:0, ease:Power2.easeOut}, '+=2')
       .to('#critics2', .5, {x:0, opacity:1, ease:Power2.easeOut}, '+=.5')
