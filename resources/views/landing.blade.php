@@ -12,6 +12,7 @@
 
 <body>
 
+
     <div id="land" class="landing-area">
         <header class="landing-header">
             {{ $movie_details->movie_title }} <a target="_blank" href="#"><i class="fa fa-external-link"></i></a>
@@ -82,7 +83,8 @@
                             <p><span class="text-red">WRITTEN BY:</span> {{ $movie_details->writer }}</p>
                             <p><span class="text-red">PRODUCED BY:</span> {{ $movie_details->producer }}</p>
                             <p><span class="text-red">CAST:</span> {{ $movie_details->actors }}</p>
-                            <p><span class="text-red">Rating:</span> {{ $movie_details->ratings }}</p>
+                            <p><span class="text-red">RATING:</span> {{ $movie_details->ratings }}</p>
+                            <p><span class="text-red">DUARATION:</span> {{ $movie_details->duration }}</p>
                         </div>
                     </div>
                 </div>
