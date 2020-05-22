@@ -132,6 +132,7 @@ function getCities() {
                 return el.city === cityQuery;
             });
 
+
             const cHtml = filter
                 .map(md => {
                     return `
