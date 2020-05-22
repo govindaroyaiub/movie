@@ -16,6 +16,7 @@
         display: inline-block;
         justify-content: center;
         text-align: center;
+        display:none;
     }
 
     #critics1{
@@ -175,7 +176,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
     <script src="{{ asset('/js/script.js') }}"></script>
-    <script src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_2.1.2_min.js"></script>
+    <!-- <script src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_2.1.2_min.js"></script>
     <script>
     $(window).on('load', function() {
       var t1 = new TimelineMax({repeat:5000, repeatDelay:.5});
@@ -192,7 +193,7 @@
       .to('#critics6', .5, {opacity:1, ease:Power2.easeOut}, '+=.5')
       .to('#critics6', .5, {opacity:0, ease:Power2.easeOut}, '+=2')
     }); 
-    </script>
+    </script> -->
 </body>
 
 </html>
