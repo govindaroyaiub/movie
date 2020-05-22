@@ -60,6 +60,9 @@ class HomeController extends Controller
             $showtime_list = [];
             $full_movie_details = [];
 
+            $title = new \Imdb\Title(7374926);
+            $rating = $title->rating();
+
             if(($check_location_data == NULL) && ($check_movie_details == NULL) && ($check_showtime_data == NULL))
             {
                 if($worksheet3)
@@ -81,7 +84,6 @@ class HomeController extends Controller
                         $image2 = $worksheet3->getCellByColumnAndRow(12, $row)->getValue();
                         $image3 = $worksheet3->getCellByColumnAndRow(13, $row)->getValue();
                         $duration = $worksheet3->getCellByColumnAndRow(14, $row)->getValue();
-                        $ratings = $worksheet3->getCellByColumnAndRow(15, $row)->getValue();
                         $get_base_url = $worksheet3->getCellByColumnAndRow(16, $row)->getValue();
                         $get_ticket_url = $worksheet3->getCellByColumnAndRow(17, $row)->getValue();
                         $cinema_date = date('Y-m-d',\PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($cinema_date_sheet));
@@ -102,7 +104,7 @@ class HomeController extends Controller
                                 'image2' => $image2,
                                 'image3' => $image3,
                                 'duration' => $duration,
-                                'ratings' => $ratings,
+                                'ratings' => $rating,
                                 'base_url' => $get_base_url,
                                 'ticket_url' => $get_ticket_url
                             ];
@@ -192,7 +194,6 @@ class HomeController extends Controller
                         $image2 = $worksheet3->getCellByColumnAndRow(12, $row)->getValue();
                         $image3 = $worksheet3->getCellByColumnAndRow(13, $row)->getValue();
                         $duration = $worksheet3->getCellByColumnAndRow(14, $row)->getValue();
-                        $ratings = $worksheet3->getCellByColumnAndRow(15, $row)->getValue();
                         $get_base_url = $worksheet3->getCellByColumnAndRow(16, $row)->getValue();
                         $get_ticket_url = $worksheet3->getCellByColumnAndRow(17, $row)->getValue();
                         $cinema_date = date('Y-m-d',\PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($cinema_date_sheet));
@@ -213,7 +214,7 @@ class HomeController extends Controller
                                 'image2' => $image2,
                                 'image3' => $image3,
                                 'duration' => $duration,
-                                'ratings' => $ratings,
+                                'ratings' => $rating,
                                 'base_url' => $get_base_url,
                                 'ticket_url' => $get_ticket_url
                             ];

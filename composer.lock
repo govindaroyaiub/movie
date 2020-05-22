@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "572ee8f1ec3c68e01a51f5d7a714dedd",
+    "content-hash": "5d30171b75d0548aea8334a2045763d4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -698,6 +698,47 @@
                 "url"
             ],
             "time": "2019-07-01T23:21:34+00:00"
+        },
+        {
+            "name": "imdbphp/imdbphp",
+            "version": "v6.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tboothman/imdbphp.git",
+                "reference": "23ff96cf073010a9d34a86d5aaba79ce98266735"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tboothman/imdbphp/zipball/23ff96cf073010a9d34a86d5aaba79ce98266735",
+                "reference": "23ff96cf073010a9d34a86d5aaba79ce98266735",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-dom": "*",
+                "ext-json": "*",
+                "php": ">=5.6",
+                "psr/log": "~1.0",
+                "psr/simple-cache": "^1.0"
+            },
+            "require-dev": {
+                "cache/array-adapter": "^1.0",
+                "mockery/mockery": "~0.9",
+                "phpstan/phpstan": "^0.9.2",
+                "phpunit/phpunit": "5.4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Imdb\\": "src/Imdb"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Library for retrieving film and tv information from IMDb",
+            "time": "2020-04-11T19:32:22+00:00"
         },
         {
             "name": "laravel/framework",
