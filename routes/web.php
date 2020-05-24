@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get('/land', 'PagesController@landing');
 
 Route::get('/', 'DataController@index');
