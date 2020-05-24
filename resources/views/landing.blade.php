@@ -152,8 +152,8 @@
     </div>
 
     <div id="videos" class="tabcontent">
-        <div class="iframe-container">
-            <iframe width="560" height="315" src="{{ $youtube_url }}" frameborder="0"
+        <div class="iframe-containerr">
+            <iframe id="yt-video" class="w-100" src="{{ $youtube_url }}" frameborder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen>
             </iframe>
@@ -228,6 +228,8 @@ $(function () {
    $('.mobile-link').on('click', function (e) {
        $( ".mobile-checkbox" ).click();
    });
+
+    document.querySelector('#yt-video').setAttribute('height', window.innerHeight / 2);
 });
 </script>
 
