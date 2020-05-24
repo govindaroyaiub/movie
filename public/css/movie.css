@@ -486,3 +486,14 @@ input[type='search'] {
     color: var(--white);
     text-decoration: none;
 }
+
+.mobile-link {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    transition: all .2s;
+}
+
+.mobile-link:hover {
+    color: #ff3014;
+}
