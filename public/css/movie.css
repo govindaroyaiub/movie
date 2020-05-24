@@ -521,3 +521,11 @@ input[type="search"] {
 .iframe-container-4x3 {
     padding-top: 75%;
   }
+
+  .landing-city-list {
+      display: flex;
+  }
+
+  .landing-city-list li {
+      margin-right: .6rem;
+  }
