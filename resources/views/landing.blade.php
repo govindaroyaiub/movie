@@ -118,6 +118,10 @@
                     {{ $movie_details->movie_description_short }}
                 </p>
 
+                <p class="excerpt mt-3">
+                    {{ $movie_details->movie_description_long }}
+                </p>
+
                 <div class="synopsis-meta">
                     <p>
                         <span>Directed by:</span> {{ $movie_details->director }}
@@ -167,6 +171,8 @@
             <div class="synopsis-grid mt-5">
                 <p class="excerpt">
                     {{ $movie_details->movie_description_short }}
+                    
+                    <p class="mt-2">{{ $movie_details->movie_description_long }}</p>
                 </p>
 
                 <div class="synopsis-meta">
