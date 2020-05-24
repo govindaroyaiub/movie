@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 /* * { outline: solid 1px hotpink; } */
 
@@ -13,7 +13,7 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -23,13 +23,19 @@ img {
     border: 0;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
     margin: 0;
 }
 
 a {
     display: inline-block;
-    transition: all .2s;
+    transition: all 0.2s;
 }
 
 ul {
@@ -42,15 +48,15 @@ ul {
     color: var(--red-light);
 }
 
-input[type='search'] {
+input[type="search"] {
     border: 0;
-    padding: .4rem .8rem;
+    padding: 0.4rem 0.8rem;
     font-family: inherit;
     font-size: 1rem;
     text-transform: uppercase;
     text-align: center;
     width: 100%;
-    border-radius: .4rem;
+    border-radius: 0.4rem;
 }
 
 ::selection {
@@ -97,9 +103,8 @@ input[type='search'] {
     border-radius: 3px;
     z-index: 1;
     transform-origin: 5px 0px;
-    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
-    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
-    opacity 0.55s ease;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+        background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
 }
 
 .menu-toggle span:first-child {
@@ -135,18 +140,18 @@ input[type='search'] {
     color: var(--white);
     transform-origin: 0% 0%;
     transform: translate(-100%, 0);
-    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
 
 .menu button {
     color: var(--gray);
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-size: .8rem;
+    font-size: 0.8rem;
     font-weight: bold;
-    transition: all .2s;
+    transition: all 0.2s;
     display: block;
-    margin: .6rem 0;
+    margin: 0.6rem 0;
 }
 
 .menu li button:hover {
@@ -164,7 +169,7 @@ input[type='search'] {
 
 .social-shares li a {
     color: var(--white) !important;
-    padding: .3rem .9rem;
+    padding: 0.3rem 0.9rem;
     font-size: 1.3rem !important;
 }
 
@@ -204,8 +209,8 @@ input[type='search'] {
 }
 
 .movie-header i {
-    font-size: .8rem;
-    margin-left: .3rem;
+    font-size: 0.8rem;
+    margin-left: 0.3rem;
 }
 
 .movie-thumb button {
@@ -216,7 +221,7 @@ input[type='search'] {
 .desktop-nav {
     background-color: #000;
     color: #fff;
-    padding: .6rem 0;
+    padding: 0.6rem 0;
 }
 
 .tab {
@@ -238,7 +243,7 @@ input[type='search'] {
     cursor: pointer;
     border: 0;
     outline: 0;
-    padding: .8rem 0;
+    padding: 0.8rem 0;
     transition: 0.3s;
 }
 
@@ -272,7 +277,7 @@ input[type='search'] {
 
 .search-form,
 .movie-search-result {
-    padding: 1rem .6rem;
+    padding: 1rem 0.6rem;
 }
 
 .movie-content {
@@ -282,10 +287,10 @@ input[type='search'] {
 .search-tip {
     display: inline-block;
     text-transform: uppercase;
-    font-size: .7rem;
+    font-size: 0.7rem;
     text-align: center;
     line-height: 1.3;
-    margin: .8rem 0;
+    margin: 0.8rem 0;
     font-weight: 700;
     letter-spacing: 1px;
 }
@@ -306,12 +311,12 @@ input[type='search'] {
     font-size: 1.1rem;
     line-height: 1.2;
     text-transform: uppercase;
-    margin-bottom: .8rem;
+    margin-bottom: 0.8rem;
 }
 
 .movie-search-meta {
     display: flex;
-    font-size: .8rem;
+    font-size: 0.8rem;
     line-height: 1;
     text-transform: uppercase;
     color: var(--gray);
@@ -321,7 +326,7 @@ input[type='search'] {
 .movie-ticket {
     background: var(--red-dark);
     color: #fff;
-    padding: 1rem .6rem;
+    padding: 1rem 0.6rem;
 }
 
 .movie-ticket h4 {
@@ -329,18 +334,18 @@ input[type='search'] {
 }
 
 .movie-ticket .button {
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     font-family: inherit;
     font-size: 1rem;
     text-transform: uppercase;
     color: var(--black);
     background: var(--red-light);
-    border-radius: .4rem;
+    border-radius: 0.4rem;
     font-weight: 600;
     border: 0;
-    margin-top: .6rem;
-    box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 4px rgba(0, 0, 0, .24);
-    transition: all .2s;
+    margin-top: 0.6rem;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
+    transition: all 0.2s;
 }
 
 .movie-ticket .button:hover {
@@ -351,7 +356,7 @@ input[type='search'] {
 .city-showtime h3 {
     font-size: 1rem;
     text-transform: uppercase;
-    margin: .5rem 0;
+    margin: 0.5rem 0;
     font-weight: 600;
     letter-spacing: 1px;
 }
@@ -363,17 +368,17 @@ input[type='search'] {
 
 .city-lists li {
     background: #141314;
-    margin: .2rem .4rem;
-    border-radius: .4rem;
+    margin: 0.2rem 0.4rem;
+    border-radius: 0.4rem;
 }
 
 .city-lists a {
     color: var(--white);
     text-transform: uppercase;
     font-weight: 500;
-    padding: .5rem;
-    font-size: .8rem;
-    border-radius: .4rem;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    border-radius: 0.4rem;
 }
 
 .city-lists a:hover {
@@ -404,7 +409,7 @@ input[type='search'] {
 .movie-details {
     background: var(--black);
     color: var(--white);
-    padding: 1rem .8rem;
+    padding: 1rem 0.8rem;
 }
 
 .movie-details p {
@@ -414,7 +419,7 @@ input[type='search'] {
 }
 
 .synopsis-meta p {
-    margin: .3rem 0;
+    margin: 0.3rem 0;
     font-size: 1.1rem;
     line-height: 1.4;
 }
@@ -423,7 +428,7 @@ input[type='search'] {
     color: var(--red-light);
     font-weight: bold;
     text-transform: uppercase;
-    font-size: .875rem;
+    font-size: 0.875rem;
     letter-spacing: 1px;
     display: block;
 }
@@ -455,9 +460,9 @@ input[type='search'] {
     display: inline-block;
     background: #141314;
     color: #fff;
-    padding: .4rem .8rem;
+    padding: 0.4rem 0.8rem;
     text-transform: uppercase;
-    border-radius: .4rem;
+    border-radius: 0.4rem;
 }
 
 .city-link:hover {
@@ -491,9 +496,28 @@ input[type='search'] {
     border: 0;
     outline: 0;
     background: transparent;
-    transition: all .2s;
+    transition: all 0.2s;
 }
 
 .mobile-link:hover {
     color: #ff3014;
 }
+
+.iframe-container {
+    overflow: hidden;
+    padding-top: 56.25%;
+    position: relative;
+}
+
+.iframe-container iframe {
+    border: 0;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.iframe-container-4x3 {
+    padding-top: 75%;
+  }

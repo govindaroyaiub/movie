@@ -152,13 +152,12 @@
     </div>
 
     <div id="videos" class="tabcontent">
-        <div class="video-details">
-            <iframe class="w-100" src="{{ $youtube_url }}" frameborder="0"
+        <div class="iframe-container">
+            <iframe width="560" height="315" src="{{ $youtube_url }}" frameborder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-
-            <div class="yt-videos">
-            </div>
+                    allowfullscreen>
+            </iframe>
+        </div>
         </div>
     </div>
 
