@@ -146,12 +146,12 @@
                             <span>Rating:</span> {{ $rating }}
                         </p>
 
-                        <p>
-                            <span>Duration:</span> {{ $movie_details->duration }}
-                        </p>
-                    </div>
-                </section>
-            </div>
+    <div id="videos" class="tabcontent">
+        <div class="iframe-containerr">
+            <iframe id="yt-video" class="w-100" src="{{ $youtube_url }}" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+            </iframe>
         </div>
 
         <div id="videos" class="tabcontent">
@@ -214,24 +214,25 @@
             </ul>
         </div>
     </footer>
-    </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
-    <script src="{{ asset('js/movie.js') }}"></script>
-    <script>
-        $(function () {
-            $('.mobile-link').on('click', function (e) {
-                $(".mobile-checkbox").click();
-            });
-        });
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+<script src="{{ asset('js/movie.js') }}"></script>
+<script>
+$(function () { 
+   $('.mobile-link').on('click', function (e) {
+       $( ".mobile-checkbox" ).click();
+   });
 
-    </script>
+    document.querySelector('#yt-video').setAttribute('height', window.innerHeight / 2);
+});
+</script>
 
 </body>
 
