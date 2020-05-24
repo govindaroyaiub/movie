@@ -27,3 +27,9 @@ Route::post('/upload', 'HomeController@upload');
 Route::get('/cs', function() {
   return view('coming_soon');
 });
+
+Route::get('/{locale}', function($locale)
+{
+  Session::put('locale', $locale);
+  return redirect()->back();
+});
