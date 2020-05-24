@@ -111,7 +111,7 @@
 
             </section>
             <section class="movie-details">
-                <img width="100" src="{{ $movie_details->image1 }}"
+                <img width="100" class="d-block mx-auto" src="{{ $movie_details->image1 }}"
                      alt="">
 
                 <h3 class="underline text-center my-3">
