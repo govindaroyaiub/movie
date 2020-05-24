@@ -29,15 +29,15 @@
     <div class="mobile-nav">
         <nav role="mobile-menu">
             <div class="menu-toggle">
-                <input type="checkbox"/>
+                <input class="mobile-checkbox" type="checkbox"/>
                 <span></span>
                 <span></span>
                 <span></span>
                 <ul class="menu">
-                    <button class="tablinks" onclick="openItem(event, 'getTickets')" id="defaultOpen">Get Tickets
+                    <button class="tablinks mobile-link" onclick="openItem(event, 'getTickets')" id="defaultOpen">Get Tickets
                     </button>
-                    <button class="tablinks" onclick="openItem(event, 'videos')">Videos</button>
-                    <button class="tablinks" onclick="openItem(event, 'synopsis')">Synopsis</button>
+                    <button class="tablinks mobile-link" onclick="openItem(event, 'videos')">Videos</button>
+                    <button class="tablinks mobile-link" onclick="openItem(event, 'synopsis')">Synopsis</button>
                     <div class="sharethis-inline-share-buttons"></div>
                 </ul>
             </div>
@@ -114,9 +114,9 @@
                 <img width="100" src="{{ $movie_details->image1 }}"
                      alt="">
 
-                <p class="excerpt mt-3">
+                <h3 class="underline text-center my-3">
                     {{ $movie_details->movie_description_short }}
-                </p>
+                </h3>
 
                 <p class="excerpt mt-3">
                     {{ $movie_details->movie_description_long }}
@@ -169,11 +169,11 @@
                  alt="">
 
             <div class="synopsis-grid mt-5">
-                <p class="excerpt">
-                    {{ $movie_details->movie_description_short }}
-                    
-                    <p class="mt-2">{{ $movie_details->movie_description_long }}</p>
-                </p>
+                
+                <div class="excerpt">
+                <h3 class="underline mb-3"> {{ $movie_details->movie_description_short }}</h3>
+                    {{ $movie_details->movie_description_long }}
+                </div>
 
                 <div class="synopsis-meta">
                     <p>
@@ -225,7 +225,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
 <script src="{{ asset('js/movie.js') }}"></script>
 <script>
-
+$(function () { 
+   $('.mobile-link').on('click', function (e) {
+       $( ".mobile-checkbox" ).click();
+   });
+});
 </script>
 
 </body>
