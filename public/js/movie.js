@@ -81,11 +81,11 @@ function displayMatches() {
                      <div class="acc-title">
                         <div class="d-flex">
                            <i class="fa fa-file-video-o fa-3x text-red"></i>
-                               <h3 class="ml-3">${m.city}</h3>
+                               <h3 class="ml-3">${m.name}</h3>
                                   </div>
                                             <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
-                                                    <p class="m-0 text-expand">${
-                m.name
+                                                    <p class="m-0 text-expand">${m.address}, ${
+                m.city
             }</p>
                                                     <p class="m-0 text-expand">${moment(
                 m.date
@@ -164,10 +164,10 @@ function getCities() {
                    <div class="acc-title">
                       <div class="d-flex">
                          <i class="fa fa-file-video-o fa-3x text-red"></i>
-                         <h3 class="ml-3">${md.city}</h3>
+                         <h3 class="ml-3">${md.name}</h3>
                       </div>
                       <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
-                         <p class="m-0 text-expand">${md.name}</p>
+                         <p class="m-0 text-expand">${md.address}, ${md.name}</p>
                          <p class="m-0 text-expand">${moment(md.date).format(
                         "MMMM Do"
                     )} ${moment(md.time, "HH:mm").format("HH:mm")}</p>
