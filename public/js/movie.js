@@ -12,7 +12,6 @@ function openItem(evt, itemName) {
     }
     document.getElementById(itemName).style.display = "block";
     evt.currentTarget.className += " active";
-
 }
 
 // Get the element with id="defaultOpen" and click on it
