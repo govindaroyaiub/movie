@@ -13,23 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/land', 'PagesController@landing');
-
 Route::get('/', 'DataController@index');
+Route::get('/en', 'DataController@english_landing');
 Route::get('/api/shows', 'DataController@showsApi');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/upload', 'HomeController@upload');
-
-Route::get('/cs', function() {
-  return view('coming_soon');
-});
-
-Route::get('/{locale}', function($locale)
+Route::group(['middleware' => ['auth']], function()
 {
-  Session::put('locale', $locale);
-  return redirect()->back();
+  Route::post('/upload', 'HomeController@upload');
+  Route::get('/test-en', 'PagesController@landing_en');
+  Route::get('/test-nl', 'PagesController@landing_nl');
 });

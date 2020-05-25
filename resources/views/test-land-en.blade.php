@@ -26,8 +26,8 @@
         <i class="fa fa-external-link"></i>
     </a>
     <select class="btn btn-secondary" style="position:relative" id="language" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-        <option value="/" {{ (request()->is('/')) ? 'selected' : '' }}>Netherlands</option>
-        <option value="/en" {{ (request()->is('en')) ? 'selected' : '' }}>English</option>
+        <option value="/test-nl" {{ (request()->is('/')) ? 'selected' : '' }}>Netherlands</option>
+        <option value="/test-en" {{ (request()->is('en')) ? 'selected' : '' }}>English</option>
     </select>
 </header>
 

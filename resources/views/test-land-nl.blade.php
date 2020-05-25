@@ -26,8 +26,8 @@
         <i class="fa fa-external-link"></i>
     </a>
     <select class="btn btn-secondary" style="position:relative" id="language" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-        <option value="/" {{ (request()->is('/')) ? 'selected' : '' }}>Netherlands</option>
-        <option value="/en" {{ (request()->is('en')) ? 'selected' : '' }}>English</option>
+        <option value="/test-nl" {{ (request()->is('/')) ? 'selected' : '' }}>Netherlands</option>
+        <option value="/test-en" {{ (request()->is('en')) ? 'selected' : '' }}>English</option>
     </select>
 </header>
 
@@ -39,8 +39,7 @@
             <span></span>
             <span></span>
             <ul class="menu">
-                <button class="tablinks mobile-link" onclick="openItem(event, 'getTickets')" id="defaultOpen">Get
-                    Tickets
+                <button class="tablinks mobile-link" onclick="openItem(event, 'getTickets')" id="defaultOpen">Koop Tickets
                 </button>
                 <button class="tablinks mobile-link" onclick="openItem(event, 'videos')">Videos</button>
                 <button class="tablinks mobile-link" onclick="openItem(event, 'synopsis')">Synopsis</button>
@@ -52,7 +51,7 @@
 <div class="desktop-nav">
     <div class="tab-wrapper">
         <div class="tab">
-            <button class="tablinks" onclick="openItem(event, 'getTickets')" id="defaultOpen">Get Tickets</button>
+            <button class="tablinks" onclick="openItem(event, 'getTickets')" id="defaultOpen">Koop Tickets</button>
             <button class="tablinks" onclick="openItem(event, 'videos')">Videos</button>
             <button class="tablinks" onclick="openItem(event, 'synopsis')">Synopsis</button>
             <div class="sharethis-inline-share-buttons"></div>
@@ -89,13 +88,13 @@
 
 
                 <div class="land-search-result">
-                    <p class="ls-help text-center">ENTER YOUR LOCATION ABOVE OR SELECT YOUR THEATER BELOW</p>
+                    <p class="ls-help text-center">KIES UW STAD OF LOCATIE</p>
 
                     <div class="main-acc accordion" id="accordionExample"></div>
 
                     <div class="city-acc accordion d-none" id="accordionExample2"></div>
 
-                    <h2 class="h6 my-3 text-center">MORE SHOWTIMES FOUND IN THE CITIES BELOW</h2>
+                    <h2 class="h6 my-3 text-center">MEER VERTONINGEN IN DEZE STEDEN</h2>
 
                     <ul class="landing-city-list"></ul>
 
@@ -103,7 +102,7 @@
 
                 <br>
 
-                <p class="text-center">WATCH THE TRAILER BELOW
+                <p class="text-center">BEKIJK DE TRAILER
                 </p>
 
                 <iframe class="w-100" height="200" src="{{ $youtube_url }}" frameborder="0"
@@ -213,7 +212,7 @@
     <div class="container">
         <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
             <li><a data-toggle="tab" href="#menu0">Cookies</a></li>
-            <li><a data-toggle="tab" href="#menu1">Term of use</a></li>
+            <li><a data-toggle="tab" href="#menu1">Gebruiksvoorwaarden</a></li>
             <li><a data-toggle="tab" href="#menu2">Privacy policy</a></li>
             <li><a data-toggle="tab" href="#menu3">Credits</a></li>
         </ul>
