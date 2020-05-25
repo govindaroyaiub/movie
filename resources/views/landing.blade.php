@@ -207,14 +207,14 @@
 
 <footer class="movie-footer">
     <div class="container">
-        <ul>
+        <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
             <li><a data-toggle="tab" href="#menu0">Cookies</a></li>
             <li><a data-toggle="tab" href="#menu1">Term of use</a></li>
             <li><a data-toggle="tab" href="#menu2">Privacy policy</a></li>
             <li><a data-toggle="tab" href="#menu3">Credits</a></li>
         </ul>
 
-        <div class="tab-content text-white py-5">
+        <div id="my-tab-content" class="tab-content text-white py-5">
             <div id="menu0" class="tab-pane fade in">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua.</p>

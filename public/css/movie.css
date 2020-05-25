@@ -530,3 +530,6 @@ input[type="search"] {
     margin-right: .6rem;
 }
 
+.nav-tabs {
+    border-bottom: 1px solid transparent !important;
+}
