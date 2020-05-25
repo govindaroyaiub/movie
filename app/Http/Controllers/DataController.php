@@ -135,7 +135,7 @@ class DataController extends Controller
                                 ->orderBy('show_location_static.name', 'ASC')
                                 ->get();
 
-                                return $showtime;
+        return $showtime;
 
     }
 }
