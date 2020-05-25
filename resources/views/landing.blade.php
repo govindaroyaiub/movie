@@ -258,7 +258,7 @@
 
 
         setTimeout(function () {
-            // $('.trailer-video').trigger('click');
+            $('.trailer-video').trigger('click');
         }, 10);
 
         const videoUrl = $('.trailer-video').attr('href');
