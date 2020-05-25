@@ -81,7 +81,7 @@
                 <form class="landing-search">
                     <div class="form-group position-relative">
                         <input id="land-search-input" type="search" class="form-control q" autocomplete="off"
-                               placeholder="Search">
+                               placeholder="ZOEK">
                         <button type="submit" id="land-search-btn">&times;</button>
                     </div>
                 </form>
