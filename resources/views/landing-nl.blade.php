@@ -22,29 +22,13 @@
 
 <header class="movie-header position-relative">
 
-    <div class="d-flex justify-content-center align-content-center">
-        <h1 class="mr-1">{{ $movie_details->movie_title }} - {{ $movie_details->movie_description_short_nl }}</h1>
-        <a href="#"><i class="fa fa-external-link"></i></a>
-    </div>
+    <h1 class="mr-1">{{ $movie_details->movie_title }} - {{ $movie_details->movie_description_short_nl }}</h1>
 
-    {{--    <select class="lang" id="this.options[this.selectedIndex].value"--}}
-    {{--            onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">--}}
-    {{--        <option value="/" {{ (request()->is('/')) ? 'selected' : '' }}>nl</option>--}}
-    {{--        <option value="/en" {{ (request()->is('en')) ? 'selected' : '' }}>en</option>--}}
-    {{--    </select>--}}
-
-    <div class="selected-lang">
-        <ul></ul>
-    </div>
-
-    <div class="dropdown-warpper">
-        <div class="dropdown">
-            <button class="dropbtn"><i class="fa fa-chevron-down"></i></button>
-            <ul class="dropdown-content">
-                <li data-lang="nl"><img src="https://image.flaticon.com/icons/svg/321/321264.svg" alt=""></li>
-                <li data-lang="en"><img src="https://image.flaticon.com/icons/svg/2969/2969780.svg" alt=""></li>
-            </ul>
-        </div>
+    <div class="dropdown-wrapper">
+        <ul class="dropdown-lists">
+            <li data-lang="nl"><img src="https://image.flaticon.com/icons/svg/321/321264.svg" alt=""></li>
+            <li data-lang="en"><img src="https://image.flaticon.com/icons/svg/2969/2969780.svg" alt=""></li>
+        </ul>
     </div>
 
 </header>
@@ -286,25 +270,23 @@
             $(".mobile-checkbox").click();
         });
 
+
         // langs
+
         const nl = document.querySelector('[data-lang="nl"]');
         const en = document.querySelector('[data-lang="en"]');
+
+        if (location.pathname === '/') {
+            nl.classList.add('active');
+        } else {
+            en.classList.add('active')
+        }
 
         const changeUrlToNl = (url) => location.href = '/';
         const changeUrlToEn = (url) => location.href = '/en';
 
         nl.addEventListener('click', changeUrlToNl);
         en.addEventListener('click', changeUrlToEn);
-
-
-        const selectedLang = document.querySelector('.selected-lang ul');
-        const flagImgNl = '<img src="https://image.flaticon.com/icons/svg/321/321264.svg" />';
-        const flagImgUs = '<img src="https://image.flaticon.com/icons/svg/2969/2969780.svg" />';
-
-        const selectFlagHtml = `
-            <li>${location.pathname === '/' ? flagImgNl : flagImgUs}</li>
-        `;
-        selectedLang.insertAdjacentHTML('afterbegin', selectFlagHtml);
 
         // document.querySelector('#yt-video').setAttribute('height', window.innerHeight / 2);
 
