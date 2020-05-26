@@ -18,7 +18,7 @@
 
 <body>
 
-<a class="trailer-video d-none" href="https://youtube.com/embed/eVVHmw3uH2Q?autoplay=1&mute=1"></a>
+<a class="trailer-video d-none" href="{{ $youtube_url }}?autoplay=1&mute=1"></a>
 
 <header class="movie-header">
     <a href="#">
