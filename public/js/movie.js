@@ -167,7 +167,7 @@ function getCities() {
                          <h3 class="ml-3">${md.name}</h3>
                       </div>
                       <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
-                         <p class="m-0 text-expand">${md.address}, ${md.name}</p>
+                         <p class="m-0 text-expand">${md.address}, ${md.city}</p>
                          <p class="m-0 text-expand" style="color:red;">${moment(md.date).format(
                         "MMMM Do"
                     )} ${moment(md.time, "HH:mm").format("HH:mm")}</p>
