@@ -39,6 +39,8 @@ if (location.pathname === '/en') {
     url = `${location.href}api/shows`;
 }
 
+
+
 searchForm.addEventListener("submit", function (e) {
     e.preventDefault();
 });
@@ -101,7 +103,7 @@ function displayMatches() {
                                     data-parent="#accordionExample">
                                     <div class="acc-description">
                                         <h4>${m.movie_title}</h4>
-                                        <a class="text-uppercase" target="_blank" href="${m.ticket_url}"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>
+                                        <a class="text-uppercase" href="http://${m.url}" target="_blank"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>
                                     </div>
                                 </div>
     `;
@@ -166,7 +168,7 @@ function getCities() {
                 data-parent="#accordionExample">
                 <div class="acc-description">
                    <h4>${md.movie_title}</h4>
-                   <a target="_blank" href="${md.ticket_url}"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>
+                   <a target="_blank" href="http://${md.url}"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>
                 </div>
              </div>`;
                 })
