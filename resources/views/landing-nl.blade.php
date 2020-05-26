@@ -18,7 +18,7 @@
 
 <body>
 
-<a class="trailer-video d-none" href="https://youtube.com/embed/eVVHmw3uH2Q?autoplay=1&mute=1"></a>
+<a class="trailer-video d-none" href="{{ $youtube_url }}?autoplay=1&mute=1"></a>
 
 <header class="movie-header">
     <a href="#">
@@ -107,9 +107,19 @@
                 <p class="text-center">BEKIJK DE TRAILER
                 </p>
 
-                <iframe style="width: 100%" height="222" src="{{ $youtube_url }}" frameborder="0"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                <div class="desk-frame d-none d-sm-none d-md-block">
+                    <iframe class="d-block mx-auto" width="560" height="315" src="{{ $youtube_url }}" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+
+                <div class="mobile-frame d-md-none">
+                    <iframe class="d-block mx-auto" width="280" height="215"
+                            src="{{ $youtube_url }}" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+
 
                 <div class="city-acc accordion d-none" id="accordionExample2"></div>
             </div>
@@ -157,11 +167,11 @@
 </div>
 
 <div id="videos" class="tabcontent">
-    <div class="iframe-containerr">
-        <iframe id="yt-video" style="width: 100%" height="722" src="{{ $youtube_url }}" frameborder="0"
+    <div class="iframe-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/eVVHmw3uH2Q" frameborder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-        </iframe>
+                allowfullscreen></iframe>
+
     </div>
 </div>
 
