@@ -219,8 +219,9 @@ input[type="search"] {
 }
 
 .movie-poster img {
-    width: 360px;
-    padding: 0 0 0 30px;
+    width: 85%;
+    margin: 0 auto;
+    display: block;
 }
 
 .desktop-nav {

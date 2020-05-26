@@ -210,7 +210,7 @@
 {{--<h2 class="h6 my-3">@lang('home.more_cities')</h2>--}}
 
 
-<footer class="movie-footer py-5">
+<footer class="movie-footer py-3">
     <div class="container">
         <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
             <li><a data-toggle="tab" href="#menu0">Cookies</a></li>
