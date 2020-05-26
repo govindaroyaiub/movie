@@ -258,15 +258,11 @@
 
         document.querySelector('#yt-video').setAttribute('height', window.innerHeight / 2);
 
-        // footer tab
-
-
         setTimeout(function () {
-            $('.trailer-video').trigger('click');
+            // $('.trailer-video').trigger('click');
         }, 10);
 
         const videoUrl = $('.trailer-video').attr('href');
-
 
         $('.trailer-video').magnificPopup({
             type: 'iframe',

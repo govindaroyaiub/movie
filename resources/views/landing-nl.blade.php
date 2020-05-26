@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="{{ asset('css/media-queries.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script
-        src="https://platform-api.sharethis.com/js/sharethis.js#property=5ec944357cfa4a0012b475a1&product=inline-share-buttons"
-        async="async"></script>
+        src='https://platform-api.sharethis.com/js/sharethis.js#property=5ec944357cfa4a0012b475a1&product=inline-share-buttons&cms=website'
+        async='async'></script>
 </head>
 
 <body>
@@ -25,7 +25,8 @@
         <h1 class="mr-1">{{ $movie_details->movie_title }}</h1>
         <i class="fa fa-external-link"></i>
     </a>
-    <select class="btn btn-secondary" style="position:relative" id="language" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+    <select class="btn btn-secondary" style="position:relative" id="language"
+            onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
         <option value="/" {{ (request()->is('/')) ? 'selected' : '' }}>Netherlands</option>
         <option value="/en" {{ (request()->is('en')) ? 'selected' : '' }}>English</option>
     </select>
@@ -39,7 +40,8 @@
             <span></span>
             <span></span>
             <ul class="menu">
-                <button class="tablinks mobile-link" onclick="openItem(event, 'getTickets')" id="defaultOpen">Koop Tickets
+                <button class="tablinks mobile-link" onclick="openItem(event, 'getTickets')" id="defaultOpen">Koop
+                    Tickets
                 </button>
                 <button class="tablinks mobile-link" onclick="openItem(event, 'videos')">Videos</button>
                 <button class="tablinks mobile-link" onclick="openItem(event, 'synopsis')">Synopsis</button>
@@ -54,7 +56,7 @@
             <button class="tablinks" onclick="openItem(event, 'getTickets')" id="defaultOpen">Koop Tickets</button>
             <button class="tablinks" onclick="openItem(event, 'videos')">Videos</button>
             <button class="tablinks" onclick="openItem(event, 'synopsis')">Synopsis</button>
-            <div class="sharethis-inline-share-buttons"></div>
+            <div class="text-uppercase font-weight-bold">#{{ $movie_details->movie_title }}</div>
         </div>
     </div>
 </div>
@@ -105,7 +107,7 @@
                 <p class="text-center">BEKIJK DE TRAILER
                 </p>
 
-                <iframe class="w-100" height="200" src="{{ $youtube_url }}" frameborder="0"
+                <iframe style="width: 100%" height="222" src="{{ $youtube_url }}" frameborder="0"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
 
@@ -156,7 +158,7 @@
 
 <div id="videos" class="tabcontent">
     <div class="iframe-containerr">
-        <iframe id="yt-video" class="w-100" src="{{ $youtube_url }}" frameborder="0"
+        <iframe id="yt-video" style="width: 100%" height="722" src="{{ $youtube_url }}" frameborder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
         </iframe>
@@ -208,7 +210,7 @@
 {{--<h2 class="h6 my-3">@lang('home.more_cities')</h2>--}}
 
 
-<footer class="movie-footer">
+<footer class="movie-footer py-5">
     <div class="container">
         <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
             <li><a data-toggle="tab" href="#menu0">Cookies</a></li>
@@ -217,7 +219,7 @@
             <li><a data-toggle="tab" href="#menu3">Credits</a></li>
         </ul>
 
-        <div id="my-tab-content" class="tab-content text-white py-5">
+        <div id="my-tab-content" class="tab-content text-white py-3 text-center text-uppercase">
             <div id="menu0" class="tab-pane fade in">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua.</p>
@@ -234,6 +236,11 @@
                 <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
                     explicabo.</p>
             </div>
+        </div>
+
+
+        <div class="align-items-center d-flex justify-content-center social-share">
+            <div class="sharethis-inline-share-buttons"></div>
         </div>
     </div>
 </footer>
@@ -255,13 +262,10 @@
             $(".mobile-checkbox").click();
         });
 
-        document.querySelector('#yt-video').setAttribute('height', window.innerHeight / 2);
-
-        // footer tab
-
+        // document.querySelector('#yt-video').setAttribute('height', window.innerHeight / 2);
 
         setTimeout(function () {
-            $('.trailer-video').trigger('click');
+            // $('.trailer-video').trigger('click');
         }, 10);
 
         const videoUrl = $('.trailer-video').attr('href');

@@ -28,10 +28,18 @@ const q = document.querySelector(".q");
 const r = document.querySelector(".main-acc");
 const cr = document.querySelector(".city-acc");
 
-const url = `${location.href}api/shows`;
+
+let url;
 const shows = [];
 
-searchForm.addEventListener("submit", function(e) {
+if (location.pathname === '/en') {
+    const enUrl = `${location.href}api/shows`;
+    url = enUrl.replace(/\/en/g, '/');
+} else {
+    url = `${location.href}api/shows`;
+}
+
+searchForm.addEventListener("submit", function (e) {
     e.preventDefault();
 });
 
@@ -75,42 +83,25 @@ function displayMatches() {
         .map(m => {
             return `
             <div id="heading${m.id}">
-                <div data-toggle="collapse" data-target="#collapse${
-                m.id
-            }" aria-expanded="true" aria-controls="collapse${m.id}">
+                <div data-toggle="collapse" data-target="#collapse${m.id}" aria-expanded="true" aria-controls="collapse${m.id}">
                      <div class="acc-title">
                         <div class="d-flex">
                            <i class="fa fa-file-video-o fa-3x text-red"></i>
                                <h3 class="ml-3">${m.name}</h3>
                                   </div>
-                                            <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
-                                                    <p class="m-0 text-expand">${m.address}, ${
-                m.city
-            }</p>
-                                                    <p class="m-0 text-expand" style="color:red;">${moment(
-                m.date
-            ).format(
-                "MMMM Do"
-            )} ${moment(
-                m.time,
-                "HH:mm"
-            ).format("HH:mm")}</p>
-                                            </div>
+                                         <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
+                                             <p class="m-0 text-expand">${m.address}, ${m.city}</p>
+                                             <p class="m-0 text-expand" style="color:red;">${moment(m.date).format("MMMM Do")} ${moment(m.time, "HH:mm").format("HH:mm")}</p>
+                                         </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div id="collapse${
-                m.id
-            }" class="collapse" aria-labelledby="heading${
-                m.id
-            }"
+                                <div id="collapse${m.id}" class="collapse" aria-labelledby="heading${m.id}"
                                     data-parent="#accordionExample">
                                     <div class="acc-description">
                                         <h4>${m.movie_title}</h4>
-                                        <a target="_blank" href="${
-                m.ticket_url
-            }"><i class="fa fa-ticket"></i> GET TICKETS</a>
+                                        <a class="text-uppercase" target="_blank" href="${m.ticket_url}"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Krijg Kaartjes' : 'Get Tickets'}</a>
                                     </div>
                                 </div>
     `;
@@ -142,7 +133,7 @@ function getCities() {
     const allCities = document.querySelectorAll(".city-link");
 
     allCities.forEach(aCity => {
-        aCity.addEventListener("click", function(e) {
+        aCity.addEventListener("click", function (e) {
             e.preventDefault();
             cr.classList.remove("d-block");
             cr.classList.add("d-block");
@@ -158,9 +149,7 @@ function getCities() {
                 .map(md => {
                     return `
                 <div id="heading${md.id}">
-                <div data-toggle="collapse" data-target="#collapse${
-                        md.id
-                    }" aria-expanded="true" aria-controls="collapse${md.id}">
+                <div data-toggle="collapse" data-target="#collapse${md.id}" aria-expanded="true" aria-controls="collapse${md.id}">
                    <div class="acc-title">
                       <div class="d-flex">
                          <i class="fa fa-file-video-o fa-3x text-red"></i>
@@ -168,25 +157,18 @@ function getCities() {
                       </div>
                       <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
                          <p class="m-0 text-expand">${md.address}, ${md.city}</p>
-                         <p class="m-0 text-expand" style="color:red;">${moment(md.date).format(
-                        "MMMM Do"
-                    )} ${moment(md.time, "HH:mm").format("HH:mm")}</p>
+                         <p class="m-0 text-expand" style="color:red;">${moment(md.date).format("MMMM Do")} ${moment(md.time, "HH:mm").format("HH:mm")}</p>
                       </div>
                    </div>
                 </div>
              </div>
-             <div id="collapse${
-                        md.id
-                    }" class="collapse" aria-labelledby="heading${md.id}"
+             <div id="collapse${md.id}" class="collapse" aria-labelledby="heading${md.id}"
                 data-parent="#accordionExample">
                 <div class="acc-description">
                    <h4>${md.movie_title}</h4>
-                   <a target="_blank" href="${
-                        md.ticket_url
-                    }"><i class="fa fa-ticket"></i> GET TICKETS</a>
+                   <a target="_blank" href="${md.ticket_url}"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Krijg Kaartjes' : 'Get Tickets'}</a>
                 </div>
-             </div>
-                `;
+             </div>`;
                 })
                 .join("");
             cr.innerHTML = cHtml;

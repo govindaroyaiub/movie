@@ -218,6 +218,11 @@ input[type="search"] {
     padding: 0;
 }
 
+.movie-poster img {
+    width: 360px;
+    padding: 0 0 0 30px;
+}
+
 .desktop-nav {
     background-color: #000;
     color: #fff;
@@ -532,4 +537,9 @@ input[type="search"] {
 
 .nav-tabs {
     border-bottom: 1px solid transparent !important;
+}
+
+
+.sharethis-inline-share-buttons {
+    z-index: 1 !important;
 }
