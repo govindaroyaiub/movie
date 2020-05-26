@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $movie_details->movie_title }}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/movie.css') }}">
     <link rel="stylesheet" href="{{ asset('css/media-queries.css') }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script
         src='https://platform-api.sharethis.com/js/sharethis.js#property=5ec944357cfa4a0012b475a1&product=inline-share-buttons&cms=website'
         async='async'></script>
@@ -20,17 +20,19 @@
 
 <a class="trailer-video d-none" href="{{ $youtube_url }}?autoplay=1&mute=1"></a>
 
-<header class="movie-header">
-    <a href="#">
-        <h1 class="mr-1">{{ $movie_details->movie_title }} - {{ $movie_details->movie_description_short }}</h1>
-        <i class="fa fa-external-link"></i>
-    </a>
-    <select class="btn btn-secondary" style="position:relative" id="language"
-            onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-        <option value="/" {{ (request()->is('/')) ? 'selected' : '' }}>Netherlands</option>
-        <option value="/en" {{ (request()->is('en')) ? 'selected' : '' }}>English</option>
-    </select>
+<header class="movie-header position-relative">
+
+    <h1 class="mr-1">{{ $movie_details->movie_title }} - {{ $movie_details->movie_description_short }}</h1>
+
+    <div class="dropdown-wrapper">
+        <ul class="dropdown-lists">
+            <li data-lang="nl"><img src="https://image.flaticon.com/icons/svg/321/321264.svg" alt=""></li>
+            <li data-lang="en"><img src="https://image.flaticon.com/icons/svg/2969/2969780.svg" alt=""></li>
+        </ul>
+    </div>
+
 </header>
+
 
 <div class="mobile-nav">
     <nav role="mobile-menu">
@@ -107,9 +109,19 @@
                 <p class="text-center">WATCH THE TRAILER BELOW
                 </p>
 
-                <iframe style="width: 100%" height="222" src="{{ $youtube_url }}" frameborder="0"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                <div class="desk-frame d-none d-sm-none d-md-block">
+                    <iframe class="d-block mx-auto" width="560" height="315" src="{{ $youtube_url }}" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+
+                <div class="mobile-frame d-md-none">
+                    <iframe class="d-block mx-auto" width="280" height="215"
+                            src="{{ $youtube_url }}" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+
 
                 <div class="city-acc accordion d-none" id="accordionExample2"></div>
             </div>
@@ -157,11 +169,11 @@
 </div>
 
 <div id="videos" class="tabcontent">
-    <div class="iframe-containerr">
-        <iframe id="yt-video" style="width: 100%" height="722" src="{{ $youtube_url }}" frameborder="0"
+    <div class="iframe-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/eVVHmw3uH2Q" frameborder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-        </iframe>
+                allowfullscreen></iframe>
+
     </div>
 </div>
 
@@ -174,7 +186,7 @@
 
             <div class="excerpt">
                 <h3 class="underline mb-3"> {{ $movie_details->movie_description_short }}</h3>
-                {{ $movie_details->movie_description_long }}
+                {{ $movie_details->movie_description_long_nl }}
             </div>
 
             <div class="synopsis-meta">
@@ -219,7 +231,7 @@
             <li><a data-toggle="tab" href="#menu3">Credits</a></li>
         </ul>
 
-        <div id="my-tab-content" class="tab-content text-white py-3 text-center text-uppercase">
+        <div id="my-tab-content" class="tab-content text-white py-3 text-center">
             <div id="menu0" class="tab-pane fade in">
                 <p>{{ $movie_details->cookies }}</p>
             </div>
@@ -257,6 +269,24 @@
         $('.mobile-link').on('click', function (e) {
             $(".mobile-checkbox").click();
         });
+
+
+        // langs
+
+        const nl = document.querySelector('[data-lang="nl"]');
+        const en = document.querySelector('[data-lang="en"]');
+
+        if (location.pathname === '/') {
+            nl.classList.add('active');
+        } else {
+            en.classList.add('active')
+        }
+
+        const changeUrlToNl = (url) => location.href = '/';
+        const changeUrlToEn = (url) => location.href = '/en';
+
+        nl.addEventListener('click', changeUrlToNl);
+        en.addEventListener('click', changeUrlToEn);
 
         // document.querySelector('#yt-video').setAttribute('height', window.innerHeight / 2);
 
