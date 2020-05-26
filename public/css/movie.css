@@ -575,13 +575,11 @@ input[type="search"] {
     list-style: none;
 }
 
-
 .dropdown-content li {
-    color: black;
     padding: 5px 10px;
-    text-decoration: none;
     display: block;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 .dropdown-content li:hover {
@@ -598,4 +596,22 @@ input[type="search"] {
 
 .dropdown img {
     width: 20px;
+}
+
+.selected-lang {
+    position: absolute;
+    top: 6px;
+    right: 55px;
+}
+
+.selected-lang ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.selected-lang img {
+    width: 35px;
+    margin-right: 5px;
 }

@@ -27,21 +27,25 @@
         <a href="#"><i class="fa fa-external-link"></i></a>
     </div>
 
-{{--    <select class="lang" id="this.options[this.selectedIndex].value"--}}
-{{--            onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">--}}
-{{--        <option value="/" {{ (request()->is('/')) ? 'selected' : '' }}>nl</option>--}}
-{{--        <option value="/en" {{ (request()->is('en')) ? 'selected' : '' }}>en</option>--}}
-{{--    </select>--}}
+    {{--    <select class="lang" id="this.options[this.selectedIndex].value"--}}
+    {{--            onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">--}}
+    {{--        <option value="/" {{ (request()->is('/')) ? 'selected' : '' }}>nl</option>--}}
+    {{--        <option value="/en" {{ (request()->is('en')) ? 'selected' : '' }}>en</option>--}}
+    {{--    </select>--}}
 
-   <div class="dropdown-warpper">
-       <div class="dropdown">
-           <button class="dropbtn"><i class="fa fa-chevron-down"></i></button>
-           <ul class="dropdown-content">
-               <li data-lang="nl"><img src="https://image.flaticon.com/icons/svg/321/321264.svg" alt=""></li>
-               <li data-lang="en"><img src="https://image.flaticon.com/icons/svg/2969/2969780.svg" alt=""></li>
-           </ul>
-       </div>
-   </div>
+    <div class="selected-lang">
+        <ul></ul>
+    </div>
+
+    <div class="dropdown-warpper">
+        <div class="dropdown">
+            <button class="dropbtn"><i class="fa fa-chevron-down"></i></button>
+            <ul class="dropdown-content">
+                <li data-lang="nl"><img src="https://image.flaticon.com/icons/svg/321/321264.svg" alt=""></li>
+                <li data-lang="en"><img src="https://image.flaticon.com/icons/svg/2969/2969780.svg" alt=""></li>
+            </ul>
+        </div>
+    </div>
 
 </header>
 
@@ -291,6 +295,16 @@
 
         nl.addEventListener('click', changeUrlToNl);
         en.addEventListener('click', changeUrlToEn);
+
+
+        const selectedLang = document.querySelector('.selected-lang ul');
+        const flagImgNl = '<img src="https://image.flaticon.com/icons/svg/321/321264.svg" />';
+        const flagImgUs = '<img src="https://image.flaticon.com/icons/svg/2969/2969780.svg" />';
+
+        const selectFlagHtml = `
+            <li>${location.pathname === '/' ? flagImgNl : flagImgUs}</li>
+        `;
+        selectedLang.insertAdjacentHTML('afterbegin', selectFlagHtml);
 
         // document.querySelector('#yt-video').setAttribute('height', window.innerHeight / 2);
 
