@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $movie_details->movie_title }} | {{ $movie_details->movie_description_short }}</title>
+    <title>{{ $movie_details->movie_title }}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="{{ asset('css/media-queries.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script
-        src="https://platform-api.sharethis.com/js/sharethis.js#property=5ec944357cfa4a0012b475a1&product=inline-share-buttons"
-        async="async"></script>
+        src='https://platform-api.sharethis.com/js/sharethis.js#property=5ec944357cfa4a0012b475a1&product=inline-share-buttons&cms=website'
+        async='async'></script>
 </head>
 
 <body>
@@ -22,10 +22,11 @@
 
 <header class="movie-header">
     <a href="#">
-        <h1 class="mr-1">{{ $movie_details->movie_title }}</h1>
+        <h1 class="mr-1">{{ $movie_details->movie_title }} - {{ $movie_details->movie_description_short }}</h1>
         <i class="fa fa-external-link"></i>
     </a>
-    <select class="btn btn-secondary" style="position:relative" id="language" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+    <select class="btn btn-secondary" style="position:relative" id="language"
+            onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
         <option value="/" {{ (request()->is('/')) ? 'selected' : '' }}>Netherlands</option>
         <option value="/en" {{ (request()->is('en')) ? 'selected' : '' }}>English</option>
     </select>
@@ -55,7 +56,7 @@
             <button class="tablinks" onclick="openItem(event, 'getTickets')" id="defaultOpen">Get Tickets</button>
             <button class="tablinks" onclick="openItem(event, 'videos')">Videos</button>
             <button class="tablinks" onclick="openItem(event, 'synopsis')">Synopsis</button>
-            <div class="sharethis-inline-share-buttons"></div>
+            <div class="text-uppercase font-weight-bold">#{{ $movie_details->movie_title }}</div>
         </div>
     </div>
 </div>
@@ -82,7 +83,7 @@
                 <form class="landing-search">
                     <div class="form-group position-relative">
                         <input id="land-search-input" type="search" class="form-control q" autocomplete="off"
-                               placeholder="Search">
+                               placeholder="SEARCH">
                         <button type="submit" id="land-search-btn">&times;</button>
                     </div>
                 </form>
@@ -106,7 +107,7 @@
                 <p class="text-center">WATCH THE TRAILER BELOW
                 </p>
 
-                <iframe class="w-100" height="200" src="{{ $youtube_url }}" frameborder="0"
+                <iframe style="width: 100%" height="222" src="{{ $youtube_url }}" frameborder="0"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
 
@@ -157,7 +158,7 @@
 
 <div id="videos" class="tabcontent">
     <div class="iframe-containerr">
-        <iframe id="yt-video" class="w-100" src="{{ $youtube_url }}" frameborder="0"
+        <iframe id="yt-video" style="width: 100%" height="722" src="{{ $youtube_url }}" frameborder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
         </iframe>
@@ -209,7 +210,7 @@
 {{--<h2 class="h6 my-3">@lang('home.more_cities')</h2>--}}
 
 
-<footer class="movie-footer">
+<footer class="movie-footer py-3">
     <div class="container">
         <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
             <li><a data-toggle="tab" href="#menu0">Cookies</a></li>
@@ -218,23 +219,24 @@
             <li><a data-toggle="tab" href="#menu3">Credits</a></li>
         </ul>
 
-        <div id="my-tab-content" class="tab-content text-white py-5">
+        <div id="my-tab-content" class="tab-content text-white py-3 text-center text-uppercase">
             <div id="menu0" class="tab-pane fade in">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua.</p>
+                <p>{{ $movie_details->cookies }}</p>
             </div>
             <div id="menu1" class="tab-pane fade">
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.</p>
+                <p>{{ $movie_details->terms_of_use }}</p>
             </div>
             <div id="menu2" class="tab-pane fade">
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                    totam rem aperiam.</p>
+                <p>{{ $movie_details->privacy_policy }}</p>
             </div>
             <div id="menu3" class="tab-pane fade">
-                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                    explicabo.</p>
+                <p>{{ $movie_details->credits }}</p>
             </div>
+        </div>
+
+
+        <div class="align-items-center d-flex justify-content-center social-share">
+            <div class="sharethis-inline-share-buttons"></div>
         </div>
     </div>
 </footer>
@@ -256,13 +258,14 @@
             $(".mobile-checkbox").click();
         });
 
-        document.querySelector('#yt-video').setAttribute('height', window.innerHeight / 2);
+        // document.querySelector('#yt-video').setAttribute('height', window.innerHeight / 2);
 
         setTimeout(function () {
-            // $('.trailer-video').trigger('click');
+            $('.trailer-video').trigger('click');
         }, 10);
 
         const videoUrl = $('.trailer-video').attr('href');
+
 
         $('.trailer-video').magnificPopup({
             type: 'iframe',

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $movie_details->movie_title }} | {{ $movie_details->movie_description_short }}</title>
+    <title>{{ $movie_details->movie_title }}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -22,7 +22,7 @@
 
 <header class="movie-header">
     <a href="#">
-        <h1 class="mr-1">{{ $movie_details->movie_title }}</h1>
+        <h1 class="mr-1">{{ $movie_details->movie_title }} - {{ $movie_details->movie_description_short_nl }}</h1>
         <i class="fa fa-external-link"></i>
     </a>
     <select class="btn btn-secondary" style="position:relative" id="language"
@@ -120,11 +120,11 @@
                  alt="">
 
             <h3 class="underline text-center my-3">
-                {{ $movie_details->movie_description_short }}
+                {{ $movie_details->movie_description_short_nl }}
             </h3>
 
             <p class="excerpt mt-3">
-                {{ $movie_details->movie_description_long }}
+                {{ $movie_details->movie_description_long_nl }}
             </p>
 
             <div class="synopsis-meta">
@@ -173,8 +173,8 @@
         <div class="synopsis-grid mt-5">
 
             <div class="excerpt">
-                <h3 class="underline mb-3"> {{ $movie_details->movie_description_short }}</h3>
-                {{ $movie_details->movie_description_long }}
+                <h3 class="underline mb-3"> {{ $movie_details->movie_description_short_nl }}</h3>
+                {{ $movie_details->movie_description_long_nl }}
             </div>
 
             <div class="synopsis-meta">
@@ -221,20 +221,16 @@
 
         <div id="my-tab-content" class="tab-content text-white py-3 text-center text-uppercase">
             <div id="menu0" class="tab-pane fade in">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua.</p>
+                <p>{{ $movie_details->cookies_nl }}</p>
             </div>
             <div id="menu1" class="tab-pane fade">
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.</p>
+                <p>{{ $movie_details->terms_of_use_nl }}</p>
             </div>
             <div id="menu2" class="tab-pane fade">
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                    totam rem aperiam.</p>
+                <p>{{ $movie_details->privacy_policy_nl }}</p>
             </div>
             <div id="menu3" class="tab-pane fade">
-                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                    explicabo.</p>
+                <p>{{ $movie_details->credits_nl }}</p>
             </div>
         </div>
 
@@ -265,7 +261,7 @@
         // document.querySelector('#yt-video').setAttribute('height', window.innerHeight / 2);
 
         setTimeout(function () {
-            // $('.trailer-video').trigger('click');
+            $('.trailer-video').trigger('click');
         }, 10);
 
         const videoUrl = $('.trailer-video').attr('href');

@@ -18,6 +18,10 @@ class MovieDetailsTable extends Migration
             $table->string('movie_title')->nullable();
             $table->longText('movie_description_short')->nullable();
             $table->longText('movie_description_long')->nullable();
+            $table->longText('buy_tickets')->nullable();
+            $table->longText('movie_description_short_nl')->nullable();
+            $table->longText('movie_description_long_nl')->nullable();
+            $table->longText('buy_tickets_nl')->nullable();
             $table->date('cinema_date')->nullable();
             $table->string('director')->nullable();
             $table->longText('producer')->nullable();
@@ -31,6 +35,17 @@ class MovieDetailsTable extends Migration
             $table->string('ratings')->nullable();
             $table->longText('base_url')->nullable();
             $table->longText('ticket_url')->nullable();
+            $table->longText('fb_link')->nullable();
+            $table->longText('twitter_link')->nullable();
+            $table->string('hashtag')->nullable();
+            $table->longText('cookies')->nullable();
+            $table->longText('cookies_nl')->nullable();
+            $table->longText('terms_of_use')->nullable();
+            $table->longText('terms_of_use_nl')->nullable();
+            $table->longText('privacy_policy')->nullable();
+            $table->longText('privacy_policy_nl')->nullable();
+            $table->longText('credits')->nullable();
+            $table->longText('credits_nl')->nullable();
             $table->timestamps();
         });
     }
