@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $movie_details->movie_title }}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/movie.css') }}">
     <link rel="stylesheet" href="{{ asset('css/media-queries.css') }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script
         src='https://platform-api.sharethis.com/js/sharethis.js#property=5ec944357cfa4a0012b475a1&product=inline-share-buttons&cms=website'
         async='async'></script>
@@ -20,17 +20,31 @@
 
 <a class="trailer-video d-none" href="{{ $youtube_url }}?autoplay=1&mute=1"></a>
 
-<header class="movie-header">
-    <a href="#">
+<header class="movie-header position-relative">
+
+    <div class="d-flex justify-content-center align-content-center">
         <h1 class="mr-1">{{ $movie_details->movie_title }} - {{ $movie_details->movie_description_short_nl }}</h1>
-        <i class="fa fa-external-link"></i>
-    </a>
-    <select class="lang" id="language"
-            onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-        <option value="/" {{ (request()->is('/')) ? 'selected' : '' }}>🇳🇱</option>
-        <option value="/en" {{ (request()->is('en')) ? 'selected' : '' }}>🇺🇸</option>
-    </select>
+        <a href="#"><i class="fa fa-external-link"></i></a>
+    </div>
+
+{{--    <select class="lang" id="this.options[this.selectedIndex].value"--}}
+{{--            onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">--}}
+{{--        <option value="/" {{ (request()->is('/')) ? 'selected' : '' }}>nl</option>--}}
+{{--        <option value="/en" {{ (request()->is('en')) ? 'selected' : '' }}>en</option>--}}
+{{--    </select>--}}
+
+   <div class="dropdown-warpper">
+       <div class="dropdown">
+           <button class="dropbtn"><i class="fa fa-chevron-down"></i></button>
+           <ul class="dropdown-content">
+               <li data-lang="nl"><img src="https://image.flaticon.com/icons/svg/321/321264.svg" alt=""></li>
+               <li data-lang="en"><img src="https://image.flaticon.com/icons/svg/2969/2969780.svg" alt=""></li>
+           </ul>
+       </div>
+   </div>
+
 </header>
+
 
 <div class="mobile-nav">
     <nav role="mobile-menu">
@@ -268,10 +282,20 @@
             $(".mobile-checkbox").click();
         });
 
+        // langs
+        const nl = document.querySelector('[data-lang="nl"]');
+        const en = document.querySelector('[data-lang="en"]');
+
+        const changeUrlToNl = (url) => location.href = '/';
+        const changeUrlToEn = (url) => location.href = '/en';
+
+        nl.addEventListener('click', changeUrlToNl);
+        en.addEventListener('click', changeUrlToEn);
+
         // document.querySelector('#yt-video').setAttribute('height', window.innerHeight / 2);
 
         setTimeout(function () {
-            $('.trailer-video').trigger('click');
+            // $('.trailer-video').trigger('click');
         }, 10);
 
         const videoUrl = $('.trailer-video').attr('href');
