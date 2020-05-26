@@ -25,10 +25,10 @@
         <h1 class="mr-1">{{ $movie_details->movie_title }} - {{ $movie_details->movie_description_short_nl }}</h1>
         <i class="fa fa-external-link"></i>
     </a>
-    <select class="btn btn-secondary" style="position:relative" id="language"
+    <select class="lang" id="language"
             onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-        <option value="/" {{ (request()->is('/')) ? 'selected' : '' }}>Netherlands</option>
-        <option value="/en" {{ (request()->is('en')) ? 'selected' : '' }}>English</option>
+        <option value="/" {{ (request()->is('/')) ? 'selected' : '' }}>🇳🇱</option>
+        <option value="/en" {{ (request()->is('en')) ? 'selected' : '' }}>🇺🇸</option>
     </select>
 </header>
 
@@ -229,7 +229,7 @@
             <li><a data-toggle="tab" href="#menu3">Credits</a></li>
         </ul>
 
-        <div id="my-tab-content" class="tab-content text-white py-3 text-center text-uppercase">
+        <div id="my-tab-content" class="tab-content text-white py-3 text-center">
             <div id="menu0" class="tab-pane fade in">
                 <p>{{ $movie_details->cookies_nl }}</p>
             </div>

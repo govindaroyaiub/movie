@@ -540,7 +540,29 @@ input[type="search"] {
     border-bottom: 1px solid transparent !important;
 }
 
-
 .sharethis-inline-share-buttons {
     z-index: 1 !important;
+}
+
+.lang {
+    background: transparent;
+    border: 0;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.lang:focus {
+    outline: none;
+}
+
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+select::-ms-expand {
+    display: none;
 }
