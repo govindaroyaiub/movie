@@ -566,6 +566,12 @@ input[type="search"] {
     color: #E4E2E3 !important;
 }
 
+.accordion {
+    position: relative;
+    overflow-y: scroll;
+    max-height: 65vh;
+}
+
 .acc-description {
     background-color: var(--color-primary-dark);
 }
