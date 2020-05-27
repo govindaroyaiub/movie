@@ -35,6 +35,7 @@ class DataController extends Controller
                                 ->join('show_location_static', 'movie_showtimes.cinema_id', 'show_location_static.id')
                                 ->where('movie_details.base_url', '=', $app_url)
                                 ->where('movie_showtimes.date', '>=', $current_date)
+                                ->orderBy('show_location_static.name', 'ASC')
                                 ->orderBy('movie_showtimes.date', 'ASC')
                                 ->get();
 
@@ -43,7 +44,7 @@ class DataController extends Controller
                                 ->select('show_location_static.city')
                                 ->where('movie_details.base_url', '=', $app_url)
                                 ->where('movie_showtimes.date', '>=', $current_date)
-                                ->orderBy('movie_showtimes.date', 'ASC')
+                                ->orderBy('show_location_static.city', 'ASC')
                                 ->distinct()
                                 ->get();
                                 
@@ -85,6 +86,7 @@ class DataController extends Controller
                                 ->join('show_location_static', 'movie_showtimes.cinema_id', 'show_location_static.id')
                                 ->where('movie_details.base_url', '=', $app_url)
                                 ->where('movie_showtimes.date', '>=', $current_date)
+                                ->orderBy('show_location_static.name', 'ASC')
                                 ->orderBy('movie_showtimes.date', 'ASC')
                                 ->get();
 
@@ -93,7 +95,7 @@ class DataController extends Controller
                                 ->select('show_location_static.city')
                                 ->where('movie_details.base_url', '=', $app_url)
                                 ->where('movie_showtimes.date', '>=', $current_date)
-                                ->orderBy('movie_showtimes.date', 'ASC')
+                                ->orderBy('show_location_static.city', 'ASC')
                                 ->distinct()
                                 ->get();
                                 
@@ -132,6 +134,7 @@ class DataController extends Controller
                                 'show_location_static.url')
                                 ->where('movie_details.base_url', '=', $app_url)
                                 ->where('movie_showtimes.date', '>=', $current_date)
+                                ->orderBy('show_location_static.name', 'ASC')
                                 ->orderBy('movie_showtimes.date', 'ASC')
                                 ->get();
 
