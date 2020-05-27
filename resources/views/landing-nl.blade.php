@@ -56,7 +56,7 @@
             <button class="tablinks" onclick="openItem(event, 'getTickets')" id="defaultOpen">Koop Tickets</button>
             <button class="tablinks" onclick="openItem(event, 'videos')">Videos</button>
             <button class="tablinks" onclick="openItem(event, 'synopsis')">Synopsis</button>
-            <div class="text-uppercase font-weight-bold">{{ $movie_details->hashtag }}</div>
+            <div class="hashtag text-uppercase font-weight-bold">{{ $movie_details->hashtag }}</div>
         </div>
     </div>
 </div>
