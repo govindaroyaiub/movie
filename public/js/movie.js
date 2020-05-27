@@ -93,7 +93,9 @@ function displayMatches() {
                                   </div>
                                          <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
                                              <p class="m-0">${m.address}, ${m.city}</p>
-                                             <p class="m-0 text-expand">${moment(m.date).format("MMMM Do")} ${moment(m.time, "HH:mm").format("HH:mm")}</p>
+                                             <p class="m-0 text-expand">
+                                                ${moment(m.date).format("MMMM Do")} ${moment(m.time, "HH:mm").format("HH:mm")}
+                                             </p>
                                          </div>
                                         </div>
                                     </div>
@@ -184,6 +186,7 @@ searchBtn.addEventListener("click", removeSearchoutput);
 q.addEventListener("change", displayMatches);
 q.addEventListener("keyup", displayMatches);
 window.addEventListener("load", getCities);
+
 
 
 

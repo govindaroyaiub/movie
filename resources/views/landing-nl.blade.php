@@ -25,8 +25,8 @@
     <h1 class="mr-1">{{ $movie_details->movie_title }} - {{ $movie_details->movie_description_short_nl }}</h1>
 
     <ul class="dropdown-flags">
-        <li  data-lang="nl"><img src="https://image.flaticon.com/icons/svg/321/321264.svg" alt=""></li>
         <li data-lang="en"><img src="https://image.flaticon.com/icons/svg/2969/2969780.svg" alt=""></li>
+        <li data-lang="nl"><img src="https://image.flaticon.com/icons/svg/321/321264.svg" alt=""></li>
     </ul>
 
 </header>
@@ -108,21 +108,6 @@
 
                 <p class="text-center">BEKIJK DE TRAILER
                 </p>
-
-{{--                <div class="desk-frame d-none d-sm-none d-md-block">--}}
-{{--                    <iframe class="d-block mx-auto" width="560" height="315" src="{{ $youtube_url }}" frameborder="0"--}}
-{{--                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"--}}
-{{--                            allowfullscreen></iframe>--}}
-{{--                </div>--}}
-
-{{--                <div class="mobile-frame d-md-none">--}}
-{{--                    <iframe class="d-block mx-auto" width="280" height="215"--}}
-{{--                            src="{{ $youtube_url }}" frameborder="0"--}}
-{{--                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"--}}
-{{--                            allowfullscreen></iframe>--}}
-{{--                </div>--}}
-
-
                 <iframe class="js-iframe"
                         src="{{ $youtube_url }}" frameborder="0"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -134,8 +119,8 @@
 
         </section>
         <section class="movie-details">
-{{--            <img width="100" class="d-block mx-auto" src="{{ $movie_details->image1 }}"--}}
-{{--                 alt="">--}}
+            {{--            <img width="100" class="d-block mx-auto" src="{{ $movie_details->image1 }}"--}}
+            {{--                 alt="">--}}
 
             <h3 class="underline text-center my-3">
                 {{ $movie_details->movie_description_short_nl }}
@@ -265,8 +250,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment-with-locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.31/moment-timezone.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 <script src="{{ asset('js/movie.js') }}"></script>
@@ -278,23 +264,27 @@
 
         $('[data-toggle="tooltip"]').tooltip();
 
-
         // language picker
         const nl = document.querySelector('[data-lang="nl"]');
         const en = document.querySelector('[data-lang="en"]');
 
-
         if (location.pathname === '/') {
-            nl.classList.add('d-block');
-        } else {
             en.classList.add('d-block');
+            moment.locale('nl');
         }
 
-        const changeUrlToNl = (url) => location.href = '/en';
-        const changeUrlToEn = (url) => location.href = '/';
+        if (location.pathname === '/en') {
+            nl.classList.add('d-block');
+            moment.locale('en');
+        }
 
-        nl.addEventListener('click', changeUrlToNl);
-        en.addEventListener('click', changeUrlToEn);
+        nl.addEventListener('click', function () {
+            location.href = '/en';
+        });
+
+        en.addEventListener('click', function () {
+            location.href = '/';
+        });
 
         setTimeout(function () {
             $('.trailer-video').trigger('click');
