@@ -24,12 +24,10 @@
 
     <h1 class="mr-1">{{ $movie_details->movie_title }} - {{ $movie_details->movie_description_short_nl }}</h1>
 
-    <div class="dropdown-wrapper">
-        <ul class="dropdown-lists">
-            <li data-lang="nl"><img src="https://image.flaticon.com/icons/svg/321/321264.svg" alt=""></li>
-            <li data-lang="en"><img src="https://image.flaticon.com/icons/svg/2969/2969780.svg" alt=""></li>
-        </ul>
-    </div>
+    <ul class="dropdown-flags">
+        <li data-lang="nl"><img src="https://image.flaticon.com/icons/svg/321/321264.svg" alt=""></li>
+        <li data-lang="en"><img src="https://image.flaticon.com/icons/svg/2969/2969780.svg" alt=""></li>
+    </ul>
 
 </header>
 
@@ -72,12 +70,14 @@
         </section>
 
         <section class="movie-content">
-            <div class="movie-thumb">
+            <div class="movie-thumb p-2">
                 <button role="button">
                     <img
-                        src=""
+                        width="60"
+                        src="{{ $movie_details->image1 }}"
                         alt="">
                 </button>
+                <p>{{ $movie_details->movie_description_short_nl }}</p>
             </div>
 
             <div class="land-content">
@@ -109,18 +109,24 @@
                 <p class="text-center">BEKIJK DE TRAILER
                 </p>
 
-                <div class="desk-frame d-none d-sm-none d-md-block">
-                    <iframe class="d-block mx-auto" width="560" height="315" src="{{ $youtube_url }}" frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                </div>
+{{--                <div class="desk-frame d-none d-sm-none d-md-block">--}}
+{{--                    <iframe class="d-block mx-auto" width="560" height="315" src="{{ $youtube_url }}" frameborder="0"--}}
+{{--                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"--}}
+{{--                            allowfullscreen></iframe>--}}
+{{--                </div>--}}
 
-                <div class="mobile-frame d-md-none">
-                    <iframe class="d-block mx-auto" width="280" height="215"
-                            src="{{ $youtube_url }}" frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                </div>
+{{--                <div class="mobile-frame d-md-none">--}}
+{{--                    <iframe class="d-block mx-auto" width="280" height="215"--}}
+{{--                            src="{{ $youtube_url }}" frameborder="0"--}}
+{{--                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"--}}
+{{--                            allowfullscreen></iframe>--}}
+{{--                </div>--}}
+
+
+                <iframe class="js-iframe"
+                        src="{{ $youtube_url }}" frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
 
 
                 <div class="city-acc accordion d-none" id="accordionExample2"></div>
@@ -128,8 +134,8 @@
 
         </section>
         <section class="movie-details">
-            <img width="100" class="d-block mx-auto" src="{{ $movie_details->image1 }}"
-                 alt="">
+{{--            <img width="100" class="d-block mx-auto" src="{{ $movie_details->image1 }}"--}}
+{{--                 alt="">--}}
 
             <h3 class="underline text-center my-3">
                 {{ $movie_details->movie_description_short_nl }}
@@ -270,28 +276,28 @@
             $(".mobile-checkbox").click();
         });
 
+        $('[data-toggle="tooltip"]').tooltip()
 
-        // langs
 
+        // language picker
         const nl = document.querySelector('[data-lang="nl"]');
         const en = document.querySelector('[data-lang="en"]');
 
+
         if (location.pathname === '/') {
-            nl.classList.add('active');
+            nl.classList.add('d-block');
         } else {
-            en.classList.add('active')
+            en.classList.add('d-block');
         }
 
-        const changeUrlToNl = (url) => location.href = '/';
-        const changeUrlToEn = (url) => location.href = '/en';
+        const changeUrlToNl = (url) => location.href = '/en';
+        const changeUrlToEn = (url) => location.href = '/';
 
         nl.addEventListener('click', changeUrlToNl);
         en.addEventListener('click', changeUrlToEn);
 
-        // document.querySelector('#yt-video').setAttribute('height', window.innerHeight / 2);
-
         setTimeout(function () {
-            $('.trailer-video').trigger('click');
+            // $('.trailer-video').trigger('click');
         }, 10);
 
         const videoUrl = $('.trailer-video').attr('href');

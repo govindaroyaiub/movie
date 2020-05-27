@@ -5,6 +5,21 @@
     .movie-details {
         display: none;
     }
+
+    .movie-header h1 {
+        font-size: 1rem;
+        margin-top: 20px;
+    }
+
+    .menu-toggle span {
+        width: 22px;
+        height: 1px;
+    }
+
+    .js-iframe {
+        width: 280px;
+        height: 215px;
+    }
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -14,6 +29,17 @@
     .movie-details {
         display: none;
     }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .js-iframe {
+        width: 318px;
+        height: 215px;
+    }
+
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -26,12 +52,23 @@
 
     .grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
     }
 
     .video-details iframe {
         height: 280px;
     }
+
+
+    .dropdown-flags img {
+        width: 30px;
+    }
+
+    .js-iframe {
+        width: 640px;
+        height: 360px;
+    }
+
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -48,7 +85,11 @@
 
     .grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .movie-poster {
+        display: none;
     }
 
     .video-details iframe {
@@ -68,6 +109,11 @@
     .excerpt {
         font-size: 1.1rem;
     }
+
+    .js-iframe {
+        width: 390px;
+        height: 215px;
+    }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
@@ -79,6 +125,10 @@
 
 
     .movie-details {
+        display: block;
+    }
+
+    .movie-poster {
         display: block;
     }
 
@@ -115,4 +165,16 @@
         justify-content: space-between;
         align-items: center;
     }
+
+
+    .dropdown-flags img {
+        width: 40px;
+        margin: 0 auto;
+    }
+
+    .js-iframe {
+        width: 430px;
+        height: 242px;
+    }
+
 }
