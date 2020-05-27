@@ -34,7 +34,7 @@ class DataController extends Controller
             $showtime = Showtime::join('movie_details', 'movie_showtimes.movie_id', 'movie_details.id')
                                 ->join('show_location_static', 'movie_showtimes.cinema_id', 'show_location_static.id')
                                 ->where('movie_details.base_url', '=', $app_url)
-                                ->where('movie_showtimes.date', '=', $current_date)
+                                ->where('movie_showtimes.date', '>=', $current_date)
                                 ->orderBy('show_location_static.name', 'ASC')
                                 ->get();
 
@@ -42,7 +42,7 @@ class DataController extends Controller
                                 ->join('show_location_static', 'movie_showtimes.cinema_id', 'show_location_static.id')
                                 ->select('show_location_static.city')
                                 ->where('movie_details.base_url', '=', $app_url)
-                                ->where('movie_showtimes.date', '=', $current_date)
+                                ->where('movie_showtimes.date', '>=', $current_date)
                                 ->orderBy('show_location_static.city', 'ASC')
                                 ->distinct()
                                 ->get();
@@ -84,7 +84,7 @@ class DataController extends Controller
             $showtime = Showtime::join('movie_details', 'movie_showtimes.movie_id', 'movie_details.id')
                                 ->join('show_location_static', 'movie_showtimes.cinema_id', 'show_location_static.id')
                                 ->where('movie_details.base_url', '=', $app_url)
-                                ->where('movie_showtimes.date', '=', $current_date)
+                                ->where('movie_showtimes.date', '>=', $current_date)
                                 ->orderBy('show_location_static.name', 'ASC')
                                 ->get();
 
@@ -92,7 +92,7 @@ class DataController extends Controller
                                 ->join('show_location_static', 'movie_showtimes.cinema_id', 'show_location_static.id')
                                 ->select('show_location_static.city')
                                 ->where('movie_details.base_url', '=', $app_url)
-                                ->where('movie_showtimes.date', '=', $current_date)
+                                ->where('movie_showtimes.date', '>=', $current_date)
                                 ->orderBy('show_location_static.city', 'ASC')
                                 ->distinct()
                                 ->get();
@@ -131,7 +131,7 @@ class DataController extends Controller
                                 'show_location_static.phone', 
                                 'show_location_static.url')
                                 ->where('movie_details.base_url', '=', $app_url)
-                                ->where('movie_showtimes.date', '=', $current_date)
+                                ->where('movie_showtimes.date', '>=', $current_date)
                                 ->orderBy('show_location_static.name', 'ASC')
                                 ->get();
 
