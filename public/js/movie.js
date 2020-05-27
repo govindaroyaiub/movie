@@ -40,7 +40,6 @@ if (location.pathname === '/en') {
 }
 
 
-
 searchForm.addEventListener("submit", function (e) {
     e.preventDefault();
 });
@@ -161,7 +160,7 @@ function getCities() {
                       </div>
                       <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
                          <p class="m-0">${md.address}, ${md.city}</p>
-                         <p class="m-0 text-expand">${moment(md.date).format("MMMM Do")} ${moment(md.time, "HH:mm").format("HH:mm")}</p>
+                         <p class="m-0 text-expand">${location.pathname === '/' ? moment(md.date).locale('nl').format("LL") : moment(md.date).locale('en').format("LL")} ${moment(md.time, "HH:mm").format("HH:mm")}</p>
                       </div>
                    </div>
                 </div>
