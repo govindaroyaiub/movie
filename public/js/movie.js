@@ -94,7 +94,7 @@ function displayMatches() {
                                          <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
                                              <p class="m-0">${m.address}, ${m.city}</p>
                                              <p class="m-0 text-expand">
-                                                ${moment(m.date).format("MMMM Do")} ${moment(m.time, "HH:mm").format("HH:mm")}
+                                                ${location.pathname === '/' ? moment(m.date).locale('nl').format("LL") : moment(m.date).locale('en').format("LL")} ${moment(m.time, "HH:mm").format("HH:mm")}
                                              </p>
                                          </div>
                                         </div>

@@ -25,9 +25,10 @@
     <h1 class="mr-1">{{ $movie_details->movie_title }} - {{ $movie_details->movie_description_short }}</h1>
 
     <ul class="dropdown-flags">
-        <li data-lang="nl"><img src="https://image.flaticon.com/icons/svg/321/321264.svg" alt=""></li>
         <li data-lang="en"><img src="https://image.flaticon.com/icons/svg/2969/2969780.svg" alt=""></li>
+        <li data-lang="nl"><img src="https://image.flaticon.com/icons/svg/321/321264.svg" alt=""></li>
     </ul>
+
 
 </header>
 
@@ -263,10 +264,10 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment-with-locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.31/moment-timezone.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 <script src="{{ asset('js/movie.js') }}"></script>
@@ -283,25 +284,24 @@
         const nl = document.querySelector('[data-lang="nl"]');
         const en = document.querySelector('[data-lang="en"]');
 
-
         if (location.pathname === '/') {
-            nl.classList.add('d-block');
-        } else {
             en.classList.add('d-block');
+            moment.locale('nl');
+            en.addEventListener('click', function () {
+                location.href = '/en';
+            })
+        } else {
+            nl.classList.add('d-block');
+            moment.locale('en');
+            nl.addEventListener('click', function () {
+                location.href = '/';
+            })
         }
-
-        const changeUrlToNl = (url) => location.href = '/en';
-        const changeUrlToEn = (url) => location.href = '/';
-
-        nl.addEventListener('click', changeUrlToNl);
-        en.addEventListener('click', changeUrlToEn);
-
         setTimeout(function () {
             $('.trailer-video').trigger('click');
         }, 10);
 
         const videoUrl = $('.trailer-video').attr('href');
-
 
         $('.trailer-video').magnificPopup({
             type: 'iframe',

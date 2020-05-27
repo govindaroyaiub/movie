@@ -271,27 +271,22 @@
         if (location.pathname === '/') {
             en.classList.add('d-block');
             moment.locale('nl');
-        }
-
-        if (location.pathname === '/en') {
+            en.addEventListener('click', function () {
+                location.href = '/en';
+            })
+        } else {
             nl.classList.add('d-block');
             moment.locale('en');
+            nl.addEventListener('click', function () {
+                location.href = '/';
+            })
         }
-
-        nl.addEventListener('click', function () {
-            location.href = '/en';
-        });
-
-        en.addEventListener('click', function () {
-            location.href = '/';
-        });
 
         setTimeout(function () {
             $('.trailer-video').trigger('click');
         }, 10);
 
         const videoUrl = $('.trailer-video').attr('href');
-
 
         $('.trailer-video').magnificPopup({
             type: 'iframe',
