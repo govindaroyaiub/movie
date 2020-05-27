@@ -70,6 +70,10 @@ input[type="search"] {
     color: #000;
 }
 
+.grid {
+    background: var(--color-secondary-dark);
+}
+
 .mobile-menu {
     background-color: transparent;
     height: 0;
@@ -242,10 +246,6 @@ input[type="search"] {
     background: #000;
     color: #fff;
     min-height: 90vh;
-}
-
-.grid {
-    background: #000;
 }
 
 .synopsis-details {
@@ -561,4 +561,23 @@ input[type="search"] {
 
 .hashtag {
     color: var(--color-primary-light);
+}
+
+.text-expand {
+    /*color: var(--color-primary-light) !important;*/
+    color: #E4E2E3 !important;
+}
+
+.acc-description {
+    background-color: var(--color-primary-dark);
+}
+
+.acc-description a {
+    background-color: var(--color-primary-light);
+    box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
+    margin-top: 8px;
+}
+
+.acc-description a:hover {
+    box-shadow: none;
 }
