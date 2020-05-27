@@ -233,7 +233,7 @@
         <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
             <li><a data-toggle="tab" href="#menu0">Cookies</a></li>
             <li><a data-toggle="tab" href="#menu1">Gebruiksvoorwaarden</a></li>
-            <li><a data-toggle="tab" href="#menu2">Privacy policy</a></li>
+            <li><a data-toggle="tab" href="#menu2">Privacy Policy</a></li>
             <li><a data-toggle="tab" href="#menu3">Credits</a></li>
         </ul>
 
@@ -297,7 +297,7 @@
         en.addEventListener('click', changeUrlToEn);
 
         setTimeout(function () {
-            // $('.trailer-video').trigger('click');
+            $('.trailer-video').trigger('click');
         }, 10);
 
         const videoUrl = $('.trailer-video').attr('href');
