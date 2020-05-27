@@ -1,14 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 /* * { outline: solid 1px hotpink; } */
+/*--color-primary-light: #ff3014;*/
+/*--color-primary-dark: #96190a;*/
 
 :root {
-    /*--color-primary-light: #ff3014;*/
-    /*--color-primary-dark: #96190a;*/
-
     --color-primary-light: #529dbc;
     --color-primary-dark: #74acc4;
-
     --color-secondary-light: #272727;
     --color-secondary-dark: #000;
 }
