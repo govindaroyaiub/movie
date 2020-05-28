@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/movie.css') }}">
     <link rel="stylesheet" href="{{ asset('css/media-queries.css') }}">
-    <script
-        src='https://platform-api.sharethis.com/js/sharethis.js#property=5ec944357cfa4a0012b475a1&product=inline-share-buttons&cms=website'
-        async='async'></script>
+    {!! $movie_details->google_pixel !!}
+    {!! $movie_details->fb_pixel !!}
+    <script src='https://platform-api.sharethis.com/js/sharethis.js#property=5ec944357cfa4a0012b475a1&product=inline-share-buttons&cms=website' async='async'></script>
 </head>
 
 <body>
