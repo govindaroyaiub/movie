@@ -102,6 +102,8 @@ class HomeController extends Controller
                         $privacy_policy_nl = $worksheet3->getCellByColumnAndRow(30, $row)->getValue();
                         $credits = $worksheet3->getCellByColumnAndRow(31, $row)->getValue();
                         $credits_nl = $worksheet3->getCellByColumnAndRow(32, $row)->getValue();
+                        $fb_pixel = $worksheet3->getCellByColumnAndRow(33, $row)->getValue();
+                        $google_pixel = $worksheet3->getCellByColumnAndRow(34, $row)->getValue();
                         $cinema_date = date('Y-m-d',\PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($cinema_date_sheet));
                         
                         if($movie_title != NULL)
@@ -137,7 +139,9 @@ class HomeController extends Controller
                                 'privacy_policy' => $privacy_policy,
                                 'privacy_policy_nl' => $privacy_policy_nl,
                                 'credits' => $credits,
-                                'credits_nl' => $credits_nl
+                                'credits_nl' => $credits_nl,
+                                'fb_pixel' => $fb_pixel,
+                                'google_pixel' => $google_pixel
                             ];
                             array_push($full_movie_details, $movie_details);
                         }
@@ -243,6 +247,8 @@ class HomeController extends Controller
                         $privacy_policy_nl = $worksheet3->getCellByColumnAndRow(30, $row)->getValue();
                         $credits = $worksheet3->getCellByColumnAndRow(31, $row)->getValue();
                         $credits_nl = $worksheet3->getCellByColumnAndRow(32, $row)->getValue();
+                        $fb_pixel = $worksheet3->getCellByColumnAndRow(33, $row)->getValue();
+                        $google_pixel = $worksheet3->getCellByColumnAndRow(34, $row)->getValue();
                         $cinema_date = date('Y-m-d',\PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($cinema_date_sheet));
                         
                         if($movie_title != NULL)
@@ -278,7 +284,9 @@ class HomeController extends Controller
                                 'privacy_policy' => $privacy_policy,
                                 'privacy_policy_nl' => $privacy_policy_nl,
                                 'credits' => $credits,
-                                'credits_nl' => $credits_nl
+                                'credits_nl' => $credits_nl,
+                                'fb_pixel' => $fb_pixel,
+                                'google_pixel' => $google_pixel
                             ];
                             array_push($full_movie_details, $movie_details);
                         }

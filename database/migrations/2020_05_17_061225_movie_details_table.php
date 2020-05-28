@@ -46,6 +46,8 @@ class MovieDetailsTable extends Migration
             $table->longText('privacy_policy_nl')->nullable();
             $table->longText('credits')->nullable();
             $table->longText('credits_nl')->nullable();
+            $table->longText('fb_pixel')->nullable();
+            $table->longText('google_pixel')->nullable();
             $table->timestamps();
         });
     }
