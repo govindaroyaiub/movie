@@ -508,6 +508,11 @@ input[type="search"] {
 
 .landing-city-list {
     display: flex;
+    flex-wrap: wrap;
+}
+
+.city-link {
+    margin: 5px 0;
 }
 
 .landing-city-list li {
