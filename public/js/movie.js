@@ -1,4 +1,3 @@
-// Tab
 function openItem(evt, itemName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -14,7 +13,6 @@ function openItem(evt, itemName) {
     evt.currentTarget.className += " active";
 }
 
-// Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 
 
@@ -45,6 +43,8 @@ searchForm.addEventListener("submit", function (e) {
 });
 
 function searchBtnAnimationStart(e) {
+    cr.classList.remove('d-block');
+    cr.classList.add('d-none');
     gsap.to(searchBtn, {
         duration: 0.2,
         display: "block",
