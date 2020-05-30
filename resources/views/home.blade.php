@@ -13,7 +13,7 @@
                     <form method="post" action="/upload" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <input type="file" name="file">
+                        <input type="file" name="file" required>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary text-white">Upload file</button>
