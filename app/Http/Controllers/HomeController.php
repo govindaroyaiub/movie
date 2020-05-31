@@ -8,6 +8,8 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use App\Movie;
 use App\Showtime;
 use App\Location;
+use App\User;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -285,6 +287,27 @@ class HomeController extends Controller
                 }
             }
             return back()->with('success', 'File Uploaded!');
+        }
+    }
+
+    public function update_info(Request $request)
+    {
+        $username = $request->username;
+        $email = $request->email;
+        $new_password = $request->new_password;
+        $repeat_password = $request->repeat_password;
+        $user_info = User::where('id', Auth::user()->id)->first();
+        $old_password =$user_info['password'];
+
+        if($new_password != $repeat_password)
+        {
+            return back()->with('error', 'Sorry Password Did Not Match!');
+        }
+        else
+        {
+            User::where('id', Auth::user()->id)->update(['password' => bcrypt($new_password), 'name' => $username, 'email' => $email]);
+            Auth::logout();
+            return redirect('/home')->with('info', 'Please Login Again');
         }
     }
 }

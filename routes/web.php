@@ -26,4 +26,5 @@ Route::group(['middleware' => ['auth']], function()
   Route::post('/upload', 'HomeController@upload');
   Route::get('/test-en', 'PagesController@landing_en');
   Route::get('/test-nl', 'PagesController@landing_nl');
+  Route::post('/update-info', 'HomeController@update_info')->name('update_info');
 });
