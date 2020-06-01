@@ -38,7 +38,7 @@ class HomeController extends Controller
         
         //validate the xls file
         $this->validate($request, array(
-        'file'      => 'required|mimes:xlsx'
+        'file'      => 'required'
         ));
     
         if($request->hasFile('file'))
@@ -265,6 +265,8 @@ class HomeController extends Controller
                     $city = $worksheet1->getCellByColumnAndRow(5, $row)->getValue();
                     $phone = $worksheet1->getCellByColumnAndRow(6, $row)->getValue();
                     $url = $worksheet1->getCellByColumnAndRow(7, $row)->getValue();
+                    $long = $worksheet1->getCellByColumnAndRow(9, $row)->getValue();
+                    $lat = $worksheet1->getCellByColumnAndRow(10, $row)->getValue();
     
                     $location = [
                         'name' => $name,
@@ -272,7 +274,9 @@ class HomeController extends Controller
                         'zip' => $zip,
                         'city' => $city,
                         'phone' => $phone,
-                        'url' => $url
+                        'url' => $url,
+                        'long' => $long,
+                        'lat' => $lat
                     ];
                     array_push($location_list, $location);
                 }

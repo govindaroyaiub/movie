@@ -22,6 +22,8 @@ class ShowLocationStaticTable extends Migration
             $table->string('phone')->nullable();
             $table->longText('url')->nullable();
             $table->longText('image')->nullable();
+            $table->string('long')->nullable();
+            $table->string('lat')->nullable();
             $table->timestamps();
         });
     }

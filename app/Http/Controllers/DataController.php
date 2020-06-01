@@ -131,7 +131,9 @@ class DataController extends Controller
                                 'show_location_static.zip', 
                                 'show_location_static.city', 
                                 'show_location_static.phone', 
-                                'show_location_static.url')
+                                'show_location_static.url',
+                                'show_location_static.long',
+                                'show_location_static.lat')
                                 ->where('movie_details.base_url', '=', $app_url)
                                 ->where('movie_showtimes.date', '>=', $current_date)
                                 ->orderBy('show_location_static.name', 'ASC')
