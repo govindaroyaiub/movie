@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('/map', function() {
+   return view('map');
+});
+
 Route::get('/', 'DataController@index');
 Route::get('/en', 'DataController@english_landing');
 Route::get('/api/shows', 'DataController@showsApi');
