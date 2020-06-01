@@ -292,7 +292,7 @@ class HomeController extends Controller
 
     public function update_info(Request $request)
     {
-        $username = $request->username;
+        $username = $request->name;
         $email = $request->email;
         $new_password = $request->new_password;
         $repeat_password = $request->repeat_password;

@@ -83,7 +83,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" name="username" id="username" value="{{ Auth::user()->name }}"
+                                <input type="text" class="form-control" name="name" id="name" value="{{ Auth::user()->name }}"
                                     required>
                             </div>
                             <div class="form-group">
