@@ -307,7 +307,7 @@ class HomeController extends Controller
         {
             User::where('id', Auth::user()->id)->update(['password' => bcrypt($new_password), 'name' => $username, 'email' => $email]);
             Auth::logout();
-            return redirect('/home')->with('info', 'Please Login Again');
+            return redirect('/login')->with('success', 'Credentials Updated. Please Login Again');
         }
     }
 }
