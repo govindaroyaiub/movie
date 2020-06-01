@@ -77,12 +77,12 @@
                         <form method="post" action="/update-info">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label for="new_password">Email</label>
+                                <label for="email">Email</label>
                                 <input type="email" class="form-control" name="email" id="email" value="{{ Auth::user()->email }}"
                                     required>
                             </div>
                             <div class="form-group">
-                                <label for="new_password">Username</label>
+                                <label for="name">Name</label>
                                 <input type="text" class="form-control" name="username" id="username" value="{{ Auth::user()->name }}"
                                     required>
                             </div>
