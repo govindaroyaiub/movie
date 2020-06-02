@@ -69,6 +69,7 @@ fetch(url)
     .then(blob => blob.json())
     .then(data => shows.push(...data));
 
+
 function findMatches(wordToMatch, shows) {
     return shows.filter(show => {
         const regex = new RegExp(wordToMatch, "gi");
@@ -89,7 +90,8 @@ function displayMatches() {
                            <i class="fa fa-file-video-o fa-3x text-red"></i>
                                <h3 class="ml-3">${m.name}</h3>
                                   </div>
-                                         <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
+                                      <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
+
                                              <p class="m-0">${m.address}, ${m.city}</p>
                                              <p class="m-0 text-expand">
                                                 ${location.pathname === '/' ? moment(m.date).locale('nl').format("LL") : moment(m.date).locale('en').format("LL")} ${moment(m.time, "HH:mm").format("HH:mm")}
@@ -119,6 +121,7 @@ function getCities() {
         .then(data => shows2.push(...data));
 
     const city = [...new Set(shows.map(item => item.city))];
+    city.sort();
 
     const cityHtml = city
         .map(c => {

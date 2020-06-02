@@ -10,10 +10,134 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/movie.css') }}">
+    <link rel='stylesheet' href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css'/>
+    <style>
+        .listing-area {
+            background: var(--color-secondary-dark);
+            height: 100vh;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .listings {
+            height: 100vh;
+            overflow: auto;
+        }
+
+        .listings .item {
+            display: block;
+            border-bottom: 1px solid #eee;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+        .listings .item:last-child {
+            border-bottom: none;
+        }
+
+        .listings .item .title {
+            display: block;
+            color: var(--color-primary-light);
+            font-weight: 700;
+        }
+
+        .listings .item .title small {
+            font-weight: 400;
+        }
+
+        .listings .item.active .title,
+        .listings .item .title:hover {
+            color: var(--color-primary-dark);
+        }
+
+        .listings .item.active {
+            background: var(--color-secondary-light);
+            color: #fff;
+        }
+
+        .movie-details {
+            position: relative;
+        }
+
+        .map {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .marker {
+            border: none;
+            cursor: pointer;
+            height: 56px;
+            width: 56px;
+            background-image: url('./marker.png');
+            background-repeat: no-repeat;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        /* Marker tweaks */
+        .mapboxgl-popup {
+            padding-bottom: 50px;
+        }
+
+        .mapboxgl-popup-close-button {
+            display: none;
+        }
+
+        .mapboxgl-popup-content {
+            padding: 0;
+            width: 180px;
+        }
+
+        .mapboxgl-popup-content-wrapper {
+            padding: 1%;
+        }
+
+        .mapboxgl-popup-content h3 {
+            background: var(--color-primary-dark);
+            color: #fff;
+            display: block;
+            padding: 10px;
+            border-radius: 3px 3px 0 0;
+            margin: -15px 0 0 0;
+            font-size: 1rem;
+        }
+
+        .mapboxgl-popup-content h4 {
+            margin: 0;
+            display: block;
+            padding: 10px 10px 10px 10px;
+            font-weight: 400;
+            font-size: 1rem;
+            background: var(--color-secondary-light);
+            color: #fff;
+        }
+
+        .mapboxgl-popup-content div {
+            padding: 10px;
+        }
+
+        .mapboxgl-container .leaflet-marker-icon {
+            cursor: pointer;
+        }
+
+        .mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
+            margin-top: 15px;
+        }
+
+        .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+            border-bottom-color: var(--color-primary-dark);
+        }
+    </style>
     <link rel="stylesheet" href="{{ asset('css/media-queries.css') }}">
     {!! $movie_details->google_pixel !!}
     {!! $movie_details->fb_pixel !!}
-    <script src='https://platform-api.sharethis.com/js/sharethis.js#property=5ec944357cfa4a0012b475a1&product=inline-share-buttons&cms=website' async='async'></script>
+    <script
+        src='https://platform-api.sharethis.com/js/sharethis.js#property=5ec944357cfa4a0012b475a1&product=inline-share-buttons&cms=website'
+        async='async'></script>
 </head>
 
 <body>
@@ -81,7 +205,6 @@
             </div>
 
             <div class="land-content">
-
                 <form class="landing-search">
                     <div class="form-group position-relative">
                         <input id="land-search-input" type="search" class="form-control q" autocomplete="off"
@@ -95,6 +218,8 @@
                     <p class="ls-help text-center">KIES UW STAD OF LOCATIE</p>
 
                     <div class="main-acc accordion" id="accordionExample"></div>
+
+{{--                    <div class="accordion d-none" id="accordionListing"></div>--}}
 
                     <div class="city-acc accordion d-none" id="accordionExample2"></div>
 
@@ -115,46 +240,13 @@
 
 
                 <div class="city-acc accordion d-none" id="accordionExample2"></div>
+
+
             </div>
 
         </section>
         <section class="movie-details">
-            {{--            <img width="100" class="d-block mx-auto" src="{{ $movie_details->image1 }}"--}}
-            {{--                 alt="">--}}
-
-            <h3 class="underline text-center my-3">
-                {{ $movie_details->movie_description_short_nl }}
-            </h3>
-
-            <p class="excerpt mt-3">
-                {{ $movie_details->movie_description_long_nl }}
-            </p>
-
-            <div class="synopsis-meta">
-                <p>
-                    <span>Directed by:</span> {{ $movie_details->director }}
-                </p>
-
-                <p>
-                    <span>Written by:</span> {{ $movie_details->writer }}
-                </p>
-
-                <p>
-                    <span>Produced by:</span> {{ $movie_details->producer }}
-                </p>
-
-                <p>
-                    <span>Cast:</span> {{ $movie_details->actors }}
-                </p>
-
-                <p>
-                    <span>Rating:</span> {{ $rating }}
-                </p>
-
-                <p>
-                    <span>Duration:</span> {{ $movie_details->duration }}
-                </p>
-            </div>
+            <div id='map' class='map'></div>
         </section>
     </div>
 </div>
@@ -210,8 +302,6 @@
 
 </div>
 
-{{--<h2 class="h6 my-3">@lang('home.more_cities')</h2>--}}
-
 
 <footer class="movie-footer py-3">
     <div class="container">
@@ -255,14 +345,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js'></script>
 <script src="{{ asset('js/movie.js') }}"></script>
 <script>
     $(function () {
         $('.mobile-link').on('click', function (e) {
             $(".mobile-checkbox").click();
         });
-
-        $('[data-toggle="tooltip"]').tooltip();
 
         // language picker
         const nl = document.querySelector('[data-lang="nl"]');
@@ -283,7 +372,7 @@
         }
 
         setTimeout(function () {
-            $('.trailer-video').trigger('click');
+            // $('.trailer-video').trigger('click');
         }, 10);
 
         const videoUrl = $('.trailer-video').attr('href');
@@ -300,6 +389,193 @@
         });
     });
 </script>
+
+{{--<script>--}}
+
+{{--    let url;--}}
+
+{{--    if (location.pathname === '/en') {--}}
+{{--        const enUrl = `${location.href}api/shows`;--}}
+{{--        url = enUrl.replace(/\/en/g, '/');--}}
+{{--    } else {--}}
+{{--        url = `${location.href}api/shows`;--}}
+{{--    }--}}
+
+{{--    // Map--}}
+{{--    if (!('remove' in Element.prototype)) {--}}
+{{--        Element.prototype.remove = function () {--}}
+{{--            if (this.parentNode) {--}}
+{{--                this.parentNode.removeChild(this);--}}
+{{--            }--}}
+{{--        };--}}
+{{--    }--}}
+
+{{--    mapboxgl.accessToken = 'pk.eyJ1IjoiZWJuc2luYSIsImEiOiJjazhrNnp4bXgwYzB1M2ttN2FyYjdlNTN6In0.ywbV9mYdyq5dAKqPSqBpRg';--}}
+
+{{--    var map = new mapboxgl.Map({--}}
+{{--        container: 'map',--}}
+{{--        style: 'mapbox://styles/mapbox/dark-v10',--}}
+{{--        center: [4.782180, 51.587471],--}}
+{{--        zoom: 13,--}}
+{{--        scrollZoom: false--}}
+{{--    });--}}
+
+{{--    var showtime = [];--}}
+{{--    var stores = {--}}
+{{--        type: "FeatureCollection",--}}
+{{--        features: [],--}}
+{{--    }--}}
+
+{{--    fetch(url, {--}}
+{{--        headers: {--}}
+{{--            'Content-Type': 'application/json',--}}
+{{--            'Accept': 'application/json'--}}
+{{--        }--}}
+{{--    })--}}
+{{--        .then(blob => blob.json())--}}
+{{--        .then(data => showtime.push(...data))--}}
+{{--        .then(() => {--}}
+{{--            for (i = 0; i < showtime.length; i++) {--}}
+{{--                stores.features.push({--}}
+{{--                    type: "Features",--}}
+{{--                    "geometry": {--}}
+{{--                        "type": "Point",--}}
+{{--                        "coordinates": [showtime[i].long, showtime[i].lat],--}}
+{{--                    },--}}
+{{--                    "properties": {--}}
+{{--                        "id": showtime[i].id,--}}
+{{--                        "name": showtime[i].name,--}}
+{{--                        "address": showtime[i].address,--}}
+{{--                        "city": showtime[i].city,--}}
+{{--                        "zip": showtime[i].zip,--}}
+{{--                        "long": showtime[i].long,--}}
+{{--                        "lat": showtime[i].lat,--}}
+{{--                    }--}}
+{{--                });--}}
+{{--            }--}}
+{{--        })--}}
+{{--        .catch(err => console.log(err));--}}
+
+
+{{--    stores.features.forEach(function (store, i) {--}}
+{{--        store.properties.id = i;--}}
+{{--    });--}}
+
+{{--    map.on('load', function (e) {--}}
+{{--        map.addSource("places", {--}}
+{{--            "type": "geojson",--}}
+{{--            "data": stores--}}
+{{--        });--}}
+
+{{--        buildLocationList(stores);--}}
+{{--        addMarkers();--}}
+{{--    });--}}
+
+
+{{--    function addMarkers() {--}}
+{{--        stores.features.forEach(function (marker) {--}}
+{{--            var el = document.createElement('div');--}}
+{{--            el.id = "marker-" + marker.properties.id;--}}
+{{--            el.className = 'marker';--}}
+
+{{--            new mapboxgl.Marker(el, {offset: [0, -23]})--}}
+{{--                .setLngLat(marker.geometry.coordinates)--}}
+{{--                .addTo(map);--}}
+
+{{--            el.addEventListener('click', function (e) {--}}
+{{--                flyToStore(marker);--}}
+{{--                createPopUp(marker);--}}
+{{--                var activeItem = document.getElementsByClassName('active');--}}
+{{--                e.stopPropagation();--}}
+{{--                if (activeItem[0]) {--}}
+{{--                    activeItem[0].classList.remove('active');--}}
+{{--                }--}}
+{{--                var listing = document.getElementById('listing-' + marker.properties.id);--}}
+{{--                listing.classList.add('active');--}}
+{{--            });--}}
+{{--        });--}}
+{{--    }--}}
+
+{{--    function buildLocationList(data) {--}}
+{{--        data.features.forEach(function (store, i) {--}}
+{{--            var prop = store.properties;--}}
+{{--            console.log(prop);--}}
+
+{{--            var listings = document.getElementById('accordionListing');--}}
+
+{{--            const listingHtml = `--}}
+{{--                 <div id="listing-${prop.id}" class="item">--}}
+{{--                <div data-toggle="collapse" data-target="#collapse${prop.id}" aria-expanded="true" aria-controls="collapse${prop.id}">--}}
+{{--                     <div class="acc-title">--}}
+{{--                        <div class="d-flex">--}}
+{{--                           <i class="fa fa-file-video-o fa-3x text-red"></i>--}}
+{{--                               <a href="#" class="title ml-3" id="link-${prop.id}">${prop.name}</a>--}}
+{{--                                  </div>--}}
+{{--                                         <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">--}}
+{{--                                             <p class="m-0">${prop.address}</p>--}}
+{{--                                             <p class="m-0 text-expand">--}}
+{{--                                                Date Time--}}
+{{--                                             </p>--}}
+{{--                                         </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+
+{{--                                <div id="collapse${prop.id}" class="collapse" aria-labelledby="listing-${prop.id}"--}}
+{{--                                    data-parent="#accordionExample">--}}
+{{--                                    <div class="acc-description">--}}
+{{--                                        <h4>Movie Title</h4>--}}
+{{--                                        <a class="text-uppercase" href="#" target="_blank"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--            `;--}}
+
+{{--            listings.insertAdjacentHTML('afterbegin', listingHtml);--}}
+
+{{--            document.querySelector('.title').addEventListener('click', function (e) {--}}
+{{--                e.stopPropagation();--}}
+{{--                for (var i = 0; i < data.features.length; i++) {--}}
+{{--                    if (this.id === "link-" + data.features[i].properties.id) {--}}
+{{--                        var clickedListing = data.features[i];--}}
+{{--                        flyToStore(clickedListing);--}}
+{{--                        createPopUp(clickedListing);--}}
+{{--                    }--}}
+{{--                }--}}
+{{--                var activeItem = document.getElementsByClassName('active');--}}
+{{--                if (activeItem[0]) {--}}
+{{--                    activeItem[0].classList.remove('active');--}}
+{{--                }--}}
+{{--                this.parentNode.classList.add('active');--}}
+{{--            });--}}
+{{--        });--}}
+{{--    }--}}
+
+{{--    function flyToStore(currentFeature) {--}}
+{{--        map.flyTo({--}}
+{{--            center: currentFeature.geometry.coordinates,--}}
+{{--            zoom: 15--}}
+{{--        });--}}
+{{--    }--}}
+
+{{--    function createPopUp(currentFeature) {--}}
+{{--        var popUps = document.getElementsByClassName('mapboxgl-popup');--}}
+{{--        if (popUps[0]) popUps[0].remove();--}}
+{{--        var popup = new mapboxgl.Popup({closeOnClick: false})--}}
+{{--            .setLngLat(currentFeature.geometry.coordinates)--}}
+{{--            .setHTML('<h3>' + currentFeature.properties.city + '</h3>' +--}}
+{{--                '<h4>' + currentFeature.properties.address + '</h4>')--}}
+{{--            .addTo(map);--}}
+{{--    }--}}
+
+{{--    // search--}}
+{{--    document.querySelector('.landing-search').addEventListener('submit', e => {--}}
+{{--        e.preventDefault();--}}
+{{--    });--}}
+
+{{--    document.querySelector('#land-search-input').addEventListener('input', () => {--}}
+{{--        document.querySelector('#accordionListing').classList.remove('d-none');--}}
+{{--    });--}}
+{{--</script>--}}
 
 </body>
 

@@ -112,20 +112,6 @@
                 <p class="text-center">WATCH THE TRAILER
                 </p>
 
-{{--                <div class="desk-frame d-none d-sm-none d-md-block">--}}
-{{--                    <iframe class="d-block mx-auto" width="560" height="315" src="{{ $youtube_url }}" frameborder="0"--}}
-{{--                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"--}}
-{{--                            allowfullscreen></iframe>--}}
-{{--                </div>--}}
-
-{{--                <div class="mobile-frame d-md-none">--}}
-{{--                    <iframe class="d-block mx-auto" width="280" height="215"--}}
-{{--                            src="{{ $youtube_url }}" frameborder="0"--}}
-{{--                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"--}}
-{{--                            allowfullscreen></iframe>--}}
-{{--                </div>--}}
-
-
                 <iframe class="js-iframe"
                         src="{{ $youtube_url }}" frameborder="0"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -137,8 +123,6 @@
 
         </section>
         <section class="movie-details">
-{{--            <img width="100" class="d-block mx-auto" src="{{ $movie_details->image1 }}"--}}
-{{--                 alt="">--}}
 
             <h3 class="underline text-center my-3">
                 {{ $movie_details->movie_description_short }}

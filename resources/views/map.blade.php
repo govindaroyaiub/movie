@@ -133,10 +133,12 @@
 <body>
 
 <div class="row">
-    <div class="col-md-4">
-    </div>
+    <div class="col-md-4"></div>
     <div class="col-md-4">
         <div class="listing-area">
+            <div class="m-2">
+                <input type="text" class="form-control map-search">
+            </div>
             <div id='listings' class='listings'></div>
         </div>
     </div>
@@ -148,6 +150,7 @@
 </div>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js'></script>
 <script>
     // This will let you use the .remove() function later on
@@ -178,11 +181,12 @@
         features: [],
     }
 
-    fetch('http://movie.test/api/shows')
+    const url = 'http://movie.test/api/shows';
+
+    fetch(url)
         .then(blob => blob.json())
         .then(data => showtime.push(...data))
         .then(() => {
-            console.log(showtime);
             for (i = 0; i < showtime.length; i++) {
                 stores.features.push({
                     type: "Features",
@@ -208,6 +212,7 @@
     stores.features.forEach(function (store, i) {
         store.properties.id = i;
     });
+
 
     map.on('load', function (e) {
         map.addSource("places", {
@@ -244,40 +249,42 @@
         });
     }
 
+
     function buildLocationList(data) {
-        data.features.forEach(function (store, i) {
-            var prop = store.properties;
 
-            var listings = document.getElementById('listings');
-            var listing = listings.appendChild(document.createElement('div'));
+        console.log(data.features);
 
-            listing.id = "listing-" + prop.id;
-            listing.className = 'item';
+        data.features.filter(x => console.log(x.properties));
 
-            var link = listing.appendChild(document.createElement('a'));
-            link.href = '#';
-            link.className = 'title';
-            link.id = "link-" + prop.id;
-            link.innerHTML = prop.name;
 
-            var details = listing.appendChild(document.createElement('div'));
-            details.innerHTML = prop.address;
-
-            link.addEventListener('click', function (e) {
-                for (var i = 0; i < data.features.length; i++) {
-                    if (this.id === "link-" + data.features[i].properties.id) {
-                        var clickedListing = data.features[i];
-                        flyToStore(clickedListing);
-                        createPopUp(clickedListing);
-                    }
-                }
-                var activeItem = document.getElementsByClassName('active');
-                if (activeItem[0]) {
-                    activeItem[0].classList.remove('active');
-                }
-                this.parentNode.classList.add('active');
-            });
-        });
+        // data.features.forEach(function (store, i) {
+        //         var prop = store.properties;
+        //
+        //         const listingHtml = `
+        //             <div id="listing-${prop.id}" class="item">
+        //                 <a id="link-${prop.id}" class="title" href="#">${prop.name}</a>
+        //                 <p>${prop.address}</p>
+        //             </div>
+        //         `;
+        //
+        //         document.getElementById('listings').insertAdjacentHTML('afterbegin', listingHtml);
+        //
+        //         document.querySelector('.title').addEventListener('click', function (e) {
+        //             for (var i = 0; i < data.features.length; i++) {
+        //                 if (this.id === "link-" + data.features[i].properties.id) {
+        //                     var clickedListing = data.features[i];
+        //                     flyToStore(clickedListing);
+        //                     createPopUp(clickedListing);
+        //                 }
+        //             }
+        //             var activeItem = document.getElementsByClassName('active');
+        //             if (activeItem[0]) {
+        //                 activeItem[0].classList.remove('active');
+        //             }
+        //             this.parentNode.classList.add('active');
+        //         });
+        //     }
+        // );
     }
 
     function flyToStore(currentFeature) {
@@ -297,8 +304,6 @@
             .addTo(map);
     }
 </script>
-
-
 </body>
 
 </html>
