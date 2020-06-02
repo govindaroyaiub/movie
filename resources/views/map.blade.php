@@ -13,11 +13,7 @@
             background: var(--color-secondary-dark);
             height: 100vh;
             color: #fff;
-        }
-
-        .listing-title {
-            background-color: var(--color-primary-light);
-            color: #fff;
+            overflow: hidden;
         }
 
         .listings {
@@ -137,10 +133,10 @@
 <body>
 
 <div class="row">
-    <div class="col-md-4"></div>
+    <div class="col-md-4">
+    </div>
     <div class="col-md-4">
         <div class="listing-area">
-            <h3 class="listing-title p-3">Showtimes</h3>
             <div id='listings' class='listings'></div>
         </div>
     </div>
@@ -176,61 +172,38 @@
         scrollZoom: false
     });
 
-    var showtimes = [
-        {
-            "id": 62,
-            "cinema_id": 54,
-            "date": "2020-06-11",
-            "time": "20:00",
-            "name": "Chassé Cinema",
-            "address": "Claudius Prinsenlaan 8",
-            "zip": "4811 DK",
-            "city": "Breda",
-            "phone": "076-5303127",
-            "url": "www.chasse.nl",
-            "long": "4.782180",
-            "lat": "51.587471"
-        },
-        {
-            "id": 53,
-            "cinema_id": 21,
-            "date": "2020-06-11",
-            "time": "20:00",
-            "name": "Cinecenter",
-            "address": "Lijnbaansgracht 236",
-            "zip": "1017 PH",
-            "city": "Amsterdam",
-            "phone": "020-6236615",
-            "url": "www.cinecenter.nl",
-            "long": "4.881780",
-            "lat": "52.365028"
-        },
-    ];
-
+    var showtime = [];
     var stores = {
         type: "FeatureCollection",
         features: [],
     }
 
-    for (i = 0; i < showtimes.length; i++) {
-        stores.features.push({
-            type: "Features",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [showtimes[i].long, showtimes[i].lat],
-            },
-            "properties": {
-                "id": showtimes[i].id,
-                "name": showtimes[i].name,
-                "address": showtimes[i].address,
-                "city": showtimes[i].city,
-                "zip": showtimes[i].zip,
-                "long": showtimes[i].long,
-                "lat": showtimes[i].lat,
+    fetch('http://movie.test/api/shows')
+        .then(blob => blob.json())
+        .then(data => showtime.push(...data))
+        .then(() => {
+            console.log(showtime);
+            for (i = 0; i < showtime.length; i++) {
+                stores.features.push({
+                    type: "Features",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [showtime[i].long, showtime[i].lat],
+                    },
+                    "properties": {
+                        "id": showtime[i].id,
+                        "name": showtime[i].name,
+                        "address": showtime[i].address,
+                        "city": showtime[i].city,
+                        "zip": showtime[i].zip,
+                        "long": showtime[i].long,
+                        "lat": showtime[i].lat,
+                    }
+                });
             }
-        });
-    }
-    ;
+        })
+        .catch(err => console.log(err));
+
 
     stores.features.forEach(function (store, i) {
         store.properties.id = i;
@@ -285,13 +258,10 @@
             link.href = '#';
             link.className = 'title';
             link.id = "link-" + prop.id;
-            link.innerHTML = prop.address;
+            link.innerHTML = prop.name;
 
             var details = listing.appendChild(document.createElement('div'));
-            details.innerHTML = prop.city;
-            if (prop.phone) {
-                details.innerHTML += ' · ' + prop.phoneFormatted;
-            }
+            details.innerHTML = prop.address;
 
             link.addEventListener('click', function (e) {
                 for (var i = 0; i < data.features.length; i++) {

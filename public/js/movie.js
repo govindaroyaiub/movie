@@ -37,7 +37,6 @@ if (location.pathname === '/en') {
     url = `${location.href}api/shows`;
 }
 
-
 searchForm.addEventListener("submit", function (e) {
     e.preventDefault();
 });
