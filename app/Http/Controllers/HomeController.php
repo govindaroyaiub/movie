@@ -265,8 +265,8 @@ class HomeController extends Controller
                     $city = $worksheet1->getCellByColumnAndRow(5, $row)->getValue();
                     $phone = $worksheet1->getCellByColumnAndRow(6, $row)->getValue();
                     $url = $worksheet1->getCellByColumnAndRow(7, $row)->getValue();
-                    $long = $worksheet1->getCellByColumnAndRow(9, $row)->getValue();
-                    $lat = $worksheet1->getCellByColumnAndRow(10, $row)->getValue();
+                    $lat = $worksheet1->getCellByColumnAndRow(9, $row)->getValue();
+                    $long = $worksheet1->getCellByColumnAndRow(10, $row)->getValue();
     
                     $location = [
                         'name' => $name,
