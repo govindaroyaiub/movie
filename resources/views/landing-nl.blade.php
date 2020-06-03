@@ -507,15 +507,47 @@
     }
 
     function buildLocationList(data) {
+
         // PART 1
+        var sf = document.querySelector('.landing-search');
         var r = document.querySelector('.main-acc');
+        var cr = document.querySelector('.city-acc');
         var q = document.querySelector('#land-search-input');
         var b = document.querySelector('#land-search-btn');
+
+        sf.addEventListener("submit", e => e.preventDefault());
+        b.addEventListener("click", e => e.preventDefault());
+
+
+        function searchBtnAnimationStart(e) {
+            cr.classList.remove('d-block');
+            cr.classList.add('d-none');
+            gsap.to(b, {
+                duration: 0.2,
+                display: "block",
+                width: "40px"
+            });
+        }
+
+        function searchBtnAnimationEnd(e) {
+            gsap.to(b, {
+                duration: 0.001,
+                display: "none",
+                width: "0px"
+            });
+        }
+
+        function removeSearchoutput() {
+            r.classList.add("d-none");
+            cr.classList.remove("d-block");
+            cr.classList.add("d-none");
+        }
 
 
         q.addEventListener("focus", searchBtnAnimationStart);
         b.addEventListener("click", searchBtnAnimationEnd);
         b.addEventListener("click", removeSearchoutput);
+
 
         function displayMatches() {
             r.classList.remove('d-none');
@@ -524,29 +556,30 @@
             const html = matchArr
                 .map(m => {
                     return `
-                     <a id="link-${m.id}" class="accordion-title-wrapper title" href="#">
-            <div id="heading${m.id}">
-                <div data-toggle="collapse" data-target="#collapse${m.id}" aria-expanded="true" aria-controls="collapse${m.id}">
-                    <div class="acc-title">
-                        <div class="d-flex">
-                            <i class="fa fa-file-video-o fa-3x text-red"></i>
-                            <h3 class="ml-3">${m.name}</h3>
+                        <div>
+                          <a id="link-${m.id}" class="accordion-title-wrapper title" href="#">
+                            <div id="heading${m.id}">
+                              <div data-toggle="collapse" data-target="#collapse${m.id}" aria-expanded="true" aria-controls="collapse${m.id}">
+                                <div class="acc-title">
+                                  <div class="d-flex">
+                                    <i class="fa fa-file-video-o fa-3x text-red"></i>
+                                    <h3 class="ml-3">${m.name}</h3>
+                                  </div>
+                                  <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
+                                    <p class="m-0">${m.address}, ${m.city}</p>
+                                    <p class="m-0 text-expand">${location.pathname === '/' ? moment(m.date).locale('nl').format("LL") : moment(m.date).locale('en').format("LL")} ${moment(m.time, "HH:mm").format("HH:mm")}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                          <div id="collapse${m.id}" class="collapse" aria-labelledby="heading${m.id}" data-parent="#accordionExample">
+                            <div class="acc-description">
+                              <h4>${m.movie_title}</h4>
+                              <a class="text-uppercase" href="http://${m.url}" target="_blank"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>
+                            </div>
+                          </div>
                         </div>
-                        <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
-                            <p class="m-0">${m.address}, ${m.city}</p>
-                            <p class="m-0 text-expand">${location.pathname === '/' ? moment(m.date).locale('nl').format("LL") : moment(m.date).locale('en').format("LL")} ${moment(m.time, "HH:mm").format("HH:mm")}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-</a>
-            <div id="collapse${m.id}" class="collapse" aria-labelledby="heading${m.id}" data-parent="#accordionExample">
-                <div class="acc-description">
-                    <h4>${m.movie_title}</h4>
-                    <a class="text-uppercase" href="http://${m.url}" target="_blank"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>
-                </div>
-            </div>
-
                     `;
                 }).join("");
 
@@ -607,34 +640,30 @@
 
                const cHtml = filter.map(cm => {
                    return `
-  <a id="link-${cm.id}" class="accordion-title-wrapper title" href="#">
-                   <div id="heading${cm.id}">
-                <div data-toggle="collapse" data-target="#collapse${cm.id}" aria-expanded="true" aria-controls="collapse${cm.id}">
-                     <div class="acc-title">
-                        <div class="d-flex">
-                           <i class="fa fa-file-video-o fa-3x text-red"></i>
-                               <h3 class="ml-3">${cm.name}</h3>
+                        <div>
+                          <a id="link-${cm.id}" class="accordion-title-wrapper title" href="#">
+                            <div id="heading-${cm.id}">
+                              <div data-toggle="collapse" data-target="#collapse-${cm.id}" aria-expanded="true" aria-controls="collapse-${cm.id}">
+                                <div class="acc-title">
+                                  <div class="d-flex">
+                                    <i class="fa fa-file-video-o fa-3x text-red"></i>
+                                    <h3 class="ml-3">${cm.name}</h3>
                                   </div>
-                                      <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
-
-                                             <p class="m-0">${cm.address}, ${cm.city}</p>
-                                             <p class="m-0 text-expand">
-                                                ${location.pathname === '/' ? moment(cm.date).locale('nl').format("LL") : moment(cm.date).locale('en').format("LL")} ${moment(cm.time, "HH:mm").format("HH:mm")}
-                                             </p>
-                                         </div>
-                                        </div>
-                                    </div>
+                                  <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
+                                    <p class="m-0">${cm.address}, ${cm.city}</p>
+                                    <p class="m-0 text-expand">${location.pathname === '/' ? moment(cm.date).locale('nl').format("LL") : moment(cm.date).locale('en').format("LL")} ${moment(cm.time, "HH:mm").format("HH:mm")}</p>
+                                  </div>
                                 </div>
-</a>
-
-                                <div id="collapse${cm.id}" class="collapse" aria-labelledby="heading${cm.id}"
-                                    data-parent="#accordionExample">
-                                    <div class="acc-description">
-                                        <h4>${cm.movie_title}</h4>
-                                        <a class="text-uppercase" href="http://${cm.url}" target="_blank"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>
-                                    </div>
-                                </div>
-
+                              </div>
+                            </div>
+                          </a>
+                          <div id="collapse-${cm.id}" class="collapse" aria-labelledby="heading-${cm.id}" data-parent="#accordionExample2">
+                            <div class="acc-description">
+                              <h4>${cm.movie_title}</h4>
+                              <a class="text-uppercase" href="http://${cm.url}" target="_blank"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>
+                            </div>
+                          </div>
+                        </div>
                     `;
                })
                    .join("");
