@@ -12,6 +12,14 @@
     <link rel="stylesheet" href="{{ asset('css/movie.css') }}">
     <link rel='stylesheet' href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css'/>
     <style>
+        .accordion-title-wrapper {
+            display: block;
+        }
+
+        .accordion-title-wrapper:hover {
+            text-decoration: none;
+        }
+
         .listings {
             overflow-y: auto;
             max-height: 70vh;
@@ -96,7 +104,7 @@
             padding: 10px;
             border-radius: 3px 3px 0 0;
             margin: -15px 0 0 0;
-            font-size: 1.2rem;
+            font-size: 1.2rem !important;
         }
 
         .mapboxgl-popup-content h4 {
@@ -123,6 +131,10 @@
 
         .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
             border-bottom-color: var(--color-primary-dark);
+        }
+
+        .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+            border-top-color: var(--color-secondary-light);
         }
     </style>
     <link rel="stylesheet" href="{{ asset('css/media-queries.css') }}">
@@ -511,32 +523,30 @@
             const html = matchArr
                 .map(m => {
                     return `
+                     <a id="link-${m.id}" class="accordion-title-wrapper title" href="#">
             <div id="heading${m.id}">
                 <div data-toggle="collapse" data-target="#collapse${m.id}" aria-expanded="true" aria-controls="collapse${m.id}">
-                     <div class="acc-title">
+                    <div class="acc-title">
                         <div class="d-flex">
-                           <i class="fa fa-file-video-o fa-3x text-red"></i>
-                               <h3 class="ml-3"><a id="link-${m.id}" class="title" href="#">${m.name}</a></h3>
-                                  </div>
-                                      <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
+                            <i class="fa fa-file-video-o fa-3x text-red"></i>
+                            <h3 class="ml-3">${m.name}</h3>
+                        </div>
+                        <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
+                            <p class="m-0">${m.address}, ${m.city}</p>
+                            <p class="m-0 text-expand">${location.pathname === '/' ? moment(m.date).locale('nl').format("LL") : moment(m.date).locale('en').format("LL")} ${moment(m.time, "HH:mm").format("HH:mm")}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</a>
+            <div id="collapse${m.id}" class="collapse" aria-labelledby="heading${m.id}" data-parent="#accordionExample">
+                <div class="acc-description">
+                    <h4>${m.movie_title}</h4>
+                    <a class="text-uppercase" href="http://${m.url}" target="_blank"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>
+                </div>
+            </div>
 
-                                             <p class="m-0">${m.address}, ${m.city}</p>
-                                             <p class="m-0 text-expand">
-                                                ${location.pathname === '/' ? moment(m.date).locale('nl').format("LL") : moment(m.date).locale('en').format("LL")} ${moment(m.time, "HH:mm").format("HH:mm")}
-                                             </p>
-                                         </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="collapse${m.id}" class="collapse" aria-labelledby="heading${m.id}"
-                                    data-parent="#accordionExample">
-                                    <div class="acc-description">
-                                        <h4>${m.movie_title}</h4>
-                                        <a class="text-uppercase" href="http://${m.url}" target="_blank"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>
-                                    </div>
-                                </div>
-`;
+                    `;
                 }).join("");
 
             r.innerHTML = html;
@@ -596,12 +606,13 @@
 
                const cHtml = filter.map(cm => {
                    return `
+  <a id="link-${cm.id}" class="accordion-title-wrapper title" href="#">
                    <div id="heading${cm.id}">
                 <div data-toggle="collapse" data-target="#collapse${cm.id}" aria-expanded="true" aria-controls="collapse${cm.id}">
                      <div class="acc-title">
                         <div class="d-flex">
                            <i class="fa fa-file-video-o fa-3x text-red"></i>
-                               <h3 class="ml-3"><a id="link-${cm.id}" class="title" href="#">${cm.name}</a></h3>
+                               <h3 class="ml-3">${cm.name}</h3>
                                   </div>
                                       <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
 
@@ -613,6 +624,7 @@
                                         </div>
                                     </div>
                                 </div>
+</a>
 
                                 <div id="collapse${cm.id}" class="collapse" aria-labelledby="heading${cm.id}"
                                     data-parent="#accordionExample">
@@ -621,6 +633,7 @@
                                         <a class="text-uppercase" href="http://${cm.url}" target="_blank"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>
                                     </div>
                                 </div>
+
                     `;
                })
                    .join("");
@@ -659,12 +672,14 @@
     }
 
     function createPopUp(currentFeature) {
+        var movieName;
+        showtime.forEach(show => movieName = show.movie_title);
+
         var popUps = document.getElementsByClassName('mapboxgl-popup');
         if (popUps[0]) popUps[0].remove();
         var popup = new mapboxgl.Popup({closeOnClick: false})
             .setLngLat(currentFeature.geometry.coordinates)
-            .setHTML('<h3>' + currentFeature.properties.city + '</h3>' +
-                '<h4>' + currentFeature.properties.address + '</h4>')
+            .setHTML(`<h3 class="text-center">${movieName}</h3><h4>${currentFeature.properties.address}, ${currentFeature.properties.zip}, ${currentFeature.properties.city}</h4>`)
             .addTo(map);
     }
 </script>
