@@ -216,6 +216,10 @@
         height: 242px;
     }
 
+    .movie-details {
+        margin-left: 30px;
+    }
+
     .movie-details h3 {
         font-size: 2rem;
     }
@@ -228,5 +232,6 @@
     .movie-details .synopsis-meta {
         margin-bottom: 1rem;
     }
+
 
 }

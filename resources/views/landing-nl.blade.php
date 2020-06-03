@@ -15,8 +15,8 @@
         .map {
             position: absolute;
             width: 100%;
-            height: 77vh;
-            top: 0;
+            height: 75vh;
+            top: 30px;
             right: 0;
             bottom: 0;
         }
@@ -404,7 +404,8 @@
         };
     }
 
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZWJuc2luYSIsImEiOiJjazhrNnp4bXgwYzB1M2ttN2FyYjdlNTN6In0.ywbV9mYdyq5dAKqPSqBpRg';
+    mapboxgl.accessToken = 'pk.eyJ1Ijoid2VhcmVkaXZhd29ybGR3aWRlIiwiYSI6ImNrYXplOHloYzBpa2syem1pZnkzNG9uMG8ifQ.tDXA7tNsSJ7_4FaOBdsAzg';
+
 
     /**
      * Add the map to the page
