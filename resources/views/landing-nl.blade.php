@@ -12,6 +12,16 @@
     <link rel="stylesheet" href="{{ asset('css/movie.css') }}">
     <link rel='stylesheet' href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css'/>
     <style>
+        .map {
+            position: absolute;
+            width: 100%;
+            height: 77vh;
+            top: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+
         .accordion-title-wrapper {
             display: block;
         }
@@ -58,15 +68,6 @@
 
         .movie-details {
             position: relative;
-        }
-
-        .map {
-            position: absolute;
-            width: 100%;
-            height: 100vh;
-            top: 0;
-            right: 0;
-            bottom: 0;
         }
 
         .marker {
