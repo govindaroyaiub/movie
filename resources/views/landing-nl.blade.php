@@ -672,14 +672,11 @@
     }
 
     function createPopUp(currentFeature) {
-        var movieName;
-        showtime.forEach(show => movieName = show.movie_title);
-
         var popUps = document.getElementsByClassName('mapboxgl-popup');
         if (popUps[0]) popUps[0].remove();
         var popup = new mapboxgl.Popup({closeOnClick: false})
             .setLngLat(currentFeature.geometry.coordinates)
-            .setHTML(`<h3 class="text-center">${movieName}</h3><h4>${currentFeature.properties.address}, ${currentFeature.properties.zip}, ${currentFeature.properties.city}</h4>`)
+            .setHTML(`<h3 class="text-center">${currentFeature.properties.name}</h3><h4>${currentFeature.properties.address}, ${currentFeature.properties.zip}, ${currentFeature.properties.city}</h4>`)
             .addTo(map);
     }
 </script>
