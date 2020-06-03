@@ -150,7 +150,6 @@
 </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js'></script>
 <script>
     // This will let you use the .remove() function later on
@@ -176,6 +175,7 @@
     });
 
     var showtime = [];
+
     var stores = {
         type: "FeatureCollection",
         features: [],
@@ -249,12 +249,77 @@
         });
     }
 
+    function findMatches(wordToMatch, showtime) {
+        return showtime.filter(show => {
+            const regex = new RegExp(wordToMatch, "gi");
+            return show.city.match(regex);
+        });
+    }
+
 
     function buildLocationList(data) {
+        var r = document.querySelector('#listings');
+        var q = document.querySelector('.map-search');
 
-        console.log(data.features);
+        function displayMatches() {
+            const matchArr = findMatches(this.value, showtime);
+            console.log(matchArr);
 
-        data.features.filter(x => console.log(x.properties));
+            const html = matchArr
+                .map(h => {
+                    return `
+                        <div>
+                            <ul>
+                                <li>
+                                <a id="link-${h.id}" class="title" href="#">${h.city}</a>
+                                <p>${h.address}</p>
+                                </li>
+                            </ul>
+                        </div>`;
+                }).join("");
+
+            r.innerHTML = html;
+
+
+            var allTitles = document.querySelectorAll('.title');
+
+            allTitles.forEach(title => {
+                title.addEventListener('click', function (e) {
+                    for (var i = 0; i < data.features.length; i++) {
+                        if (this.id === "link-" + data.features[i].properties.id) {
+                            var clickedListing = data.features[i];
+                            flyToStore(clickedListing);
+                            createPopUp(clickedListing);
+                        }
+                    }
+                    var activeItem = document.getElementsByClassName('active');
+                    if (activeItem[0]) {
+                        activeItem[0].classList.remove('active');
+                    }
+                    this.parentNode.classList.add('active');
+                })
+            })
+        }
+
+
+        q.addEventListener("change", displayMatches);
+        q.addEventListener("keyup", displayMatches);
+
+
+        // document.querySelector('.title').addEventListener('click', function (e) {
+        //     for (var i = 0; i < data.features.length; i++) {
+        //         if (this.id === "link-" + data.features[i].properties.id) {
+        //             var clickedListing = data.features[i];
+        //             flyToStore(clickedListing);
+        //             createPopUp(clickedListing);
+        //         }
+        //     }
+        //     var activeItem = document.getElementsByClassName('active');
+        //     if (activeItem[0]) {
+        //         activeItem[0].classList.remove('active');
+        //     }
+        //     this.parentNode.classList.add('active');
+        // });
 
 
         // data.features.forEach(function (store, i) {
@@ -283,6 +348,7 @@
         //             }
         //             this.parentNode.classList.add('active');
         //         });
+        //
         //     }
         // );
     }
