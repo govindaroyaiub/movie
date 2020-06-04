@@ -233,6 +233,11 @@
 
                     <ul class="landing-city-list"></ul>
 
+                    <div class="map-wrapper d-none">
+                        <span class="mobile-map-close">&times;</span>
+                        <div id='map2' class='map mobile-map'></div>
+                    </div>
+
                 </div>
 
                 <br>
@@ -252,7 +257,7 @@
 
         </section>
         <section class="movie-details">
-            <div id='map' class='map'></div>
+            <div id='map' class='map desk-map'></div>
         </section>
     </div>
 </div>
@@ -395,7 +400,6 @@
     });
 </script>
 <script>
-    // This will let you use the .remove() function later on
     if (!('remove' in Element.prototype)) {
         Element.prototype.remove = function () {
             if (this.parentNode) {
@@ -407,11 +411,16 @@
     mapboxgl.accessToken = 'pk.eyJ1Ijoid2VhcmVkaXZhd29ybGR3aWRlIiwiYSI6ImNrYXplOHloYzBpa2syem1pZnkzNG9uMG8ifQ.tDXA7tNsSJ7_4FaOBdsAzg';
 
 
-    /**
-     * Add the map to the page
-     */
     var map = new mapboxgl.Map({
         container: 'map',
+        style: 'mapbox://styles/mapbox/dark-v10',
+        center: [4.782180, 51.587471],
+        zoom: 13,
+        scrollZoom: false
+    });
+
+    var map2 = new mapboxgl.Map({
+        container: 'map2',
         style: 'mapbox://styles/mapbox/dark-v10',
         center: [4.782180, 51.587471],
         zoom: 13,
@@ -475,6 +484,16 @@
         addMarkers();
     });
 
+    map2.on('load', function (e) {
+        map2.addSource("places", {
+            "type": "geojson",
+            "data": stores
+        });
+
+        buildLocationList(stores);
+        addMarkers2();
+    });
+
 
     function addMarkers() {
         stores.features.forEach(function (marker) {
@@ -500,6 +519,30 @@
         });
     }
 
+    function addMarkers2() {
+        stores.features.forEach(function (marker) {
+            var el = document.createElement('div');
+            el.id = "marker-" + marker.properties.id;
+            el.className = 'marker';
+
+            new mapboxgl.Marker(el, {offset: [0, -23]})
+                .setLngLat(marker.geometry.coordinates)
+                .addTo(map2);
+
+            el.addEventListener('click', function (e) {
+                flyToStore(marker);
+                createPopUp(marker);
+                var activeItem = document.getElementsByClassName('active');
+                e.stopPropagation();
+                if (activeItem[0]) {
+                    activeItem[0].classList.remove('active');
+                }
+                var listing = document.getElementById('listing-' + marker.properties.id);
+                listing.classList.add('active');
+            });
+        });
+    }
+
     function findMatches(wordToMatch, showtime) {
         return showtime.filter(show => {
             const regex = new RegExp(wordToMatch, "gi");
@@ -508,7 +551,6 @@
     }
 
     function buildLocationList(data) {
-
         // PART 1
         var sf = document.querySelector('.landing-search');
         var r = document.querySelector('.main-acc');
@@ -618,7 +660,7 @@
         const city = [...new Set(showtime.map(item => item.city))].sort();
 
         const cityHtml = city.map(c => {
-                return `
+            return `
                     <li class="city-item">
                       <a class="city-link" href="#"><iclass="fa fa-search"></i>${c}</a>
                     </li>
@@ -629,18 +671,19 @@
 
         const allCities = document.querySelectorAll(".city-link");
         allCities.forEach(singleCity => {
-           singleCity.addEventListener('click', function(e) {
-               e.preventDefault();
-               cityAcc.classList.remove('d-none');
+            singleCity.addEventListener('click', function (e) {
+                e.preventDefault();
+                cityAcc.classList.remove('d-none');
+                document.querySelector('.map-wrapper').classList.remove('d-none');
 
-               const cityQuery = this.textContent;
+                const cityQuery = this.textContent;
 
-               const filter = showtime.filter(el => {
-                   return el.city === cityQuery;
-               });
+                const filter = showtime.filter(el => {
+                    return el.city === cityQuery;
+                });
 
-               const cHtml = filter.map(cm => {
-                   return `
+                const cHtml = filter.map(cm => {
+                    return `
                         <div>
                           <a id="link-${cm.id}" class="accordion-title-wrapper title" href="#">
                             <div id="heading-${cm.id}">
@@ -666,37 +709,42 @@
                           </div>
                         </div>
                     `;
-               })
-                   .join("");
-               cityAcc.innerHTML = cHtml;
+                })
+                    .join("");
+                cityAcc.innerHTML = cHtml;
 
 
-               var allTitles = document.querySelectorAll('.title');
+                var allTitles = document.querySelectorAll('.title');
 
-               allTitles.forEach(title => {
-                   title.addEventListener('click', function (e) {
-                       e.preventDefault();
-                       for (var i = 0; i < data.features.length; i++) {
-                           if (this.id === "link-" + data.features[i].properties.id) {
-                               var clickedListing = data.features[i];
-                               flyToStore(clickedListing);
-                               createPopUp(clickedListing);
-                           }
-                       }
-                       var activeItem = document.getElementsByClassName('active');
-                       if (activeItem[0]) {
-                           activeItem[0].classList.remove('active');
-                       }
-                       this.parentNode.classList.add('active');
-                   })
-               })
+                allTitles.forEach(title => {
+                    title.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        for (var i = 0; i < data.features.length; i++) {
+                            if (this.id === "link-" + data.features[i].properties.id) {
+                                var clickedListing = data.features[i];
+                                flyToStore(clickedListing);
+                                createPopUp(clickedListing);
+                            }
+                        }
+                        var activeItem = document.getElementsByClassName('active');
+                        if (activeItem[0]) {
+                            activeItem[0].classList.remove('active');
+                        }
+                        this.parentNode.classList.add('active');
+                    })
+                })
 
-           })
+            })
         });
     }
 
     function flyToStore(currentFeature) {
         map.flyTo({
+            center: currentFeature.geometry.coordinates,
+            zoom: 15
+        });
+
+        map2.flyTo({
             center: currentFeature.geometry.coordinates,
             zoom: 15
         });
@@ -709,7 +757,25 @@
             .setLngLat(currentFeature.geometry.coordinates)
             .setHTML(`<h3 class="text-center">${currentFeature.properties.name}</h3><h4>${currentFeature.properties.address}, ${currentFeature.properties.zip}, ${currentFeature.properties.city}</h4>`)
             .addTo(map);
+
+        var popUps2 = document.getElementsByClassName('mapboxgl-popup');
+        if (popUps2[0]) popUps2[0].remove();
+        var popup2 = new mapboxgl.Popup({closeOnClick: false})
+            .setLngLat(currentFeature.geometry.coordinates)
+            .setHTML(`<h3 class="text-center">${currentFeature.properties.name}</h3><h4>${currentFeature.properties.address}, ${currentFeature.properties.zip}, ${currentFeature.properties.city}</h4>`)
+            .addTo(map2);
     }
+
+
+    // Mobile map
+    var mobileWrapper = document.querySelector('.map-wrapper');
+    var mobileMap = document.querySelector('.mobile-map');
+    var mobileMapClose = document.querySelector('.mobile-map-close');
+
+    mobileMapClose.addEventListener('click', () => {
+        mobileMap.classList.add('d-none');
+        mobileWrapper.classList.add('d-none');
+    });
 </script>
 </body>
 
