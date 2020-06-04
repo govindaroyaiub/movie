@@ -32,4 +32,14 @@ Route::group(['middleware' => ['auth']], function()
   Route::get('/test-en', 'PagesController@landing_en');
   Route::get('/test-nl', 'PagesController@landing_nl');
   Route::post('/update-info', 'HomeController@update_info')->name('update_info');
+
+  Route::get('/userlist', 'AdminController@userlist');
+  Route::post('/userlist/create', 'AdminController@create_user')->name('create.user');
+  Route::get('/userlist/delete/{id}', 'AdminController@delete_user');
+  Route::get('/userlist/edit/{id}', 'AdminController@edit_user');
+  Route::post('/userlist/edit/{id}', 'AdminController@edit_user_post');
+
+  Route::get('/movielist', 'AdminController@movielist');
+
+  
 });
