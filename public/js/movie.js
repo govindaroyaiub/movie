@@ -116,7 +116,7 @@ function getCities() {
         .then(blob => blob.json())
         .then(data => shows2.push(...data));
 
-    const city = [...new Set(shows.map(item => item.city))];
+    const city = [...new Set(shows.map(item => item.city))].sort();
 
     const cityHtml = city
         .map(c => {
