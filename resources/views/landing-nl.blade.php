@@ -30,7 +30,6 @@
         <li data-lang="en"><img src="https://image.flaticon.com/icons/svg/2969/2969780.svg" alt=""></li>
         <li data-lang="nl"><img src="https://image.flaticon.com/icons/svg/321/321264.svg" alt=""></li>
     </ul>
-
 </header>
 
 
@@ -255,6 +254,51 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js'></script>
 <script src="{{ asset('js/movie.js') }}"></script>
+<script>
+    $(function () {
+        $('.mobile-link').on('click', function (e) {
+            $(".mobile-checkbox").click();
+        });
+
+        $('[data-toggle="tooltip"]').tooltip()
+
+
+        // language picker
+        const nl = document.querySelector('[data-lang="nl"]');
+        const en = document.querySelector('[data-lang="en"]');
+
+        if (location.pathname === '/') {
+            en.classList.add('d-block');
+            moment.locale('nl');
+            en.addEventListener('click', function () {
+                location.href = '/en';
+            })
+        } else {
+            nl.classList.add('d-block');
+            moment.locale('en');
+            nl.addEventListener('click', function () {
+                location.href = '/';
+            })
+        }
+
+        setTimeout(function () {
+            $('.trailer-video').trigger('click');
+        }, 10);
+
+        const videoUrl = $('.trailer-video').attr('href');
+
+        $('.trailer-video').magnificPopup({
+            type: 'iframe',
+            iframe: {
+                patterns: {
+                    youtube: {
+                        src: videoUrl
+                    }
+                }
+            }
+        });
+    });
+</script>
 </body>
 
 </html>

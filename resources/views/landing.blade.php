@@ -283,6 +283,8 @@
                 location.href = '/';
             })
         }
+
+
         setTimeout(function () {
             $('.trailer-video').trigger('click');
         }, 10);
