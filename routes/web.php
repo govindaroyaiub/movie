@@ -21,7 +21,6 @@ Route::get('map', function() {
 Route::get('/', 'DataController@index');
 Route::get('/en', 'DataController@english_landing');
 Route::get('/api/shows', 'DataController@showsApi');
-// Route::get('/test-nl/api/shows', 'DataController@showsApi');
 
 Auth::routes();
 
@@ -29,6 +28,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function()
 {
+  Route::get('/test-nl/api/shows', 'PagesController@showsApi');
   Route::post('/upload', 'HomeController@upload');
   Route::get('/test-en', 'PagesController@landing_en');
   Route::get('/test-nl', 'PagesController@landing_nl');

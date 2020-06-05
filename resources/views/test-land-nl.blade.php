@@ -427,14 +427,14 @@
         scrollZoom: false
     });
 
-    let endpint;
+    let endpint = `${location.href}/api/shows`;
 
-    if (location.pathname === '/test-nl') {
-        const enUrl = `${location.href}api/shows`;
-        endpint = enUrl.replace(/\/test-nl/g, '/');
-    } else {
-        endpint = `${location.href}api/shows`;
-    }
+    // if (location.pathname === '/test-nl') {
+    //     const enUrl = `${location.href}api/shows`;
+    //     endpint = enUrl.replace(/\/test-nl/g, '/');
+    // } else {
+    //     endpint = `${location.href}api/shows`;
+    // }
 
 
     var showtime = [];
