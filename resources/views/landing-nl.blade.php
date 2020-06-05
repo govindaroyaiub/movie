@@ -662,7 +662,7 @@
         const cityHtml = city.map(c => {
             return `
                     <li class="city-item">
-                      <a class="city-link" href="#"><iclass="fa fa-search"></i>${c}</a>
+                      <a class="city-link" href="#">${c}</a>
                     </li>
             `;
         }).join("");

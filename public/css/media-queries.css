@@ -60,11 +60,17 @@
     .landing-city-list {
         flex-wrap: nowrap;
         overflow-x: auto;
-        justify-content: center;
+        justify-content: space-between;
     }
 
     .city-link {
         font-size: 13px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 100px;
+        min-height: 30px;
+        padding: 8px;
     }
 
     .mapboxgl-popup-content h3 {
