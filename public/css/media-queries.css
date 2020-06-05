@@ -34,16 +34,18 @@
         height: 215px;
     }
 
-    .acc-title i {
+    /* map */
+
+    .map-acc-title i {
         font-size: 1.4rem;
     }
 
-    .acc-description h4,
-    .acc-title h3 {
+    .map-acc-description h4,
+    .map-acc-title h3 {
         font-size: 1rem;
     }
 
-    .acc-description a {
+    .map-acc-description a {
         padding: 5px 8px;
         font-weight: normal;
     }
@@ -57,13 +59,13 @@
         top: 8px;
     }
 
-    .landing-city-list {
+    .map-landing-city-list {
         flex-wrap: nowrap;
         overflow-x: auto;
         justify-content: space-between;
     }
 
-    .city-link {
+    .map-city-link {
         font-size: 13px;
         display: flex;
         justify-content: center;

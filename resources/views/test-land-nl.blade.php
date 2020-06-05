@@ -231,7 +231,7 @@
 
                     <h2 class="h6 my-3 text-center">MEER VERTONINGEN IN DEZE STEDEN</h2>
 
-                    <ul class="landing-city-list"></ul>
+                    <ul class="map-landing-city-list landing-city-list"></ul>
 
                     <div class="map-wrapper d-none">
                         <span class="mobile-map-close">&times;</span>
@@ -603,7 +603,7 @@
                           <a id="link-${m.id}" class="accordion-title-wrapper title" href="#">
                             <div id="heading${m.id}">
                               <div data-toggle="collapse" data-target="#collapse${m.id}" aria-expanded="true" aria-controls="collapse${m.id}">
-                                <div class="acc-title">
+                                <div class="map-acc-title acc-title">
                                   <div class="d-flex">
                                     <i class="fa fa-file-video-o fa-3x text-red"></i>
                                     <h3 class="ml-3">${m.name}</h3>
@@ -617,7 +617,7 @@
                             </div>
                           </a>
                           <div id="collapse${m.id}" class="collapse" aria-labelledby="heading${m.id}" data-parent="#accordionExample">
-                            <div class="acc-description">
+                            <div class="map-acc-description acc-description">
                               <h4>${m.movie_title}</h4>
                               <a class="text-uppercase" href="http://${m.url}" target="_blank"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>
                             </div>
@@ -655,14 +655,14 @@
 
         // PART 02
         const cityAcc = document.querySelector(".city-acc");
-        const cityUl = document.querySelector(".landing-city-list");
+        const cityUl = document.querySelector(".map-landing-city-list");
 
         const city = [...new Set(showtime.map(item => item.city))].sort();
 
         const cityHtml = city.map(c => {
             return `
-                    <li class="city-item">
-                      <a class="city-link" href="#">${c}</a>
+                    <li class="map-city-item city-item">
+                      <a class="map-city-link city-link" href="#">${c}</a>
                     </li>
             `;
         }).join("");
