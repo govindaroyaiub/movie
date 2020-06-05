@@ -123,11 +123,11 @@
 
         <section class="movie-details">
             <h3 class="underline text-center my-3">
-                {{ $movie_details->movie_description_short }}
+                {{ $movie_details->movie_description_short_nl }}
             </h3>
 
             <p class="excerpt mt-3">
-                {{ $movie_details->movie_description_long }}
+                {{ $movie_details->movie_description_long_nl }}
             </p>
 
             <div class="synopsis-meta">

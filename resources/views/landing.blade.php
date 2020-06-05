@@ -30,8 +30,6 @@
         <li data-lang="en"><img src="https://image.flaticon.com/icons/svg/2969/2969780.svg" alt=""></li>
         <li data-lang="nl"><img src="https://image.flaticon.com/icons/svg/321/321264.svg" alt=""></li>
     </ul>
-
-
 </header>
 
 
@@ -84,11 +82,10 @@
             </div>
 
             <div class="land-content">
-
                 <form class="landing-search">
                     <div class="form-group position-relative">
                         <input id="land-search-input" type="search" class="form-control q" autocomplete="off"
-                               placeholder="SEARCH">
+                               placeholder="ZOEK">
                         <button type="submit" id="land-search-btn">&times;</button>
                     </div>
                 </form>
@@ -111,7 +108,6 @@
 
                 <p class="text-center">WATCH THE TRAILER
                 </p>
-
                 <iframe class="js-iframe"
                         src="{{ $youtube_url }}" frameborder="0"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -119,11 +115,13 @@
 
 
                 <div class="city-acc accordion d-none" id="accordionExample2"></div>
+
+
             </div>
 
         </section>
-        <section class="movie-details">
 
+        <section class="movie-details">
             <h3 class="underline text-center my-3">
                 {{ $movie_details->movie_description_short }}
             </h3>
@@ -212,8 +210,6 @@
 
 </div>
 
-{{--<h2 class="h6 my-3">@lang('home.more_cities')</h2>--}}
-
 
 <footer class="movie-footer py-3">
     <div class="container">
@@ -250,12 +246,13 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment-with-locales.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.31/moment-timezone.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js'></script>
 <script src="{{ asset('js/movie.js') }}"></script>
 <script>
     $(function () {
@@ -284,7 +281,6 @@
             })
         }
 
-
         setTimeout(function () {
             $('.trailer-video').trigger('click');
         }, 10);
@@ -303,7 +299,6 @@
         });
     });
 </script>
-
 </body>
 
 </html>
