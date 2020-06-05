@@ -91,7 +91,7 @@ function displayMatches() {
                                   </div>
                                          <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
                                              <p class="m-0 text-expand">${m.address}, ${m.city}</p>
-                                             <p class="m-0 text-expand" style="color:red;">${moment(m.date).format("MMMM Do")} ${moment(m.time, "HH:mm").format("HH:mm")}</p>
+                                             <p class="m-0 text-expand">${location.pathname === '/' ? moment(m.date).locale('nl').format("LL") : moment(m.date).locale('en').format("LL")} ${moment(m.time, "HH:mm").format("HH:mm")}</p>
                                          </div>
                                         </div>
                                     </div>
@@ -101,7 +101,7 @@ function displayMatches() {
                                     data-parent="#accordionExample">
                                     <div class="acc-description">
                                         <h4>${m.movie_title}</h4>
-                                        <a class="text-uppercase" target="_blank" href="${m.ticket_url}"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>
+                                        <a class="text-uppercase" target="_blank" href="http://${m.url}"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>
                                     </div>
                                 </div>
     `;
@@ -157,7 +157,7 @@ function getCities() {
                       </div>
                       <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
                          <p class="m-0 text-expand">${md.address}, ${md.city}</p>
-                         <p class="m-0 text-expand" style="color:red;">${moment(md.date).format("MMMM Do")} ${moment(md.time, "HH:mm").format("HH:mm")}</p>
+                         <p class="m-0 text-expand">${location.pathname === '/' ? moment(md.date).locale('nl').format("LL") : moment(md.date).locale('en').format("LL")} ${moment(md.time, "HH:mm").format("HH:mm")}</p>
                       </div>
                    </div>
                 </div>
@@ -166,7 +166,7 @@ function getCities() {
                 data-parent="#accordionExample">
                 <div class="acc-description">
                    <h4>${md.movie_title}</h4>
-                   <a target="_blank" href="${md.ticket_url}"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>
+                   <a target="_blank" href="http://${md.url}"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>
                 </div>
              </div>`;
                 })
