@@ -5,17 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $movie_details->movie_title }}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/movie.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/media-queries.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/movie.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/media-queries.css') }}" />
     {!! $movie_details->google_pixel !!}
     {!! $movie_details->fb_pixel !!}
-    <script
-        src='https://platform-api.sharethis.com/js/sharethis.js#property=5ec944357cfa4a0012b475a1&product=inline-share-buttons&cms=website'
-        async='async'></script>
 </head>
 
 <body>
@@ -27,8 +24,8 @@
     <h1 class="mr-1">{{ $movie_details->movie_title }} - {{ $movie_details->movie_description_short }}</h1>
 
     <ul class="dropdown-flags">
-        <li data-lang="en"><img src="https://image.flaticon.com/icons/svg/2969/2969780.svg" alt=""></li>
-        <li data-lang="nl"><img src="https://image.flaticon.com/icons/svg/321/321264.svg" alt=""></li>
+        <li data-lang="en"><img src="{{ asset('assets/images/us.svg') }}" alt=""></li>
+        <li data-lang="nl"><img src="{{ asset('assets/images/nl.svg') }}" alt=""></li>
     </ul>
 </header>
 
@@ -41,9 +38,7 @@
             <span></span>
             <span></span>
             <ul class="menu">
-                <button class="tablinks mobile-link" onclick="openItem(event, 'getTickets')" id="defaultOpen">Get
-                    Tickets
-                </button>
+                <button class="tablinks mobile-link" onclick="openItem(event, 'getTickets')" id="defaultOpen">Bioscoop pagina</button>
                 <button class="tablinks mobile-link" onclick="openItem(event, 'videos')">Videos</button>
                 <button class="tablinks mobile-link" onclick="openItem(event, 'synopsis')">Synopsis</button>
             </ul>
@@ -54,7 +49,7 @@
 <div class="desktop-nav">
     <div class="tab-wrapper">
         <div class="tab">
-            <button class="tablinks" onclick="openItem(event, 'getTickets')" id="defaultOpen">Get Tickets</button>
+            <button class="tablinks" onclick="openItem(event, 'getTickets')" id="defaultOpen">Bioscoop pagina</button>
             <button class="tablinks" onclick="openItem(event, 'videos')">Videos</button>
             <button class="tablinks" onclick="openItem(event, 'synopsis')">Synopsis</button>
             <div class="hashtag text-uppercase font-weight-bold">{{ $movie_details->hashtag }}</div>
@@ -235,16 +230,17 @@
 </footer>
 
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment-with-locales.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.31/moment-timezone.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js'></script>
+<script src="{{ asset('assets/js/jquery-1.12.4.js') }}"></script>
+<script src="{{ asset('assets/js/popper.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/gsap.min.js') }}"></script>
+<script src="{{ asset('assets/js/moment.min.js') }}"></script>
+<script src="{{ asset('assets/js/moment-with-locales.min.js') }}"></script>
+<script src="{{ asset('assets/js/moment-timezone.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ asset('assets/js/mapbox-gl.js') }}"></script>
+<script src="{{ asset('js/movie.js') }}"></script>
+<script src='https://platform-api.sharethis.com/js/sharethis.js#property=5ec944357cfa4a0012b475a1&product=inline-share-buttons&cms=website'></script>
 <script src="{{ asset('js/movie.js') }}"></script>
 <script>
     $(function () {
