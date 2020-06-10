@@ -1,5 +1,4 @@
 // Tab
-console.clear();
 function openItem(evt, itemName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -102,7 +101,7 @@ function displayMatches() {
                                     data-parent="#accordionExample">
                                     <div class="acc-description">
                                         <h4>${m.movie_title}</h4>
-                                        <a class="text-uppercase" target="_blank" href="http://${m.url}"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>
+                                        <a class="text-uppercase" target="_blank" href="http://${m.url}"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Bioscoop pagina' : 'Go to cinema'}</a>
                                     </div>
                                 </div>
     `;
@@ -167,7 +166,7 @@ function getCities() {
                 data-parent="#accordionExample">
                 <div class="acc-description">
                    <h4>${md.movie_title}</h4>
-                   <a target="_blank" href="http://${md.url}"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Koop Tickets' : 'Get Tickets'}</a>
+                   <a target="_blank" href="http://${md.url}"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Bioscoop pagina' : 'Go to cinema'}</a>
                 </div>
              </div>`;
                 })
@@ -184,5 +183,4 @@ q.addEventListener("change", displayMatches);
 q.addEventListener("keyup", displayMatches);
 window.addEventListener("load", getCities);
 
-
-console.clear();
+window.addEventListener('DOMContentLoaded', () => console.clear());

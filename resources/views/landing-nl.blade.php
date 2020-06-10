@@ -38,9 +38,7 @@
             <span></span>
             <span></span>
             <ul class="menu">
-                <button class="tablinks mobile-link" onclick="openItem(event, 'getTickets')" id="defaultOpen">Koop
-                    Tickets
-                </button>
+                <button class="tablinks mobile-link" onclick="openItem(event, 'getTickets')" id="defaultOpen">Bioscoop pagina</button>
                 <button class="tablinks mobile-link" onclick="openItem(event, 'videos')">Videos</button>
                 <button class="tablinks mobile-link" onclick="openItem(event, 'synopsis')">Synopsis</button>
             </ul>
@@ -51,7 +49,7 @@
 <div class="desktop-nav">
     <div class="tab-wrapper">
         <div class="tab">
-            <button class="tablinks" onclick="openItem(event, 'getTickets')" id="defaultOpen">Koop Tickets</button>
+            <button class="tablinks" onclick="openItem(event, 'getTickets')" id="defaultOpen">Bioscoop pagina</button>
             <button class="tablinks" onclick="openItem(event, 'videos')">Videos</button>
             <button class="tablinks" onclick="openItem(event, 'synopsis')">Synopsis</button>
             <div class="hashtag text-uppercase font-weight-bold">{{ $movie_details->hashtag }}</div>
