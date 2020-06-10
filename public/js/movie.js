@@ -1,4 +1,5 @@
 // Tab
+console.clear();
 function openItem(evt, itemName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -183,3 +184,5 @@ q.addEventListener("change", displayMatches);
 q.addEventListener("keyup", displayMatches);
 window.addEventListener("load", getCities);
 
+
+console.clear();
