@@ -166,7 +166,7 @@ function getCities() {
                 data-parent="#accordionExample">
                 <div class="acc-description">
                    <h4>${md.movie_title}</h4>
-                   <a target="_blank" href="http://${md.url}"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Bioscoop pagina' : 'Go to cinema'}</a>
+                   <a class="text-uppercase" target="_blank" href="http://${md.url}"><i class="fa fa-ticket"></i> ${location.pathname === '/' ? 'Bioscoop pagina' : 'Go to cinema'}</a>
                 </div>
              </div>`;
                 })
