@@ -44,12 +44,13 @@ class AdminController extends Controller
         $name = $request->name;
         $email = $request->email;
         $default_password = 'password';
+        $user_role = $request->role;
 
         $params = [
             'name' => $name,
             'email' => $email,
             'password' => Hash::make($default_password),
-            'is_admin' => '0',
+            'is_admin' => $user_role,
             'is_delete' => '1'
         ];
         User::insert($params);

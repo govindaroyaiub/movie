@@ -145,10 +145,6 @@
                 </p>
 
                 <p>
-                    <span>Rating:</span> {{ $rating }}
-                </p>
-
-                <p>
                     <span>Duration:</span> {{ $movie_details->duration }}
                 </p>
             </div>
@@ -193,11 +189,7 @@
                 <p>
                     <span>Cast:</span> {{ $movie_details->actors }}
                 </p>
-
-                <p>
-                    <span>Rating:</span> {{ $rating }}
-                </p>
-
+                
                 <p>
                     <span>Duration:</span> {{ $movie_details->duration }}
                 </p>

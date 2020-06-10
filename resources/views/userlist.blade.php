@@ -63,6 +63,13 @@
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" name="name" id="name" required>
                             </div>
+                            <div class="form-group">
+                            <select class="form-control" name="role" required>
+                                <option value="">Select User Role</option>
+                                <option value="0">Client</option>
+                                <option value="1">Admin</option>
+                            </select>
+                            </div>
                             <div class="modal-footer">
                                 <button type="submit" class="form-control-user btn btn-primary">Create</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
