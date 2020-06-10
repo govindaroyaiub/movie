@@ -301,10 +301,6 @@
                 </p>
 
                 <p>
-                    <span>Rating:</span> {{ $rating }}
-                </p>
-
-                <p>
                     <span>Duration:</span> {{ $movie_details->duration }}
                 </p>
             </div>
