@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Userlist <a href="/userlist/create" style="position:absolute; text-decoration: underline; right:2%;" data-toggle="modal" data-target="#create_user_modal">Create User</a></div>
+                <div class="card-header">Userlist <a href="/userlist/create" style="position:absolute; text-decoration: underline; right:2%;" data-toggle="modal" data-target="#create_user_modal">Create User +</a></div>
 
                 <div class="card-body">
                     @include('alert')

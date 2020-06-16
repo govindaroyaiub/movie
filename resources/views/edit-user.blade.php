@@ -22,6 +22,13 @@
                                 <input type="text" class="form-control" name="name" id="name" value="{{ $user_details->name }}"
                                     required>
                             </div>
+                            <div class="form-group">
+                            <select class="form-control" name="role" required>
+                                <option value="">Select User Role</option>
+                                <option value="0" @if($user_details['is_admin'] == 0) selected @else @endif>Client</option>
+                                <option value="1"  @if($user_details['is_admin'] == 1) selected @else @endif>Admin</option>
+                            </select>
+                            </div>
                             <div class="modal-footer">
                                 <button type="submit" class="form-control-user btn btn-primary">Update</button>
                                 <a href="/userlist"><button type="button" class="btn btn-secondary">Back</button></a>

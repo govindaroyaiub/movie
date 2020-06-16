@@ -117,7 +117,7 @@ function getCities() {
         .then(data => shows2.push(...data));
 
     const city = [...new Set(shows.map(item => item.city))].sort();
-
+    console.log(city);
     const cityHtml = city
         .map(c => {
             return `

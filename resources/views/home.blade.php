@@ -12,6 +12,16 @@
 
                     <form method="post" action="/upload" enctype="multipart/form-data">
                     {{ csrf_field() }}
+                    @if(Auth::user()->is_admin == 1)
+                    <div class="form-group">
+                        <select class="form-control select2" id="client_id" name="client_id">
+                            <option value="">Select Client</option>
+                            @foreach($user_list as $row)
+                            <option value="{{$row->id}}">{{$row->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @endif
                     <div class="form-group">
                         <input type="file" name="file" required>
                     </div>

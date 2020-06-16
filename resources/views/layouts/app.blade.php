@@ -11,7 +11,20 @@
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
     <link href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" />
+    <style>
+      .select2-container .select2-selection--single {
+          height: 35px;
+          margin: 2px;
+      }
+
+      .select2-container--default .select2-selection--single {
+          font-size: 1rem;
+          background-color: #fff;
+          background-clip: padding-box;
+          border: 1px solid #d1d3e2;
+      }
+  </style>
 </head>
 <body>
     <div id="app">
@@ -30,10 +43,10 @@
                     <a class="navbar" href="{{ url('/userlist') }}">
                     Users
                     </a>
+                    @endif
                     <a class="navbar" href="{{ url('/movielist') }}">
                     Movies
                     </a>
-                    @endif
                 @endguest
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -151,6 +164,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
     <script src="{{ asset('/js/script.js') }}"></script>
     <script>
@@ -205,6 +219,9 @@
             ]
         });
     });
+</script>
+<script>
+    $('.select2').select2();
 </script>
 </body>
 </html>

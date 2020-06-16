@@ -48,6 +48,8 @@ class MovieDetailsTable extends Migration
             $table->longText('credits_nl')->nullable();
             $table->longText('fb_pixel')->nullable();
             $table->longText('google_pixel')->nullable();
+            $table->string('is_delete')->nullable();
+            $table->string('uploaded_by')->nullable();
             $table->timestamps();
         });
     }

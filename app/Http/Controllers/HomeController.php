@@ -30,7 +30,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user_list = User::where('is_admin', 0)->get();
+        return view('home', compact('user_list'));
     }
 
     public function upload(Request $request)
@@ -40,6 +41,14 @@ class HomeController extends Controller
         $this->validate($request, array(
         'file'      => 'required'
         ));
+        if($request->has('client_id'))
+        {
+            $user_id = $request->client_id;
+        }
+        else
+        {
+            $user_id = Auth::user()->id;
+        }
     
         if($request->hasFile('file'))
         {
@@ -144,7 +153,9 @@ class HomeController extends Controller
                             'credits' => $credits,
                             'credits_nl' => $credits_nl,
                             'fb_pixel' => $fb_pixel,
-                            'google_pixel' => $google_pixel
+                            'google_pixel' => $google_pixel,
+                            'is_delete' => '0',
+                            'uploaded_by' => $user_id
                         ];
                         array_push($full_movie_details, $movie_details);
                     }
@@ -190,7 +201,8 @@ class HomeController extends Controller
                                                 'credits',
                                                 'credits_nl',
                                                 'fb_pixel',
-                                                'google_pixel')
+                                                'google_pixel',
+                                                'uploaded_by')
                                                 ->where('base_url', '=', $app_url)
                                                 ->first()
                                                 ->toArray();

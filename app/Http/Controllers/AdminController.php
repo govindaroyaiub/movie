@@ -69,10 +69,12 @@ class AdminController extends Controller
     {
         $name = $request->name;
         $email = $request->email;
+        $role = $request->role;
 
         $params = [
             'name' => $name,
-            'email' => $email
+            'email' => $email,
+            'is_admin' => $role
         ];
         User::where('id', $id)->update($params);
         return back()->with('info', $name.' has been updated!');
@@ -86,9 +88,15 @@ class AdminController extends Controller
 
     public function movielist()
     {
-        $movie_list = Movie::get();
+        $movie_list = Movie::join('users', 'users.id', 'movie_details.uploaded_by')
+                            ->where('movie_details.is_delete', '0')->get();
         return view('movielist', compact('movie_list'));
     }
 
+    public function movie_delete($id)
+    {
+        Movie::where('id', $id)->update(['is_delete' => '1']);
+        return redirect('/movielist')->with('info', 'Movie has been deleted!');
+    }
     
 }
