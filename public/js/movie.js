@@ -65,9 +65,17 @@ function removeSearchoutput() {
     cr.classList.add("d-none");
 }
 
-fetch(url)
-    .then(blob => blob.json())
-    .then(data => shows.push(...data));
+// fetch(url)
+//     .then(blob => blob.json())
+//     .then(data => shows.push(...data));
+
+
+axios.get(url)
+    .then((response) => {
+        shows.push(...response.data)
+    })
+    .catch((error) => console.log(error));
+
 
 function findMatches(wordToMatch, shows) {
     return shows.filter(show => {
@@ -112,12 +120,20 @@ function displayMatches() {
 
 function getCities() {
     const shows2 = [];
-    fetch(url)
-        .then(blob => blob.json())
-        .then(data => shows2.push(...data));
+
+    // fetch(url)
+    //     .then(blob => blob.json())
+    //     .then(data => shows2.push(...data));
+
+    axios.get(url)
+        .then((response) => {
+            shows2.push(...response.data)
+        })
+        .catch((error) => console.log(error));
+
 
     const city = [...new Set(shows.map(item => item.city))].sort();
-    console.log(city);
+
     const cityHtml = city
         .map(c => {
             return `
@@ -183,4 +199,4 @@ q.addEventListener("change", displayMatches);
 q.addEventListener("keyup", displayMatches);
 window.addEventListener("load", getCities);
 
-window.addEventListener('DOMContentLoaded', () => console.clear());
+// window.addEventListener('DOMContentLoaded', () => console.clear());

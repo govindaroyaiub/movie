@@ -187,7 +187,7 @@
                 <p>
                     <span>Cast:</span> {{ $movie_details->actors }}
                 </p>
-                
+
                 <p>
                     <span>Duration:</span> {{ $movie_details->duration }}
                 </p>
@@ -233,6 +233,7 @@
 <script src="{{ asset('assets/js/jquery-1.12.4.js') }}"></script>
 <script src="{{ asset('assets/js/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/axios.min.js') }}"></script>
 <script src="{{ asset('assets/js/gsap.min.js') }}"></script>
 <script src="{{ asset('assets/js/moment.min.js') }}"></script>
 <script src="{{ asset('assets/js/moment-with-locales.min.js') }}"></script>
@@ -285,7 +286,7 @@
             }
         });
     });
-    
+
 </script>
 </body>
 
