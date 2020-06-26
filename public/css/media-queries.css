@@ -80,7 +80,7 @@
         font-size: 1rem !important;
     }
 
-    mapboxgl-popup-content h4 {
+    .mapboxgl-popup-content h4 {
         font-size: .9rem;
     }
 

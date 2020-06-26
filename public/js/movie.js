@@ -133,6 +133,7 @@ function getCities() {
 
 
     const city = [...new Set(shows.map(item => item.city))].sort();
+    console.log(city)
 
     const cityHtml = city
         .map(c => {
