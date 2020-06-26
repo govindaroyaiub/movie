@@ -84,6 +84,10 @@ function findMatches(wordToMatch, shows) {
     });
 }
 
+// 
+// ${moment(md.time, "HH:mm").format("HH:mm")}
+// 
+
 function displayMatches() {
     r.classList.remove("d-none");
     const matchArr = findMatches(this.value, shows);
@@ -99,7 +103,7 @@ function displayMatches() {
                                   </div>
                                          <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
                                              <p class="m-0 text-expand">${m.address}, ${m.city}</p>
-                                             <p class="m-0 text-expand">${location.pathname === '/' ? moment(m.date).locale('nl').format("LL") : moment(m.date).locale('en').format("LL")} ${moment(m.time, "HH:mm").format("HH:mm")}</p>
+                                             <p class="m-0 text-expand">${location.pathname === '/' ? moment(m.date).locale('nl').format("LL") : moment(m.date).locale('en').format("LL")}</p>
                                          </div>
                                         </div>
                                     </div>
@@ -133,8 +137,6 @@ function getCities() {
 
 
     const city = [...new Set(shows.map(item => item.city))].sort();
-    console.log(city)
-
     const cityHtml = city
         .map(c => {
             return `
@@ -174,7 +176,7 @@ function getCities() {
                       </div>
                       <div style="margin-left: 60px" class="d-flex justify-content-between mt-2">
                          <p class="m-0 text-expand">${md.address}, ${md.city}</p>
-                         <p class="m-0 text-expand">${location.pathname === '/' ? moment(md.date).locale('nl').format("LL") : moment(md.date).locale('en').format("LL")} ${moment(md.time, "HH:mm").format("HH:mm")}</p>
+                         <p class="m-0 text-expand">${location.pathname === '/' ? moment(md.date).locale('nl').format("LL") : moment(md.date).locale('en').format("LL")}</p>
                       </div>
                    </div>
                 </div>
